@@ -31,6 +31,33 @@ header img{
   border-radius: 33px;
 }
 
+nav{
+  background-color: #69431E;
+  height: 85px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.orizzontal-card{
+  width: 240px;
+  height: 60px;
+  border: solid 1px black;
+}
+
+.orizzontal-cards-container{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+  background-color: white;
+  border-radius: 33px;
+}
+
 .middle-big-box{
   height: 508px;
   display: flex;
@@ -41,7 +68,7 @@ header img{
 }
 
 .right-mid{
-  width: 350px;
+  width: 510px;
 }
 
 header input{

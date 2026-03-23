@@ -16,4 +16,29 @@ h1{
 header{
   display: flex;
   justify-content: center;
+  height: 80px;
+}
+
+.middle-big-box{
+  height: 508px;
+  display: flex;
+}
+
+.left-mid{
+  width: 90px;
+}
+
+.right-mid{
+  width: 350px;
+}
+
+.big-mid{
+  width: 80%;
+  background-color: white;
+  color: black;
+}
+
+footer{
+  height: 110px;
+  background-color: black;
 }

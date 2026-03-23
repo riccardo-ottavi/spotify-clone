@@ -1,31 +1,31 @@
 import './App.css'
+import Footer from './components/Footer'
+import Header from './components/Header'
 
 function App() {
 
   return (
     <>
       <section className="header">
-        <header>
-          {/* header*/}
-          <h1>Spotify</h1>
-        </header>
+       <Header /> 
       </section>
 
       <section className="middle-big-box">
-        <div className="side-left">
-          {/* left-side-menu*/}
+        <div className="left-mid">
+          <h3>Sono la parte sinistra</h3>
         </div>
-        <div className="main-container">
-          {/* main*/}
+        <div className="big-mid">
+          Sono la parte centrale 
         </div>
-        <div className="side-right">
-          {/* left-side-menu*/}
+        <div className="right-mid">
+          <h3>Sono la parte destra</h3>
         </div>
       </section>
 
       <section className="footer">
         <footer>
           {/* footer*/}
+          <Footer />
         </footer>
       </section>
     </>

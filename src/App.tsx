@@ -4,6 +4,17 @@ import Header from './components/Header'
 
 function App() {
 
+  const orizzontalCards = [
+  { id: 1, title: "Stay with me", image:"../stranger.jpeg" },
+  { id: 2, title: "Flyday Chinatown",  image:"../stranger.jpeg"},
+  { id: 3, title: "Where is my mind", image:"../stranger.jpeg"},
+  { id: 4, title: "Make money like bettino", image:"../stranger.jpeg"},
+  { id: 5, title: "Stay with me", image:"../stranger.jpeg" },
+  { id: 6, title: "Flyday Chinatown",  image:"../stranger.jpeg"},
+  { id: 7, title: "Where is my mind", image:"../stranger.jpeg"},
+  { id: 8, title: "Make money like bettino", image:"../stranger.jpeg"},
+];
+
   return (
     <>
       <section className="header">
@@ -13,6 +24,13 @@ function App() {
       <section className="middle-big-box">
         <div className="left-mid">
           <h3>Sono la parte sinistra</h3>
+          <div className="mini-cards-container">
+            {orizzontalCards.map((c) => (
+              <div className="mini-card">
+                <img src={c.image} alt="" />
+              </div>
+            ))}
+          </div>
         </div>
         <div className="big-mid">
           <nav>
@@ -21,78 +39,47 @@ function App() {
             <a href="">Podcast</a>
           </nav>
 
-          <div className="orizzontal-cards-container">
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
+          <div className='orizzontal-cards-container'>
+            {orizzontalCards.map((c) => (
+              <div className='orizzontal-card'> 
+                <img src="" alt="" />
+                <span>{c.title}</span>
+              </div>
+          ))}
           </div>
-          <div className="orizzontal-cards-container">
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-          </div>
-          <div className="orizzontal-cards-container">
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-          </div>
-          <div className="orizzontal-cards-container">
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-          </div>
-          <div className="orizzontal-cards-container">
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-          </div>
-          <div className="orizzontal-cards-container">
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-          </div>
-          <div className="orizzontal-cards-container">
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-            <div className="orizzontal-card">TItolo</div>
-          </div>
-          
 
+          <h5>Creato per User</h5>
+
+          <div className="squared-cards-container">
+            {orizzontalCards.map((c)=>(
+              <div className="squared-card">
+                <img src={c.image} alt="" />
+                <span>{c.title}</span>
+              </div>
+            ))}
+          </div>
+
+          <h5>Consigliati per oggi</h5>
+
+          <div className="squared-cards-container">
+            {orizzontalCards.map((c)=>(
+              <div className="squared-card">
+                <img src={c.image} alt="" />
+                <span>{c.title}</span>
+              </div>
+            ))}
+          </div>
+
+          <h5>Ascoltati di recente</h5>
+
+          <div className="squared-cards-container">
+            {orizzontalCards.map((c)=>(
+              <div className="squared-card">
+                <img src={c.image} alt="" />
+                <span>{c.title}</span>
+              </div>
+            ))}
+          </div>
 
         </div>
         <div className="right-mid">

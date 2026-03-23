@@ -1,10 +1,13 @@
-export default function Header(){
-    return(
+export default function Header() {
+    return (
         <header>
-          {/* header*/}
-          <img src="../spoty-logo.jfif" alt="" />
-          <img src="../house-solid-full.svg" alt="" />
-          <input type="text" placeholder="Cosa vuoi ascoltare?" />
+            {/* header*/}
+            <img src="../spoty-logo.jfif" alt="" />
+            <img src="../house-solid-full.svg" alt="" />
+            <div className="search-bar">
+                <img src="../magnifying-glass-solid-full.svg" alt="" />
+                <input type="text" placeholder="Cosa vuoi ascoltare?" />
+            </div>
             <div className="explore">
                 <h3>Esplora premium</h3>
             </div>

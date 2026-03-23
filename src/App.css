@@ -1,13 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.download-button-large{
+  background-color: #1ED760;
+  width: 270px;
+  height: 60px;
+  border-radius: 33px;
+  font-size: 20px;
+  flex-wrap: wrap;
+}
+
 body{
   color: white;
   background-color: black;
+  height: 100%;
+  overflow: hidden; 
 }
+
 
 h1{
   color: white;
@@ -40,7 +58,7 @@ nav{
 }
 
 .orizzontal-card{
-  width: 240px;
+  width: 230px;
   height: 60px;
   border: solid 1px black;
 }
@@ -59,8 +77,8 @@ a{
 }
 
 .middle-big-box{
-  height: 508px;
   display: flex;
+  height: calc(100vh - 80px - 110px);
 }
 
 .left-mid{
@@ -85,14 +103,20 @@ header input{
 }
 
 .big-mid{
-  width: 80%;
+  flex: 1;
+  overflow-y: auto;
   background-color: white;
   color: black;
 }
 
 footer{
   height: 110px;
+  width: 100%;
   background-color: black;
+  position: fixed;
+  z-index: 999;
+  bottom: 0;
+  left: 0;
 }
 
 footer img{

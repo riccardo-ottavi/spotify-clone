@@ -86,10 +86,13 @@ a{
 
 .left-mid{
   width: 90px;
+  background-color: #121212;
 }
 
 .right-mid{
-  width: 510px;
+  width: 460px;
+  padding: 25px;
+  background-color: #121212;
 }
 
 header input{
@@ -109,8 +112,8 @@ header input{
   width: 100%;
   flex: 1;
   overflow-y: auto;
-  background-color: white;
-  color: black;
+  background-color: #121212;
+  color: white;
 }
 
 footer{

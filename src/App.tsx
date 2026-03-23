@@ -23,10 +23,8 @@ function App() {
       </section>
 
       <section className="footer">
-        <footer>
           {/* footer*/}
           <Footer />
-        </footer>
       </section>
     </>
   )

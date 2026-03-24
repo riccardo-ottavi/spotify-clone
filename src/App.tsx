@@ -1,4 +1,5 @@
 import './App.css'
+import EmptyScreen from './components/EmptyScreen';
 import Footer from './components/Footer'
 import Header from './components/Header'
 import MiniCard from './components/MiniCard';
@@ -37,11 +38,13 @@ function App() {
           </div>
         </div>
         <div className="big-mid custom-scrollbar">
-          <nav>
+          <div className="main-nav">
+            <nav>
             <a href="">Tutto</a>
             <a href="">Musica</a>
             <a href="">Podcast</a>
           </nav>
+          </div>
 
           <div className='orizzontal-cards-container'>
             {songs.map((c) => (
@@ -74,17 +77,53 @@ function App() {
             ))}
           </div>
 
+          <div className="links">
+            <nav>
+              <h4>Azienda</h4>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+            </nav>
+            <nav>
+              <h4>Community</h4>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+            </nav>
+            <nav>
+              <h4>Link utili</h4>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+            </nav>
+            <nav>
+              <h4>Piani Spotify</h4>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+              <a href="">Chi siamo</a>
+            </nav>
+            <nav style={{ display: "flex", flexDirection: "row" }}>
+              <img src="../instagram-brands-solid-full.svg" alt="" />
+              <img src="../twitter-brands-solid-full.svg" alt="" />
+              <img src="../facebook-brands-solid-full.svg" alt="" />
+            </nav>
+          </div>
+
         </div>
         <div className="right-mid">
-          <img src="../tablet.png" alt="" />
-          <h3>Scarica Spotify per Windows</h3>
-          <p>Approfitta di audio di alta qualità, riproduzione in modalità offline e Feed amici per non perderti i loro preferiti.</p>
-          <button className="download-button-large">Scarica l'app gratuita</button>
+          <EmptyScreen />
         </div>
       </section>
 
       <section className="footer">
-        {/* footer*/}
         <Footer />
       </section>
     </>

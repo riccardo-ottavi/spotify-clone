@@ -3,9 +3,11 @@ export default function Footer() {
         <footer>
             <div className="left-footer">
                 <img src="../stranger.jpeg" alt="" />
-                <h4>Nome traccia</h4>
-                <span>Nome artista</span>
-                <img src="../circle-plus-solid-full.svg" alt="" />
+                <div className="track-text-infos">
+                    <h4>Nome traccia</h4>
+                    <span>Nome artista</span>
+                </div>
+                <img src="../circle-plus-solid-full.svg" alt="" className="icon" />
             </div>
             <div className="mid-footer">
                 <div className="buttons">
@@ -16,12 +18,12 @@ export default function Footer() {
                     <img src="../repeat-solid-full.svg" alt="" />
                 </div>
                 <div className="control-bar">
-                   0:00<input
-                    type="range"
-                    min="0"
-                    max="100"
-                />2:28 
-                </div>  
+                    0:00<input
+                        type="range"
+                        min="0"
+                        max="100"
+                    />2:28
+                </div>
             </div>
             <div className="right-footer">
                 <img src="../microphone-solid-full.svg" alt="" />

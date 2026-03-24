@@ -99,7 +99,7 @@ header img{
   font-size: 16px;
 }
 
-nav{
+.main-nav nav{
   background-color: #69431E;
   height: 65px;
   display: flex;
@@ -108,6 +108,11 @@ nav{
   position: sticky;
   top: 0;
   padding-left: 10px;
+}
+
+a{
+  text-decoration: none;
+  color: #a5a5a5;
 }
 
 .orizzontal-card{
@@ -126,16 +131,17 @@ nav{
   flex-wrap: wrap;
   gap: 10px;
   margin-bottom: 40px;
+  margin-left: 40px;
 }
 
 .middle-big-box .icon{
   height: 40px;
 }
 
-a{
+.main-nav a{
   text-decoration: none;
   color: white;
-  background-color: #534230;
+  background-color: #8b6f51;
   border-radius: 33px;
   height: 25px;
   display: flex;
@@ -144,9 +150,10 @@ a{
   min-width: 60px;
 }
 
+
 .squared-card{
-  height: 200px;
-  width: 200px;
+  height: 170px;
+  width: 170px;
   color: white;
   border: 1px solid black;
   display: flex;
@@ -155,8 +162,8 @@ a{
 }
 
 .squared-card img{
-  height: 200px;
-  width: 200px;
+  height: 170px;
+  width: 170px;
 }
 
 .squared-cards-container{
@@ -181,7 +188,7 @@ a{
 }
 
 .right-mid{
-  width: 460px;
+  width: 430px;
   padding: 25px;
   background-color: #121212;
 }
@@ -237,6 +244,37 @@ a{
   overflow-y: auto;
   background-color: #121212;
   color: white;
+}
+
+.left-footer{
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  margin-bottom: 20px;
+  gap: 10px;
+}
+
+.links{
+  display: flex;
+  width: 100%;
+}
+
+.links nav{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.links img{
+  height: 20px;
+}
+
+.left-footer img{
+  height: 60px;
+}
+
+.left-footer .icon{
+  height: 20px;
 }
 
 footer{

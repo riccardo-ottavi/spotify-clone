@@ -6,6 +6,7 @@ import Links from './components/Links';
 import MiniCard from './components/MiniCard';
 import OrizzontalCard from './components/OrizzontalCard';
 import SquaredCard from './components/SquaredCard';
+import VerticalCard from './components/VerticalCard';
 
 function App() {
 
@@ -90,6 +91,15 @@ function App() {
               ))}
             </div>
           </section>
+
+          <div className="vertical-cards-container">
+              {songs.map((c) => (
+                <VerticalCard 
+                  image={c.image} 
+                  title={c.title}                
+                />
+              ))}
+          </div>
 
           <hr />
           <Links />

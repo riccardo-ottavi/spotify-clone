@@ -5,16 +5,20 @@ export default function Footer() {
                 <h4>Eventualmente traccia</h4>
             </div>
             <div className="mid-footer">
-                <img src="../shuffle-solid-full.svg" alt="" />
-                <img src="../backward-solid-full.svg" alt="" />
-                <img src="../circle-play-solid-full.svg" alt="" />
-                <img src="../forward-solid-full.svg" alt="" />
-                <img src="../repeat-solid-full.svg" alt="" />
-                <input
+                <div className="buttons">
+                    <img src="../shuffle-solid-full.svg" alt="" />
+                    <img src="../backward-solid-full.svg" alt="" />
+                    <img src="../circle-play-solid-full.svg" alt="" />
+                    <img src="../forward-solid-full.svg" alt="" />
+                    <img src="../repeat-solid-full.svg" alt="" />
+                </div>
+                <div className="control-bar">
+                   0:00<input
                     type="range"
                     min="0"
                     max="100"
-                />
+                />2:28 
+                </div>  
             </div>
             <div className="right-footer">
                 <img src="../microphone-solid-full.svg" alt="" />

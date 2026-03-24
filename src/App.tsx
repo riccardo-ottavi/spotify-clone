@@ -8,14 +8,14 @@ import SquaredCard from './components/SquaredCard';
 function App() {
 
   const songs = [
-  { id: 1, title: "Stay with me", image:"../stranger.jpeg" },
-  { id: 2, title: "Flyday Chinatown",  image:"../stranger.jpeg"},
-  { id: 3, title: "Where is my mind", image:"../stranger.jpeg"},
-  { id: 4, title: "Make money like bettino", image:"../stranger.jpeg"},
-  { id: 5, title: "Stay with me", image:"../stranger.jpeg" },
-  { id: 6, title: "Flyday Chinatown",  image:"../stranger.jpeg"},
-  { id: 7, title: "Where is my mind", image:"../stranger.jpeg"},
-  { id: 8, title: "Make money like bettino", image:"../stranger.jpeg"},
+  { id: 1, title: "Stay with me", image:"../stranger.jpeg", artist:"Non ricordo" },
+  { id: 2, title: "Flyday Chinatown",  image:"../stranger.jpeg", artist:"Non ricordo 2"},
+  { id: 3, title: "Where is my mind", image:"../stranger.jpeg", artist:"Pixies"},
+  { id: 4, title: "Make money like bettino", image:"../stranger.jpeg", artist:"Gionni Gioielli"},
+  { id: 5, title: "Stay with me", image:"../stranger.jpeg",artist:"Non ricordo" },
+  { id: 6, title: "Flyday Chinatown",  image:"../stranger.jpeg", artist:"Non ricordo 2"},
+  { id: 7, title: "Where is my mind", image:"../stranger.jpeg", artist:"Pixies"},
+  { id: 8, title: "Make money like bettino", image:"../stranger.jpeg", artist:"Gionni Gioielli"}
 ];
 
   return (
@@ -26,7 +26,8 @@ function App() {
 
       <section className="middle-big-box">
         <div className="left-mid custom-scrollbar">
-          <h3>Sono la parte sinistra</h3>
+          <img src="../layer-group-solid-full.svg" alt="" className='icon' />
+          <img src="../plus-solid-full.svg" alt="" className='icon'/>
           <div className="mini-cards-container">
             {songs.map((c) => (
               <MiniCard 
@@ -51,12 +52,24 @@ function App() {
           ))}
           </div>
 
-          <h5>Ascoltati di recente</h5>
+          <h2>Creato per: User</h2>
           <div className="squared-cards-container">
             {songs.map((c)=>(
               <SquaredCard 
-                image={c.image} 
-                title={c.title}                         
+                image={c.image}
+                title={c.title} 
+                artist={c.artist}              
+              />
+            ))}
+          </div>
+
+          <h2>Consigliata per oggi</h2>
+          <div className="squared-cards-container">
+            {songs.map((c)=>(
+              <SquaredCard 
+                image={c.image}
+                title={c.title} 
+                artist={c.artist}              
               />
             ))}
           </div>

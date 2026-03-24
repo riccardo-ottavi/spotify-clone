@@ -61,7 +61,7 @@ header{
 
 .custom-scrollbar::-webkit-scrollbar {
   height: 8px;
-  width: 8px; /* utile anche per scroll verticale */
+  width: 8px; 
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -125,6 +125,11 @@ nav{
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 40px;
+}
+
+.middle-big-box .icon{
+  height: 40px;
 }
 
 a{
@@ -144,6 +149,9 @@ a{
   width: 200px;
   color: white;
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .squared-card img{
@@ -153,6 +161,9 @@ a{
 
 .squared-cards-container{
   display: flex;
+  gap: 10px;
+  min-height: 300px;
+  margin-bottom: 10px;
 }
 
 .middle-big-box{
@@ -164,6 +175,9 @@ a{
   width: 90px;
   background-color: #121212;
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .right-mid{
@@ -182,6 +196,39 @@ a{
   align-items: center;
   font-size: 11px;
   justify-content: center;
+}
+
+.control-bar input{
+  width: 550px;
+  appearance: none;
+  height: 4px;
+  background: #535353;
+  border-radius: 2px;
+}
+
+.right-footer input {
+  appearance: none;
+  height: 4px;
+  background: #535353;
+  border-radius: 2px;
+}
+
+.right-footer input::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.control-bar input::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  background: white;
+  border-radius: 50%;
+  cursor: pointer;
 }
 
 .big-mid{
@@ -205,9 +252,18 @@ footer{
   align-items: center;
 }
 
-.footer img{
-  width: 30px;
-  height: 30px;
+.squared-card span{
+  color: #a5a5a5;
+}
+
+.buttons{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.buttons img{
+  height: 40px;
 }
 
 

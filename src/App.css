@@ -33,14 +33,14 @@ body{
 }
 
 .mini-card img{
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
 }
 
 .mini-cards-container{
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 
 .mini-card{
@@ -53,6 +53,8 @@ h1{
 }
 
 header{
+  width: 97%;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   height: 65px;
@@ -148,6 +150,7 @@ a{
   align-items: center;
   justify-content: center;
   min-width: 60px;
+  margin-left: 35px;
 }
 
 
@@ -161,6 +164,21 @@ a{
   gap: 20px;
 }
 
+h2{
+  margin-left: 35px;
+  margin-bottom: 35px;
+}
+
+hr{
+  width: 92%;
+  margin: 0 auto;
+  height: 1px;
+  background-color: #777777;
+  border: none;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .squared-card img{
   height: 170px;
   width: 170px;
@@ -171,6 +189,7 @@ a{
   gap: 10px;
   min-height: 300px;
   margin-bottom: 10px;
+  margin-left: 35px;
 }
 
 .middle-big-box{
@@ -194,15 +213,21 @@ a{
 }
 
 .explore{
-  height: 35px;
+  height: 33px;
   width: 140px;
   background-color: white;
   color: black;
   border-radius: 33px;
   display: flex;
   align-items: center;
-  font-size: 11px;
   justify-content: center;
+
+
+}
+
+.explore h3{
+  font-weight: 1000;
+  font-size: 13px;
 }
 
 .control-bar input{
@@ -213,10 +238,19 @@ a{
   border-radius: 2px;
 }
 
+.header-right{
+  display: flex;
+  gap: 15px
+}
+
+.header-right img{
+  height: 20px;
+}
+
 .right-footer input {
   appearance: none;
   height: 4px;
-  background: #535353;
+  background: #777777;
   border-radius: 2px;
 }
 
@@ -257,6 +291,7 @@ a{
 .links{
   display: flex;
   width: 100%;
+  margin-left: 35px;
 }
 
 .links nav{
@@ -291,7 +326,7 @@ footer{
 }
 
 .squared-card span{
-  color: #a5a5a5;
+  color: #777777;
 }
 
 .buttons{
@@ -313,8 +348,31 @@ footer{
 
 .search-bar img {
   position: absolute;
-  left: 15px;
+  
 }
+
+.search-bar .crate-icon {
+  position: absolute;
+  right: 15px;
+}
+
+.border-left{
+  border-left: 1px solid #777777;
+  height: 100%;
+}
+
+.circle-gray{
+  border: solid white 1px;
+  border-radius: 33px;
+}
+
+.download-button{
+  color: #777777;
+  display: flex;
+  width: 120px;
+  font-size: 12px;
+}
+
 
 .search-bar input {
   padding-left: 40px; 

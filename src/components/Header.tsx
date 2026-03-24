@@ -10,14 +10,17 @@ export default function Header() {
                 <div className="search-bar">
                     <img src="../magnifying-glass-solid-full.svg" alt="" />
                     <input type="text" placeholder="Cosa vuoi ascoltare?" />
+                    <img src="../box-solid-full.svg" alt="" className="crate-icon border-left" />
                 </div>
             </div>
-            <div>
+            <div className="header-right">
                 <div className="explore">
                     <h3>Esplora premium</h3>
                 </div>
-                <img src="../arrow-down-solid-full.svg" alt="" />
-                <p>installa app</p>
+                <div className="download-button">
+                    <img src="../arrow-down-solid-full.svg" alt="" className="circle-gray" />
+                    <p>installa app</p>
+                </div>
                 <img src="../bell-solid-full.svg" alt="" />
                 <img src="../people-group-solid-full.svg" alt="" />
                 <div className="account-icon">

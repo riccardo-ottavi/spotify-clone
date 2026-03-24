@@ -2,7 +2,10 @@ export default function Footer() {
     return (
         <footer>
             <div className="left-footer">
-                <h4>Eventualmente traccia</h4>
+                <img src="../stranger.jpeg" alt="" />
+                <h4>Nome traccia</h4>
+                <span>Nome artista</span>
+                <img src="../circle-plus-solid-full.svg" alt="" />
             </div>
             <div className="mid-footer">
                 <div className="buttons">

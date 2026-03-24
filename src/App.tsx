@@ -25,7 +25,7 @@ function App() {
       </section>
 
       <section className="middle-big-box">
-        <div className="left-mid">
+        <div className="left-mid custom-scrollbar">
           <h3>Sono la parte sinistra</h3>
           <div className="mini-cards-container">
             {songs.map((c) => (
@@ -35,7 +35,7 @@ function App() {
             ))}
           </div>
         </div>
-        <div className="big-mid">
+        <div className="big-mid custom-scrollbar">
           <nav>
             <a href="">Tutto</a>
             <a href="">Musica</a>

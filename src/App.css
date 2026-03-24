@@ -59,6 +59,24 @@ header{
   align-items: center;
 }
 
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  width: 8px; /* utile anche per scroll verticale */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #535353;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+}
+
 header div{
   display: flex;
   align-items: center;

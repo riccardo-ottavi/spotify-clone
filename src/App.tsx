@@ -40,21 +40,26 @@ function App() {
           </div>
         </div>
         <div className="big-mid custom-scrollbar">
-          <div className="main-nav">
-            <nav>
-              <a href="">Tutto</a>
-              <a href="">Musica</a>
-              <a href="">Podcast</a>
-            </nav>
-          </div>
 
-          <div className='orizzontal-cards-container'>
-            {songs.map((c) => (
-              <OrizzontalCard
-                image={c.image}
-                title={c.title}
-              />
-            ))}
+          <div className="main-nav">
+              <nav>
+                <a href="">Tutto</a>
+                <a href="">Musica</a>
+                <a href="">Podcast</a>
+              </nav>
+            </div>
+
+          <div className="gradient">
+
+
+            <div className='orizzontal-cards-container'>
+              {songs.map((c) => (
+                <OrizzontalCard
+                  image={c.image}
+                  title={c.title}
+                />
+              ))}
+            </div>
           </div>
 
           <section>

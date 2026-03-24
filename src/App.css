@@ -102,12 +102,10 @@ header img{
 }
 
 .main-nav nav{
-  background-color: #69431E;
   height: 65px;
   display: flex;
   gap: 10px;
   align-items: center;
-  position: sticky;
   top: 0;
   padding-left: 10px;
 }
@@ -120,15 +118,13 @@ a{
 .orizzontal-card{
   width: 220px;
   height: 50px;
-  border: solid 1px black;
-  background-color: #534230;
+  background-color: #5A4530;
   display: flex;
   align-items: center;
   font-weight: 800;
 }
 
 .orizzontal-cards-container{
-  margin-top: 10px;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
@@ -136,8 +132,19 @@ a{
   margin-left: 40px;
 }
 
+.gradient{
+  background: linear-gradient(to bottom, #5F3D1B, #121212);
+}
+
 .middle-big-box .icon{
   height: 40px;
+}
+
+.main-nav{
+  position: sticky;
+  top: 0;
+  z-index: 800;
+  background-color: #5F3D1B;
 }
 
 .main-nav a{
@@ -278,6 +285,7 @@ hr{
   overflow-y: auto;
   background-color: #121212;
   color: white;
+  border-radius: 10px;
 }
 
 .left-footer{

@@ -12,6 +12,10 @@ body {
   font-weight: 600;
 }
 
+.orizzontal-card img{
+  width: 50px;
+}
+
 .download-button-large{
   background-color: #1ED760;
   width: 270px;
@@ -50,9 +54,15 @@ h1{
 
 header{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   height: 65px;
   align-items: center;
+}
+
+header div{
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 header img{
@@ -114,8 +124,7 @@ a{
 .squared-card{
   height: 200px;
   width: 200px;
-  background-color: white;
-  color: black;
+  color: white;
   border: 1px solid black;
 }
 

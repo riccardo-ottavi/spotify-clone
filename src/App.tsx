@@ -1,10 +1,13 @@
 import './App.css'
 import Footer from './components/Footer'
 import Header from './components/Header'
+import MiniCard from './components/MiniCard';
+import OrizzontalCard from './components/OrizzontalCard';
+import SquaredCard from './components/SquaredCard';
 
 function App() {
 
-  const orizzontalCards = [
+  const songs = [
   { id: 1, title: "Stay with me", image:"../stranger.jpeg" },
   { id: 2, title: "Flyday Chinatown",  image:"../stranger.jpeg"},
   { id: 3, title: "Where is my mind", image:"../stranger.jpeg"},
@@ -25,10 +28,10 @@ function App() {
         <div className="left-mid">
           <h3>Sono la parte sinistra</h3>
           <div className="mini-cards-container">
-            {orizzontalCards.map((c) => (
-              <div className="mini-card">
-                <img src={c.image} alt="" />
-              </div>
+            {songs.map((c) => (
+              <MiniCard 
+                image={c.image} 
+              />
             ))}
           </div>
         </div>
@@ -40,44 +43,21 @@ function App() {
           </nav>
 
           <div className='orizzontal-cards-container'>
-            {orizzontalCards.map((c) => (
-              <div className='orizzontal-card'> 
-                <img src="" alt="" />
-                <span>{c.title}</span>
-              </div>
+            {songs.map((c) => (
+              <OrizzontalCard 
+                image={c.image} 
+                title={c.title} 
+              />
           ))}
           </div>
 
-          <h5>Creato per User</h5>
-
-          <div className="squared-cards-container">
-            {orizzontalCards.map((c)=>(
-              <div className="squared-card">
-                <img src={c.image} alt="" />
-                <span>{c.title}</span>
-              </div>
-            ))}
-          </div>
-
-          <h5>Consigliati per oggi</h5>
-
-          <div className="squared-cards-container">
-            {orizzontalCards.map((c)=>(
-              <div className="squared-card">
-                <img src={c.image} alt="" />
-                <span>{c.title}</span>
-              </div>
-            ))}
-          </div>
-
           <h5>Ascoltati di recente</h5>
-
           <div className="squared-cards-container">
-            {orizzontalCards.map((c)=>(
-              <div className="squared-card">
-                <img src={c.image} alt="" />
-                <span>{c.title}</span>
-              </div>
+            {songs.map((c)=>(
+              <SquaredCard 
+                image={c.image} 
+                title={c.title}                         
+              />
             ))}
           </div>
 

@@ -8,13 +8,22 @@ import NowPlaying from './components/NowPlaying';
 import OrizzontalCard from './components/OrizzontalCard';
 import SquaredCard from './components/SquaredCard';
 import VerticalCard from './components/VerticalCard';
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 function App() {
 
   const [currentSong, setCurrentSong] = useState<Song | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+  if (currentSong && audioRef.current) {
+    audioRef.current.src = currentSong.audio;
+    audioRef.current.play();
+  }
+}, [currentSong]);
 
   type Song = {
+    audio: string;
     id: number;
     title: string;
     image: string;
@@ -22,12 +31,12 @@ function App() {
   }
 
   const songs = [
-    { id: 1, title: "Stay with me", image: "../stranger.jpeg", artist: "Non ricordo" },
-    { id: 2, title: "Flyday Chinatown", image: "../youg.jpeg", artist: "Non ricordo 2" },
-    { id: 3, title: "Where is my mind", image: "../aquietplace.jpeg", artist: "Pixies" },
-    { id: 4, title: "Make money like bettino", image: "../metal_lifting.jpg", artist: "Gionni Gioielli" },
-    { id: 5, title: "Stay with me", image: "../mixdaily.jpeg", artist: "Non ricordo" },
-    { id: 6, title: "Flyday Chinatown", image: "../split.jpeg", artist: "Non ricordo 2" },
+    { id: 1, title: "Stay with me", image: "../stranger.jpeg", artist: "Non ricordo", audio: "../fah.mp3" },
+    { id: 2, title: "Flyday Chinatown", image: "../youg.jpeg", artist: "Non ricordo 2", audio: "../fah.mp3" },
+    { id: 3, title: "Where is my mind", image: "../aquietplace.jpeg", artist: "Pixies", audio: "../fah.mp3" },
+    { id: 4, title: "Make money like bettino", image: "../metal_lifting.jpg", artist: "Gionni Gioielli", audio: "../fah.mp3" },
+    { id: 5, title: "Stay with me", image: "../mixdaily.jpeg", artist: "Non ricordo", audio: "../fah.mp3" },
+    { id: 6, title: "Flyday Chinatown", image: "../split.jpeg", artist: "Non ricordo 2", audio: "../fah.mp3" },
   ];
 
 
@@ -35,6 +44,9 @@ function App() {
 
   return (
     <>
+
+      <audio ref={audioRef} />
+
       <section className="header">
         <Header />
       </section>

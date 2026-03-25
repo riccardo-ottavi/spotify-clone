@@ -7,8 +7,18 @@ import MiniCard from './components/MiniCard';
 import OrizzontalCard from './components/OrizzontalCard';
 import SquaredCard from './components/SquaredCard';
 import VerticalCard from './components/VerticalCard';
+import { useState } from 'react';
 
 function App() {
+
+  const [currentSong, setCurrentSong] = useState<Song | null>(null);
+
+  type Song = {
+    id: number;
+    title: string;
+    image: string;
+    artist: string;
+  }
 
   const songs = [
     { id: 1, title: "Stay with me", image: "../stranger.jpeg", artist: "Non ricordo" },
@@ -41,12 +51,12 @@ function App() {
         <div className="big-mid custom-scrollbar">
 
           <div className="main-nav">
-              <nav>
-                <a href="">Tutto</a>
-                <a href="">Musica</a>
-                <a href="">Podcast</a>
-              </nav>
-            </div>
+            <nav>
+              <a href="">Tutto</a>
+              <a href="">Musica</a>
+              <a href="">Podcast</a>
+            </nav>
+          </div>
 
           <div className="gradient">
             <div className='orizzontal-cards-container'>
@@ -57,7 +67,7 @@ function App() {
                 />
               ))}
             </div>
-            
+
           </div>
 
           <section>
@@ -70,6 +80,10 @@ function App() {
                   image={c.image}
                   title={c.title}
                   artist={c.artist}
+                  onClick={() => {
+                    setCurrentSong(c)
+                    console.log(c) 
+                  }}
                 />
               ))}
             </div>
@@ -90,12 +104,12 @@ function App() {
           </section>
 
           <div className="vertical-cards-container">
-              {songs.map((c) => (
-                <VerticalCard 
-                  image={c.image} 
-                  title={c.title}                
-                />
-              ))}
+            {songs.map((c) => (
+              <VerticalCard
+                image={c.image}
+                title={c.title}
+              />
+            ))}
           </div>
 
           <hr />

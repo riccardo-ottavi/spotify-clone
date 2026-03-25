@@ -14,6 +14,8 @@ type AudioContextType = {
   songs: Song[];
   albums: Album[];
   artists: Artist[];
+  getSongsFromArtist: (id: number) => Song[]; 
+  getSongsFromAlbum: (id: number) => Song[]; 
 };
 
 const AudioPlayerContext = createContext<AudioContextType | null>(null);

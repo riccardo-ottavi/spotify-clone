@@ -59,6 +59,21 @@ export function useAudioPlayer() {
     setIsPlaying(!isPlaying);
   };
 
+  const getSongsFromAlbum = (albumId: number) => {
+  const album = albums.find(a => a.id === albumId);
+  if (!album) return [];
+  return album.songIds
+    .map(id => songs.find(s => s.id === id))
+    .filter(Boolean) as Song[]; 
+};
+
+const getSongsFromArtist = (artistId: number): Song[] => {
+  return songs.filter(song => {
+    const artist = artists.find(a => a.id === artistId);
+    return artist && song.artist === artist.name;
+  });
+};
+
   return {
     currentSong,
     setCurrentSong,
@@ -70,6 +85,8 @@ export function useAudioPlayer() {
     audioRef,
     songs,
     artists,
-    albums
+    albums,
+    getSongsFromAlbum,
+    getSongsFromArtist
   };
 }

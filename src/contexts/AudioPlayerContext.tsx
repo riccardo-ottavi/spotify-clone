@@ -1,6 +1,6 @@
 import { createContext, useContext, type ReactNode } from "react";
 import { useAudioPlayer } from "../hooks/useAudioPlayer";
-import type { Song } from "../types/types";
+import type { Album, Artist, Song } from "../types/types";
 
 type AudioContextType = {
   currentSong: Song | null;
@@ -12,6 +12,8 @@ type AudioContextType = {
   progress: number;
   audioRef: React.RefObject<HTMLAudioElement | null>;
   songs: Song[];
+  albums: Album[];
+  artists: Artist[];
 };
 
 const AudioPlayerContext = createContext<AudioContextType | null>(null);

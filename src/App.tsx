@@ -20,7 +20,7 @@ function App() {
 }
 
 function AppContent() {
-  const { currentSong, setCurrentSong, isPlaying, togglePlay, volume, setVolume, progress, audioRef, songs } = useAudioPlayerContext();
+  const { currentSong, setCurrentSong, isPlaying, togglePlay, volume, setVolume, progress, audioRef, songs} = useAudioPlayerContext();
   const containerRef = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: "left" | "right") => {
@@ -49,7 +49,7 @@ function AppContent() {
 
           <div className="gradient">
             <div className='orizzontal-cards-container'>
-              {songs.map((c) => (
+              {songs.slice(0, 6).map((c) => (
                 <OrizzontalCard
                   key={c.id}
                   image={c.image}

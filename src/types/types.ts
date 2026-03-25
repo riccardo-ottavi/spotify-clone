@@ -20,7 +20,7 @@ export type Artist = {
   id: number;
   name: string;
   bio?: string;
-  image?: string;
+  image: string;
 };
 
 export type Album = {
@@ -29,6 +29,7 @@ export type Album = {
   artistId: number;     
   year?: number;
   image: string;
+  songIds: number[];
 };
 
 export type Playlist = {

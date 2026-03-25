@@ -8,8 +8,18 @@ export default function Footer({
     audioRef,
     volume,
     setVolume,
-    currentSong
+    currentSong,
 }: FooterProps) {
+
+    function formatTime(seconds: number | undefined) {
+        if (!seconds) return "0:00";
+        const mins = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
+    }
+
+    const currentTime = audioRef.current?.currentTime;
+    const duration = audioRef.current?.duration;
 
     return (
         <footer>
@@ -26,7 +36,7 @@ export default function Footer({
                     <img src="../shuffle-solid-full.svg" alt="" />
                     <img src="../backward-solid-full.svg" alt="" />
                     <img
-                        src={ isPlaying? "../circle-pause-solid-full.svg" : "../circle-play-solid-full.svg"}
+                        src={isPlaying ? "../circle-pause-solid-full.svg" : "../circle-play-solid-full.svg"}
                         alt=""
                         id="main-play"
                         onClick={togglePlay}
@@ -35,7 +45,7 @@ export default function Footer({
                     <img src="../repeat-solid-full.svg" alt="" />
                 </div>
                 <div className="control-bar">
-                    <span>0:00</span>
+                    <span>{formatTime(currentTime)}</span>
                     <input
                         type="range"
                         value={progress || 0}
@@ -48,7 +58,7 @@ export default function Footer({
                             audioRef.current.currentTime = newTime;
                         }}
                     />
-                    <span>2:28</span>
+                    <span>{formatTime(duration)}</span>
                 </div>
             </div>
             <div className="right-footer">

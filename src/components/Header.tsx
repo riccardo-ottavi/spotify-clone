@@ -5,7 +5,7 @@ export default function Header() {
             <div>
                 <img src="../spoty-logo.jfif" alt="" />
             </div>
-            <div>
+            <div className="header-mid">
                 <img src="../house-solid-full.svg" alt="" />
                 <div className="search-bar">
                     <img src="../magnifying-glass-solid-full.svg" alt="" />
@@ -19,7 +19,7 @@ export default function Header() {
                 </div>
                 <div className="download-button">
                     <img src="../arrow-down-solid-full.svg" alt="" className="circle-gray" />
-                    <p>installa app</p>
+                    <p>Installa app</p>
                 </div>
                 <img src="../bell-solid-full.svg" alt="" />
                 <img src="../people-group-solid-full.svg" alt="" />

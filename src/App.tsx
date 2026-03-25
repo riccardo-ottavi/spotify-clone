@@ -17,8 +17,6 @@ function App() {
     { id: 4, title: "Make money like bettino", image: "../metal_lifting.jpg", artist: "Gionni Gioielli" },
     { id: 5, title: "Stay with me", image: "../mixdaily.jpeg", artist: "Non ricordo" },
     { id: 6, title: "Flyday Chinatown", image: "../split.jpeg", artist: "Non ricordo 2" },
-    { id: 7, title: "Where is my mind", image: "../radar.jpeg", artist: "Pixies" },
-    { id: 8, title: "Make money like bettino", image: "../sinister.jpeg", artist: "Gionni Gioielli" }
   ];
 
   return (
@@ -51,8 +49,6 @@ function App() {
             </div>
 
           <div className="gradient">
-
-
             <div className='orizzontal-cards-container'>
               {songs.map((c) => (
                 <OrizzontalCard
@@ -61,6 +57,7 @@ function App() {
                 />
               ))}
             </div>
+            
           </div>
 
           <section>

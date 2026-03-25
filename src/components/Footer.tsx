@@ -13,16 +13,18 @@ export default function Footer() {
                 <div className="buttons">
                     <img src="../shuffle-solid-full.svg" alt="" />
                     <img src="../backward-solid-full.svg" alt="" />
-                    <img src="../circle-play-solid-full.svg" alt="" />
+                    <img src="../circle-play-solid-full.svg" alt="" id="main-play" />
                     <img src="../forward-solid-full.svg" alt="" />
                     <img src="../repeat-solid-full.svg" alt="" />
                 </div>
                 <div className="control-bar">
-                    0:00<input
+                    <span>0:00</span>
+                    <input
                         type="range"
                         min="0"
                         max="100"
-                    />2:28
+                    />
+                    <span>2:28</span>
                 </div>
             </div>
             <div className="right-footer">

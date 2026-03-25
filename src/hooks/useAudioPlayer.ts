@@ -9,12 +9,12 @@ export function useAudioPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
  const songs = [
-    { id: 1, title: "Stay with me", image: "../stranger.jpeg", artist: "Non ricordo", audio: "../fah.mp3" },
-    { id: 2, title: "Flyday Chinatown", image: "../youg.jpeg", artist: "Non ricordo 2", audio: "../fah.mp3" },
-    { id: 3, title: "Where is my mind", image: "../aquietplace.jpeg", artist: "Pixies", audio: "../fah.mp3" },
-    { id: 4, title: "Make money like bettino", image: "../metal_lifting.jpg", artist: "Gionni Gioielli", audio: "../fah.mp3" },
-    { id: 5, title: "Stay with me", image: "../mixdaily.jpeg", artist: "Non ricordo", audio: "../fah.mp3" },
-    { id: 6, title: "Flyday Chinatown", image: "../split.jpeg", artist: "Non ricordo 2", audio: "../fah.mp3" },
+    { id: 1, title: "AC 2", image: "../stranger.jpeg", artist: "Sfaso", audio: "../audios/ac2_Master.wav" }, 
+    { id: 2, title: "Afro", image: "../youg.jpeg", artist: "Sfaso", audio: "../audios/afro_Master.wav" },
+    { id: 3, title: "My band", image: "../aquietplace.jpeg", artist: "Sfaso", audio: "../audios/band_Master.wav" },
+    { id: 4, title: "Blessato", image: "../metal_lifting.jpg", artist: "Sfaso", audio: "../audios/blessed_Master.wav" },
+    { id: 5, title: "Come in un film", image: "../mixdaily.jpeg", artist: "Sfaso", audio: "../audios/film_Master.wav" },
+    { id: 6, title: "Sempre e solo un combattente", image: "../split.jpeg", artist: "Sfaso", audio: "../audios/fighter_Master.wav" },
   ];
 
 

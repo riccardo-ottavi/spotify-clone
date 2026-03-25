@@ -1,15 +1,17 @@
 import type { FooterProps } from "../types/types";
-
+import { useState } from "react";
 
 export default function Footer({
-    progress,
     togglePlay,
     isPlaying,
     audioRef,
     volume,
     setVolume,
     currentSong,
+    progress
 }: FooterProps) {
+
+    const [dragProgress, setDragProgress] = useState<number | null>(null);
 
     function formatTime(seconds: number | undefined) {
         if (!seconds) return "0:00";
@@ -18,8 +20,9 @@ export default function Footer({
         return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
     }
 
-    const currentTime = audioRef.current?.currentTime;
-    const duration = audioRef.current?.duration;
+    const duration = audioRef.current?.duration || 0;
+    const currentTime = duration * (progress / 100);
+
 
     return (
         <footer>
@@ -48,14 +51,21 @@ export default function Footer({
                     <span>{formatTime(currentTime)}</span>
                     <input
                         type="range"
-                        value={progress || 0}
-                        onChange={(e) => {
-                            if (!audioRef.current || !audioRef.current.duration) return;
-
-                            const newTime =
-                                (Number(e.target.value) / 100) * audioRef.current.duration;
-
+                        min={0}
+                        max={100}
+                        value={dragProgress !== null ? dragProgress : progress}
+                        onChange={(e) => setDragProgress(Number(e.target.value))}
+                        onMouseUp={(e) => {
+                            if (!audioRef.current) return;
+                            const newTime = (Number(e.currentTarget.value) / 100) * audioRef.current.duration;
                             audioRef.current.currentTime = newTime;
+                            setDragProgress(null); // reset dopo aver aggiornato l'audio
+                        }}
+                        onTouchEnd={(e) => {
+                            if (!audioRef.current) return;
+                            const newTime = (Number(e.currentTarget.value) / 100) * audioRef.current.duration;
+                            audioRef.current.currentTime = newTime;
+                            setDragProgress(null);
                         }}
                     />
                     <span>{formatTime(duration)}</span>

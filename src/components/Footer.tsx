@@ -1,4 +1,21 @@
-export default function Footer() {
+type Props = {
+    progress: number;
+    togglePlay: () => void;
+    isPlaying: boolean;
+    audioRef: React.RefObject<HTMLAudioElement | null>;
+    volume: number;
+    setVolume: (value: number) => void;
+};
+
+export default function Footer({
+    progress,
+    togglePlay,
+    isPlaying,
+    audioRef,
+    volume,
+    setVolume
+}: Props) {
+
     return (
         <footer>
             <div className="left-footer">
@@ -13,7 +30,12 @@ export default function Footer() {
                 <div className="buttons">
                     <img src="../shuffle-solid-full.svg" alt="" />
                     <img src="../backward-solid-full.svg" alt="" />
-                    <img src="../circle-play-solid-full.svg" alt="" id="main-play" />
+                    <img
+                        src="../circle-play-solid-full.svg"
+                        alt=""
+                        id="main-play"
+                        onClick={togglePlay}
+                    />
                     <img src="../forward-solid-full.svg" alt="" />
                     <img src="../repeat-solid-full.svg" alt="" />
                 </div>
@@ -21,8 +43,15 @@ export default function Footer() {
                     <span>0:00</span>
                     <input
                         type="range"
-                        min="0"
-                        max="100"
+                        value={progress}
+                        onChange={(e) => {
+                            if (!audioRef.current) return;
+
+                            const newTime =
+                                (Number(e.target.value) / 100) * audioRef.current.duration;
+
+                            audioRef.current.currentTime = newTime;
+                        }}
                     />
                     <span>2:28</span>
                 </div>
@@ -35,7 +64,10 @@ export default function Footer() {
                 <input
                     type="range"
                     min="0"
-                    max="100"
+                    max="1"
+                    step="0.01"
+                    value={volume}
+                    onChange={(e) => setVolume(Number(e.target.value))}
                 />
                 <img src="../chromecast-brands-solid-full.svg" alt="" />
                 <img src="../expand-solid-full.svg" alt="" />

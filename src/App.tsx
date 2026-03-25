@@ -13,14 +13,39 @@ import { useState, useEffect, useRef } from 'react';
 function App() {
 
   const [currentSong, setCurrentSong] = useState<Song | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.5);
+  const [progress, setProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
-  if (currentSong && audioRef.current) {
-    audioRef.current.src = currentSong.audio;
-    audioRef.current.play();
-  }
-}, [currentSong]);
+    if (currentSong && audioRef.current) {
+      audioRef.current.src = currentSong.audio;
+      audioRef.current.play();
+    }
+  }, [currentSong]);
+
+  useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.volume = volume;
+    }
+  }, [volume]);
+
+  useEffect(() => {
+    const audio = audioRef.current;
+
+    if (!audio) return;
+
+    const updateProgress = () => {
+      setProgress((audio.currentTime / audio.duration) * 100);
+    };
+
+    audio.addEventListener("timeupdate", updateProgress);
+
+    return () => {
+      audio.removeEventListener("timeupdate", updateProgress);
+    };
+  }, []);
 
   type Song = {
     audio: string;
@@ -38,6 +63,18 @@ function App() {
     { id: 5, title: "Stay with me", image: "../mixdaily.jpeg", artist: "Non ricordo", audio: "../fah.mp3" },
     { id: 6, title: "Flyday Chinatown", image: "../split.jpeg", artist: "Non ricordo 2", audio: "../fah.mp3" },
   ];
+
+  const togglePlay = () => {
+    if (!audioRef.current) return;
+
+    if (isPlaying) {
+      audioRef.current.pause();
+    } else {
+      audioRef.current.play();
+    }
+
+    setIsPlaying(!isPlaying);
+  };
 
 
 
@@ -146,10 +183,10 @@ function App() {
         </div>
         <div className="right-mid">
           {currentSong ? (
-            <NowPlaying 
-              image={currentSong.image} 
-              title={currentSong.title} 
-              artist={currentSong.artist}            />
+            <NowPlaying
+              image={currentSong.image}
+              title={currentSong.title}
+              artist={currentSong.artist} />
           ) : (
             <EmptyScreen />
           )}
@@ -157,7 +194,14 @@ function App() {
       </section>
 
       <section className="footer">
-        <Footer />
+        <Footer
+          progress={progress}
+          togglePlay={togglePlay}
+          isPlaying={isPlaying}
+          audioRef={audioRef}
+          volume={volume}
+          setVolume={setVolume}
+        />
       </section>
     </>
   )

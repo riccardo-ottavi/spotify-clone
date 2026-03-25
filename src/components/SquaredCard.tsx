@@ -1,3 +1,4 @@
+import PlayHover from "./PlayHover";
 
 type Props = {
   image: string;
@@ -19,6 +20,7 @@ export default function SquaredCard({
                 <img src={image} alt="" />
                 <h3>{title}</h3>
                 <span>{artist}</span>
+                <PlayHover />
               </div>
     )
 }

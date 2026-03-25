@@ -4,6 +4,7 @@ import Footer from './components/Footer'
 import Header from './components/Header'
 import Links from './components/Links';
 import MiniCard from './components/MiniCard';
+import NowPlaying from './components/NowPlaying';
 import OrizzontalCard from './components/OrizzontalCard';
 import SquaredCard from './components/SquaredCard';
 import VerticalCard from './components/VerticalCard';
@@ -28,6 +29,9 @@ function App() {
     { id: 5, title: "Stay with me", image: "../mixdaily.jpeg", artist: "Non ricordo" },
     { id: 6, title: "Flyday Chinatown", image: "../split.jpeg", artist: "Non ricordo 2" },
   ];
+
+
+
 
   return (
     <>
@@ -82,7 +86,7 @@ function App() {
                   artist={c.artist}
                   onClick={() => {
                     setCurrentSong(c)
-                    console.log(c) 
+                    console.log(c)
                   }}
                 />
               ))}
@@ -129,7 +133,14 @@ function App() {
 
         </div>
         <div className="right-mid">
-          <EmptyScreen />
+          {currentSong ? (
+            <NowPlaying 
+              image={currentSong.image} 
+              title={currentSong.title} 
+              artist={currentSong.artist}            />
+          ) : (
+            <EmptyScreen />
+          )}
         </div>
       </section>
 

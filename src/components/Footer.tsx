@@ -1,11 +1,5 @@
-type Props = {
-    progress: number;
-    togglePlay: () => void;
-    isPlaying: boolean;
-    audioRef: React.RefObject<HTMLAudioElement | null>;
-    volume: number;
-    setVolume: (value: number) => void;
-};
+import type { FooterProps } from "../types/types";
+
 
 export default function Footer({
     progress,
@@ -14,7 +8,7 @@ export default function Footer({
     audioRef,
     volume,
     setVolume
-}: Props) {
+}: FooterProps) {
 
     return (
         <footer>

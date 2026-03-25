@@ -8,52 +8,10 @@ import NowPlaying from './components/NowPlaying';
 import OrizzontalCard from './components/OrizzontalCard';
 import SquaredCard from './components/SquaredCard';
 import VerticalCard from './components/VerticalCard';
-import { useState, useEffect, useRef } from 'react';
+import { useRef } from 'react';
+import { useAudioPlayer } from './hooks/useAudioPlayer';
 
 function App() {
-
-  const [currentSong, setCurrentSong] = useState<Song | null>(null);
-  const [isPlaying, setIsPlaying] = useState(false);
-  const [volume, setVolume] = useState(0.5);
-  const [progress, setProgress] = useState(0);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
-  useEffect(() => {
-    if (currentSong && audioRef.current) {
-      audioRef.current.src = currentSong.audio;
-      audioRef.current.play();
-    }
-  }, [currentSong]);
-
-  useEffect(() => {
-    if (audioRef.current) {
-      audioRef.current.volume = volume;
-    }
-  }, [volume]);
-
-  useEffect(() => {
-    const audio = audioRef.current;
-
-    if (!audio) return;
-
-    const updateProgress = () => {
-      setProgress((audio.currentTime / audio.duration) * 100);
-    };
-
-    audio.addEventListener("timeupdate", updateProgress);
-
-    return () => {
-      audio.removeEventListener("timeupdate", updateProgress);
-    };
-  }, []);
-
-  type Song = {
-    audio: string;
-    id: number;
-    title: string;
-    image: string;
-    artist: string;
-  }
 
   const songs = [
     { id: 1, title: "Stay with me", image: "../stranger.jpeg", artist: "Non ricordo", audio: "../fah.mp3" },
@@ -64,20 +22,12 @@ function App() {
     { id: 6, title: "Flyday Chinatown", image: "../split.jpeg", artist: "Non ricordo 2", audio: "../fah.mp3" },
   ];
 
-  const togglePlay = () => {
-    if (!audioRef.current) return;
-
-    if (isPlaying) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-
-    setIsPlaying(!isPlaying);
-  };
-
-
-
+  const {
+    currentSong, setCurrentSong,
+    isPlaying, togglePlay,
+    volume, setVolume,
+    progress, audioRef
+  } = useAudioPlayer();
 
   return (
     <>

@@ -1,26 +1,26 @@
-import PlayHover from "./PlayHover";
-
 type Props = {
-  image: string;
-  title: string;
-  artist: string;
-  onClick?: () => void;
+    image: string;
+    title: string;
+    artist: string;
+    onClick?: () => void;
 };
 
 
 export default function SquaredCard({
-  image,
-  title,
-  artist,
-  onClick
-}: Props){
+    image,
+    title,
+    artist,
+    onClick
+}: Props) {
 
     return (
-        <div className="squared-card"  onClick={onClick}>
-                <img src={image} alt="" />
-                <h3>{title}</h3>
-                <span>{artist}</span>
-                <PlayHover />
-              </div>
+        <div className="squared-card" onClick={onClick}>
+            <img src={image} alt="" />
+            <h3>{title}</h3>
+            <span>{artist}</span>
+            <div className="play-hover-big">
+                <img src="../play-solid-full.svg" alt="" />
+            </div>
+        </div>
     )
 }

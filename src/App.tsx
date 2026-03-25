@@ -1,37 +1,29 @@
 import './App.css'
-import EmptyScreen from './components/EmptyScreen';
 import Footer from './components/Footer'
 import Header from './components/Header'
 import Links from './components/Links';
-import MiniCard from './components/MiniCard';
-import NowPlaying from './components/NowPlaying';
 import OrizzontalCard from './components/OrizzontalCard';
+import RightPanel from './components/RightPanel';
+import Sidebar from './components/Sidebar';
 import SquaredCard from './components/SquaredCard';
 import VerticalCard from './components/VerticalCard';
-import { useRef } from 'react';
-import { useAudioPlayer } from './hooks/useAudioPlayer';
+import { AudioPlayerProvider, useAudioPlayerContext } from './contexts/AudioPlayerContext';
+
 
 function App() {
+  return (
+    <AudioPlayerProvider>
+      <AppContent />
+    </AudioPlayerProvider>
+  )
+}
 
-  const songs = [
-    { id: 1, title: "Stay with me", image: "../stranger.jpeg", artist: "Non ricordo", audio: "../fah.mp3" },
-    { id: 2, title: "Flyday Chinatown", image: "../youg.jpeg", artist: "Non ricordo 2", audio: "../fah.mp3" },
-    { id: 3, title: "Where is my mind", image: "../aquietplace.jpeg", artist: "Pixies", audio: "../fah.mp3" },
-    { id: 4, title: "Make money like bettino", image: "../metal_lifting.jpg", artist: "Gionni Gioielli", audio: "../fah.mp3" },
-    { id: 5, title: "Stay with me", image: "../mixdaily.jpeg", artist: "Non ricordo", audio: "../fah.mp3" },
-    { id: 6, title: "Flyday Chinatown", image: "../split.jpeg", artist: "Non ricordo 2", audio: "../fah.mp3" },
-  ];
+function AppContent() {
+  const { currentSong, setCurrentSong, isPlaying, togglePlay, volume, setVolume, progress, audioRef, songs } = useAudioPlayerContext();
 
-  const {
-    currentSong, setCurrentSong,
-    isPlaying, togglePlay,
-    volume, setVolume,
-    progress, audioRef
-  } = useAudioPlayer();
 
   return (
     <>
-
       <audio ref={audioRef} />
 
       <section className="header">
@@ -39,20 +31,10 @@ function App() {
       </section>
 
       <section className="middle-big-box">
-        <div className="left-mid custom-scrollbar">
 
-          <div className="mini-cards-container">
-            <img src="../layer-group-solid-full.svg" alt="" className='icon' />
-            <img src="../plus-solid-full.svg" alt="" className='icon' />
-            {songs.map((c) => (
-              <MiniCard
-                image={c.image}
-              />
-            ))}
-          </div>
-        </div>
+        <Sidebar />
+
         <div className="big-mid custom-scrollbar">
-
           <div className="main-nav">
             <nav>
               <a href="">Tutto</a>
@@ -65,12 +47,13 @@ function App() {
             <div className='orizzontal-cards-container'>
               {songs.map((c) => (
                 <OrizzontalCard
+                  key={c.id}
                   image={c.image}
                   title={c.title}
+                  onClick={() => setCurrentSong(c)}
                 />
               ))}
             </div>
-
           </div>
 
           <section>
@@ -80,27 +63,11 @@ function App() {
             <div className="squared-cards-container">
               {songs.map((c) => (
                 <SquaredCard
+                  key={c.id}
                   image={c.image}
                   title={c.title}
                   artist={c.artist}
-                  onClick={() => {
-                    setCurrentSong(c)
-                    console.log(c)
-                  }}
-                />
-              ))}
-            </div>
-          </section>
-          <section>
-            <div className="title-section">
-              <h2>Consigliata per oggi</h2>
-            </div>
-            <div className="squared-cards-container">
-              {songs.map((c) => (
-                <SquaredCard
-                  image={c.image}
-                  title={c.title}
-                  artist={c.artist}
+                  onClick={() => setCurrentSong(c)}
                 />
               ))}
             </div>
@@ -108,10 +75,7 @@ function App() {
 
           <div className="vertical-cards-container">
             {songs.map((c) => (
-              <VerticalCard
-                image={c.image}
-                title={c.title}
-              />
+              <VerticalCard key={c.id} image={c.image} title={c.title} />
             ))}
           </div>
 
@@ -131,16 +95,13 @@ function App() {
           <span>© 2026 Spotify AB</span>
 
         </div>
-        <div className="right-mid">
-          {currentSong ? (
-            <NowPlaying
-              image={currentSong.image}
-              title={currentSong.title}
-              artist={currentSong.artist} />
-          ) : (
-            <EmptyScreen />
-          )}
-        </div>
+
+        <RightPanel 
+          currentSong={currentSong} 
+          image={currentSong?.image} 
+          title={currentSong?.title} 
+          artist={currentSong?.artist} 
+        />
       </section>
 
       <section className="footer">
@@ -151,6 +112,7 @@ function App() {
           audioRef={audioRef}
           volume={volume}
           setVolume={setVolume}
+          currentSong={currentSong}
         />
       </section>
     </>

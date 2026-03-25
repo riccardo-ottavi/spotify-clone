@@ -13,4 +13,28 @@
   audioRef: React.RefObject<HTMLAudioElement | null>;
   volume: number;
   setVolume: (value: number) => void;
+  currentSong: Song | null;
+};
+
+export type Artist = {
+  id: number;
+  name: string;
+  bio?: string;
+  image?: string;
+};
+
+export type Album = {
+  id: number;
+  title: string;
+  artistId: number;     
+  year?: number;
+  image: string;
+};
+
+export type Playlist = {
+  id: number;
+  title: string;
+  description?: string;
+  image?: string;
+  songIds: number[];
 };

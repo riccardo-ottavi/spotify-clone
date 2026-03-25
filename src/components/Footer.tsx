@@ -7,16 +7,17 @@ export default function Footer({
     isPlaying,
     audioRef,
     volume,
-    setVolume
+    setVolume,
+    currentSong
 }: FooterProps) {
 
     return (
         <footer>
             <div className="left-footer">
-                <img src="../stranger.jpeg" alt="" />
+                <img src={currentSong?.image} alt="" />
                 <div className="track-text-infos">
-                    <h4>Nome traccia</h4>
-                    <span>Nome artista</span>
+                    <h4>{currentSong?.title}</h4>
+                    <span>{currentSong?.artist}</span>
                 </div>
                 <img src="../circle-plus-solid-full.svg" alt="" className="icon" />
             </div>
@@ -25,7 +26,7 @@ export default function Footer({
                     <img src="../shuffle-solid-full.svg" alt="" />
                     <img src="../backward-solid-full.svg" alt="" />
                     <img
-                        src="../circle-play-solid-full.svg"
+                        src={ isPlaying? "../circle-pause-solid-full.svg" : "../circle-play-solid-full.svg"}
                         alt=""
                         id="main-play"
                         onClick={togglePlay}
@@ -37,9 +38,9 @@ export default function Footer({
                     <span>0:00</span>
                     <input
                         type="range"
-                        value={progress}
+                        value={progress || 0}
                         onChange={(e) => {
-                            if (!audioRef.current) return;
+                            if (!audioRef.current || !audioRef.current.duration) return;
 
                             const newTime =
                                 (Number(e.target.value) / 100) * audioRef.current.duration;

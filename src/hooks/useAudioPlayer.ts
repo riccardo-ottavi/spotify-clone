@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import type { Song } from '../types/types';
+import type { Playlist, Song } from '../types/types';
 
 export function useAudioPlayer() {
   const [currentSong, setCurrentSong] = useState<Song | null>(null);
@@ -30,6 +30,33 @@ export function useAudioPlayer() {
   const artists = [
     {id: 1, name: "Sfaso", bio:"Nato a New York nel 2034", image: "../aquietplace.jpeg"}
   ]
+
+  const playlists: Playlist[] = [
+  {
+    id: 1,
+    name: "Preferiti",
+    image: "../mixdaily.jpeg",
+    songIds: [1, 3, 5]
+  },
+  {
+    id: 2,
+    name: "Workout",
+    image: "../split.jpeg",
+    songIds: [2, 4, 6]
+  }
+];
+
+  useEffect(() => {
+  const audio = audioRef.current;
+  if (!audio) return;
+
+  const handleSongEnd = () => {
+    playNextSong();
+  };
+
+  audio.addEventListener("ended", handleSongEnd);
+  return () => audio.removeEventListener("ended", handleSongEnd);
+}, [currentSong]);
 
   useEffect(() => {
     if (currentSong && audioRef.current) {
@@ -74,6 +101,27 @@ const getSongsFromArtist = (artistId: number): Song[] => {
   });
 };
 
+const playNextSong = () => {
+  if (!currentSong) return;
+
+  const currentIndex = songs.findIndex(s => s.id === currentSong.id);
+  if (currentIndex === -1) return;
+
+  const nextIndex = (currentIndex + 1) % songs.length;
+
+  setCurrentSong(songs[nextIndex]);
+};
+
+const playPreviousSong = () => {
+  if (!currentSong) return;
+
+  const currentIndex = songs.findIndex(s => s.id === currentSong.id);
+  if (currentIndex === -1) return;
+
+  const prevIndex = currentIndex === 0 ? songs.length - 1 : currentIndex - 1;
+  setCurrentSong(songs[prevIndex]);
+};
+
   return {
     currentSong,
     setCurrentSong,
@@ -87,6 +135,7 @@ const getSongsFromArtist = (artistId: number): Song[] => {
     artists,
     albums,
     getSongsFromAlbum,
-    getSongsFromArtist
+    getSongsFromArtist,
+    playlists
   };
 }

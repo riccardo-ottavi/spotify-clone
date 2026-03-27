@@ -17,12 +17,16 @@ export default function Sidebar() {
           <MiniCard
             key={c.id}
             image={c.image}
+            id={c.id}
+            name={c.name}
           />
         ))}
         {albums.map((c) => (
           <MiniCard
             key={c.id}
             image={c.image}
+            id={c.id}
+            name={c.title}
           />
         ))}
       </div>

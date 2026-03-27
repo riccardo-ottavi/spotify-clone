@@ -32,10 +32,32 @@ export type Album = {
   songIds: number[];
 };
 
+export type CollectionViewProps = {
+  title: string;
+  image?: string;
+  songs: Song[];
+}
+
+export type AudioContextType = {
+  currentSong: Song | null;
+  setCurrentSong: (song: Song) => void;
+  isPlaying: boolean;
+  togglePlay: () => void;
+  volume: number;
+  setVolume: (v: number) => void;
+  progress: number;
+  audioRef: React.RefObject<HTMLAudioElement | null>;
+  songs: Song[];
+  albums: Album[];
+  artists: Artist[];
+  getSongsFromArtist: (id: number) => Song[]; 
+  getSongsFromAlbum: (id: number) => Song[]; 
+  playlists: Playlist[]; 
+};
+
 export type Playlist = {
   id: number;
-  title: string;
-  description?: string;
-  image?: string;
+  name: string;
+  image: string;
   songIds: number[];
 };

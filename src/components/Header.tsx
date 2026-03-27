@@ -1,10 +1,13 @@
+import { Link } from "react-router-dom"
+
 export default function Header() {
     return (
         <header>
-            {/* header*/}
+            <Link to={'/'}>
             <div>
                 <img src="../spoty-logo.jfif" alt="" />
             </div>
+            </Link>
             <div className="header-mid">
                 <img src="../house-solid-full.svg" alt="" />
                 <div className="search-bar">

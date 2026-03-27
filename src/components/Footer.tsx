@@ -21,7 +21,7 @@ export default function Footer({
     }
 
     const duration = audioRef.current?.duration || 0;
-    const currentTime = duration * (progress / 100);
+    const currentTime = duration ? duration * (progress / 100) : 0;
 
 
     return (

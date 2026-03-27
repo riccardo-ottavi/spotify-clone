@@ -38,9 +38,9 @@ export default function CollectionView({
   return (
     <section style={{ marginBottom: "30px" }}>
         <DetailHeader />
-      {title && <h2>{title}</h2>}
-      {bio && <p style={{ color: "white", marginBottom: "20px" }}>{bio}</p>}
-    <TableView />
+    <TableView 
+        songs={songs}
+    />
     </section>
   );
 }

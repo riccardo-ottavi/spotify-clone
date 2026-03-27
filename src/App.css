@@ -564,6 +564,53 @@ footer img {
 }
 
 .detail-header{
-  height: 250px;
-  background-color: yellow;
+  height: 270px;
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.detail-header h3{
+  font-size: 80px;
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+}
+
+.detail-song-card{
+  height: 45px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.detail-song-card img{
+  height: 100%
+}
+
+.detail-cards-container{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 50px;
+}
+
+.detail-buttons{
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.detail-buttons img{
+  height: 70px;
+}
+
+.info-button img{
+  height: 10px;
+  width: 10px;
+}
+
+.detail-header{
+  background-image: url("/detail-artist-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
 }

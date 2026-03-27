@@ -12,7 +12,7 @@ import Links from "../components/Links";
 
 export default function HomePage() {
 
-    const { currentSong, setCurrentSong, isPlaying, togglePlay, volume, setVolume, progress, audioRef, songs, artists } = useAudioPlayerContext();
+    const { currentSong, setCurrentSong, isPlaying, togglePlay, volume, setVolume, progress, audioRef, songs, artists, albums } = useAudioPlayerContext();
     const containerRef = useRef<HTMLDivElement>(null);
 
     const scroll = (direction: "left" | "right") => {
@@ -72,8 +72,8 @@ export default function HomePage() {
                     </section>
 
                     <div className="vertical-cards-container">
-                        {songs.map((c) => (
-                            <VerticalCard key={c.id} image={c.image} title={c.title} />
+                        {albums.map((a) => (
+                            <VerticalCard key={a.id} image={a.image} title={a.title} />
                         ))}
                     </div>
 

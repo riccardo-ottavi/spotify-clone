@@ -11,10 +11,6 @@ type Props = {
 
 export default function RightPanel({ currentSong, artists, albums }: Props) {
 
-    console.log("currentSong:", currentSong);
-console.log("artists:", artists);
-console.log("albums:", albums);
-
 
     if (!currentSong) return <div className="right-mid"><EmptyScreen /></div>;
 

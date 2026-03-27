@@ -72,18 +72,19 @@ body {
 }
 
 .vertical-card {
-  width: 400px;
+  width: calc((100% / 3) - 45px);
   height: 580px;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
 }
+
 
 .vertical-cards-container {
   display: flex;
   width: 90%;
   margin: 0 auto;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 15px;
 }
 
 .mini-cards-container {
@@ -219,13 +220,12 @@ a {
 .squared-card {
   height: 350px;
   width: 350px;
-  color: white;
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
   gap: 8px;
   position: relative;
   max-height: 220px;
+  padding: 25px;
 }
 
 h2 {

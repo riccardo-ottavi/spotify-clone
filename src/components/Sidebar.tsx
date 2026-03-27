@@ -21,6 +21,7 @@ export default function Sidebar() {
             image={a.image}
             id={a.id}
             name={a.name}
+            type="artist"
           /></Link>
         ))}
         {albums.map((a) => (
@@ -30,6 +31,7 @@ export default function Sidebar() {
             image={a.image}
             id={a.id}
             name={a.title}
+            type="album"
           />
           </Link>
         ))}

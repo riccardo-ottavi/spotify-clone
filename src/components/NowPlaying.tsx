@@ -17,9 +17,9 @@ export default function NowPlaying({
 }: Props) {
   return (
     <div className="now-playing">
+      {artist && <p>{artist}</p>}
       <img src={image} alt={title} />
       <p>{title}</p>
-      {artist && <p>{artist}</p>}
       {album && <p>{album}</p>}
       {year && <p>{year}</p>}
       {bio && <p>{bio}</p>}

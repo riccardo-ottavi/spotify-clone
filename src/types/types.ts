@@ -40,7 +40,17 @@ export type CollectionViewProps = {
   bio?: string;
   albumSongs?: Song[];
   title: string;
+  year?: number
+  image: string
 }
+
+export type DetailHeaderProps = {
+  type: "artist" | "album" | "playlist";
+  title?: string;
+  bio?: string;
+  year?: number;
+  image: string
+};
 
 export type AudioContextType = {
   currentSong: Song | null;

@@ -1,5 +1,6 @@
 import MiniCard from "./MiniCard"
 import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
+import { Link } from "react-router-dom";
 
 
 export default function Sidebar() {
@@ -14,20 +15,23 @@ export default function Sidebar() {
         <img src="/plus-solid-full.svg" alt="" className='icon' />
 
         {artists.map((a) => (
+          <Link to={`/artist/${a.id}`} style={{ textDecoration: "none" }}>
           <MiniCard
             key={a.id}
             image={a.image}
             id={a.id}
             name={a.name}
-          />
+          /></Link>
         ))}
-        {albums.map((c) => (
+        {albums.map((a) => (
+          <Link to={`/album/${a.id}`} style={{ textDecoration: "none" }}>
           <MiniCard
-            key={c.id}
-            image={c.image}
-            id={c.id}
-            name={c.title}
+            key={a.id}
+            image={a.image}
+            id={a.id}
+            name={a.title}
           />
+          </Link>
         ))}
       </div>
     </div>

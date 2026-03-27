@@ -1,34 +1,44 @@
 import type { Song } from "../types/types"
+import { useAudioPlayerContext } from "../contexts/AudioPlayerContext"
+
 
 type Props = {
-    songs: Song[]
+    songs: Song[],
+    onClick?: () => void;
 }
 
-export default function TableView({ songs }: Props){
-    return(
+export default function TableView({ songs }: Props) {
+
+    const { setCurrentSong, currentSong } = useAudioPlayerContext();
+
+    return (
         <>
-        
-            <div className="detail-buttons">
-                <div className="play-hover-big"></div>
-                <img src="../play-solid-full.svg" alt="" />
-                <img src="../shuffle-solid-full.svg" alt="" />
-                <span>Segui</span>
-                <div className="info-button">
-                    <img src="../circle-solid-full.svg" alt="" />
-                    <img src="../circle-solid-full.svg" alt="" />
-                    <img src="../circle-solid-full.svg" alt="" />
-                </div>
-                
-            </div>
-        
             <div className="detail-cards-container">
-                {songs.map((s, index) => (
-                <div className="detail-song-card">
-                    <span>{index+1}</span>
-                    <img src={s.image} alt={s.title} />
-                    <span>{s.title}</span>
-                </div>
-            ))}
+                {songs.map((s, index) => {
+                    const isActive = currentSong?.id === s.id;
+
+                    return (
+                        <div
+                            key={s.id}
+                            className={`detail-song-card ${isActive ? "active" : ""}`}
+                            onClick={() => setCurrentSong(s)}
+                        >
+                            <div className="play-or-id">
+                                {isActive ? (
+                                    <img className="detail-play" src="../play-solid-full-white.svg" alt="" />
+                                ) : (
+                                    <span className="detail-id">{index + 1}</span>
+                                )}
+                            </div>
+
+                            <img src={s.image} alt={s.title} />
+
+                            <span className={isActive ? "active-text" : ""}>
+                                {s.title}
+                            </span>
+                        </div>
+                    );
+                })}
             </div>
         </>
     )

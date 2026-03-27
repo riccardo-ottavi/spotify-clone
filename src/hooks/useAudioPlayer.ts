@@ -18,13 +18,15 @@ export function useAudioPlayer() {
     { id: 7, title: "Flautista", image: "../stranger.jpeg", artist: "Sfaso", audio: "../audios/flutist_Master.wav" }, 
     { id: 8, title: "Assolo", image: "../youg.jpeg", artist: "Sfaso", audio: "../audios/guitarist_Master.wav" },
     { id: 9, title: "Direzione: Malibù", image: "../aquietplace.jpeg", artist: "Sfaso", audio: "../audios/malibu_Master.wav" },
-    { id: 10, title: "Path toward exilation", image: "../metal_lifting.jpg", artist: "Sfaso", audio: "../audios/manor-solo-beat_Master.wav" },
+    { id: 10, title: "Path toward exilation", image: "../metal_lifting.jpg", artist: "Sfaso", audio: "../audios/manor-solo-beat.wav" },
     { id: 11, title: "Like a saxophone", image: "../mixdaily.jpeg", artist: "Sfaso", audio: "../audios/saxist_Master.wav" },
     { id: 12, title: "Secret files", image: "../split.jpeg", artist: "Sfaso", audio: "../audios/spaceShip_Master.wav" },
   ];
 
   const albums = [
-    {id: 1, title: "Trap fever", artistId: 1, year: 2026, image: "../stranger.jpeg", songIds: [1,4,6]}
+    {id: 1, title: "Trap fever", artistId: 1, year: 2026, image: "../youg.jpeg", songIds: [1,2,3,4]},
+    {id: 2, title: "Hip-Hop fever", artistId: 1, year: 2025, image: "../aquietplace.jpeg", songIds: [5,6,7,8]},
+    {id: 3, title: "House fever", artistId: 1, year: 2024, image: "../mixdaily.jpeg", songIds: [9,10,11,12]},
   ]
 
   const artists = [

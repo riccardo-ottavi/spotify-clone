@@ -10,7 +10,9 @@ export default function CollectionView({
   playlistId,
   bio,
   albumSongs,
-  title
+  title,
+  year,
+  image
 }: CollectionViewProps) {
   const {
     getSongsFromArtist,
@@ -28,7 +30,7 @@ export default function CollectionView({
   } else if (type === "playlist" && playlistId !== undefined) {
     songs = getSongsFromPlaylist(playlistId);
   } else if (type === "album" && albumSongs) {
-    songs = albumSongs;  
+    songs = albumSongs;
   }
 
   if (songs.length === 0) {
@@ -37,10 +39,16 @@ export default function CollectionView({
 
   return (
     <section style={{ marginBottom: "30px" }}>
-        <DetailHeader />
-    <TableView 
+      <DetailHeader
+        type={type}
+        title={title}
+        bio={bio}
+        year={year}
+        image={image}
+      />
+      <TableView
         songs={songs}
-    />
+      />
     </section>
   );
 }

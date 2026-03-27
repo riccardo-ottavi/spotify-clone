@@ -4,21 +4,22 @@ import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 
 export default function ArtistPage() {
   const { id } = useParams<{ id: string }>();
-  const { getSongsFromArtist, artists } = useAudioPlayerContext();
+  const { getSongsFromAlbum, albums } = useAudioPlayerContext();
 
-  if (!id) return <p>Artista non trovato</p>;
+  if (!id) return <p>Album non trovato</p>;
 
   const artistId = Number(id);
-  const artist = artists.find(a => a.id === artistId);
+  const album = albums.find(a => a.id === artistId);
 
-  if (!artist) return <p>Artista non trovato</p>;
+  if (!album) return <p>Artista non trovato</p>;
 
   return (
     <CollectionView
-      type="artist"
-      artistId={artistId}
-      title={artist.name}
-      bio={artist.bio}
+      type="album"
+      albumId={album.id}
+      title={album.title}
+      year={album.year}
+      image={album.image} 
     />
   );
 }

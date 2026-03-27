@@ -4,7 +4,7 @@ import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 
 export default function ArtistPage() {
   const { id } = useParams<{ id: string }>();
-  const { getSongsFromArtist, artists } = useAudioPlayerContext();
+  const { getSongsFromArtist, artists,  } = useAudioPlayerContext();
 
   if (!id) return <p>Artista non trovato</p>;
 
@@ -19,6 +19,7 @@ export default function ArtistPage() {
       artistId={artistId}
       title={artist.name}
       bio={artist.bio}
+
     />
   );
 }

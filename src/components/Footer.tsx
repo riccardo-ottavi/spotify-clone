@@ -60,7 +60,7 @@ export default function Footer({
                             if (!audioRef.current) return;
                             const newTime = (Number(e.currentTarget.value) / 100) * audioRef.current.duration;
                             audioRef.current.currentTime = newTime;
-                            setDragProgress(null); // reset dopo aver aggiornato l'audio
+                            setDragProgress(null);  
                         }}
                         onTouchEnd={(e) => {
                             if (!audioRef.current) return;

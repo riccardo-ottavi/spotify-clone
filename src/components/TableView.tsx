@@ -24,11 +24,11 @@ export default function TableView({ songs }: Props) {
                             onClick={() => setCurrentSong(s)}
                         >
                             <div className="play-or-id">
-                                {isActive ? (
+                                
                                     <img className="detail-play" src="../play-solid-full-white.svg" alt="" />
-                                ) : (
+                               
                                     <span className="detail-id">{index + 1}</span>
-                                )}
+                              
                             </div>
 
                             <img src={s.image} alt={s.title} />

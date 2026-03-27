@@ -1,6 +1,7 @@
 import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 import type { Song, CollectionViewProps } from "../types/types";
-import SquaredCard from "../components/SquaredCard";
+import TableView from "../components/TableView";
+import DetailHeader from "../components/DetailHeader";
 
 export default function CollectionView({
   type,
@@ -27,28 +28,19 @@ export default function CollectionView({
   } else if (type === "playlist" && playlistId !== undefined) {
     songs = getSongsFromPlaylist(playlistId);
   } else if (type === "album" && albumSongs) {
-    songs = albumSongs; // fallback se passi direttamente le canzoni
+    songs = albumSongs;  
   }
 
   if (songs.length === 0) {
-    return <p style={{ color: "white", marginLeft: "35px" }}>Nessuna canzone da mostrare</p>;
+    return <p style={{ color: "white" }}>Nessuna canzone da mostrare</p>;
   }
 
   return (
-    <section style={{ marginLeft: "35px", marginBottom: "30px" }}>
+    <section style={{ marginBottom: "30px" }}>
+        <DetailHeader />
       {title && <h2>{title}</h2>}
       {bio && <p style={{ color: "white", marginBottom: "20px" }}>{bio}</p>}
-      <div className="squared-cards-container">
-        {songs.map((song) => (
-          <SquaredCard
-            key={song.id}
-            image={song.image}
-            title={song.title}
-            artist={song.artist}
-            onClick={() => setCurrentSong(song)}
-          />
-        ))}
-      </div>
+    <TableView />
     </section>
   );
 }

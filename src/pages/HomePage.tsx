@@ -12,7 +12,7 @@ import Links from "../components/Links";
 
 export default function HomePage() {
 
-    const { currentSong, setCurrentSong, isPlaying, togglePlay, volume, setVolume, progress, audioRef, songs } = useAudioPlayerContext();
+    const { currentSong, setCurrentSong, isPlaying, togglePlay, volume, setVolume, progress, audioRef, songs, artists } = useAudioPlayerContext();
     const containerRef = useRef<HTMLDivElement>(null);
 
     const scroll = (direction: "left" | "right") => {
@@ -36,7 +36,7 @@ export default function HomePage() {
 
                     <div className="gradient">
                         <div className='orizzontal-cards-container'>
-                            {songs.slice(0, 6).map((c) => (
+                            {songs.slice(0, 8).map((c) => (
                                 <OrizzontalCard
                                     key={c.id}
                                     image={c.image}
@@ -61,7 +61,7 @@ export default function HomePage() {
                                         key={c.id}
                                         image={c.image}
                                         title={c.title}
-                                        artist={c.artist}
+                                        artistName={artists.find(a => a.id === c.artistId)?.name || "Unknown"}
                                         onClick={() => setCurrentSong(c)}
                                     />
                                 ))}
@@ -86,17 +86,7 @@ export default function HomePage() {
 
             </section>
 
-            <section className="footer">
-                <Footer
-                    progress={progress}
-                    togglePlay={togglePlay}
-                    isPlaying={isPlaying}
-                    audioRef={audioRef}
-                    volume={volume}
-                    setVolume={setVolume}
-                    currentSong={currentSong}
-                />
-            </section>
+            
         </>
     )
 }

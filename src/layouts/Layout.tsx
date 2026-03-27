@@ -13,18 +13,20 @@ export default function Layout() {
     volume,
     setVolume,
     progress,
-    audioRef
+    audioRef,
+    artists,
+    albums
   } = useAudioPlayerContext();
 
   return (
     <>
-    
+
       <section className="header">
         <Header />
       </section>
 
       <section className="middle-big-box">
-        
+
         <Sidebar />
 
         <div className="big-mid custom-scrollbar">
@@ -33,9 +35,8 @@ export default function Layout() {
 
         <RightPanel
           currentSong={currentSong}
-          image={currentSong?.image}
-          title={currentSong?.title}
-          artist={currentSong?.artist}
+          artists={artists || []}
+          albums={albums }
         />
       </section>
 
@@ -48,6 +49,8 @@ export default function Layout() {
           volume={volume}
           setVolume={setVolume}
           currentSong={currentSong}
+          artistName={artists.find(a => a.id === currentSong?.artistId)?.name || "Unknown"}
+                
         />
       </section>
     </>

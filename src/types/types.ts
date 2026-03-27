@@ -1,10 +1,11 @@
- export type Song = {
-    audio: string;
-    id: number;
-    title: string;
-    image: string;
-    artist: string;
-  }
+export type Song = {
+  audio: string;
+  id: number;
+  title: string;
+  image: string;  
+  artistId: number;    
+  albumId: number;   
+};
 
   export type FooterProps = {
   progress: number;
@@ -14,6 +15,7 @@
   volume: number;
   setVolume: (value: number) => void;
   currentSong: Song | null;
+  artistName: string;
 };
 
 export type Artist = {
@@ -27,7 +29,7 @@ export type Album = {
   id: number;
   title: string;
   artistId: number;     
-  year?: number;
+  year: number;
   image: string;
   songIds: number[];
 };

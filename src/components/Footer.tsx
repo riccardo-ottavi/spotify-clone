@@ -8,7 +8,8 @@ export default function Footer({
     volume,
     setVolume,
     currentSong,
-    progress
+    progress,
+    artistName
 }: FooterProps) {
 
     const [dragProgress, setDragProgress] = useState<number | null>(null);
@@ -31,7 +32,7 @@ export default function Footer({
                 <img src={currentSong?.image} alt="" />
                 <div className="track-text-infos">
                     <h4>{currentSong?.title}</h4>
-                    <span>{currentSong?.artist}</span>
+                    <span>{artistName}</span>
                 </div>
                 <img src="../circle-plus-solid-full.svg" alt="" className="icon" />
             </div>

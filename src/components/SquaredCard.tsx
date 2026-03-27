@@ -1,7 +1,7 @@
 type Props = {
     image: string;
     title: string;
-    artist: string;
+    artistName: string;
     onClick?: () => void;
 };
 
@@ -9,7 +9,7 @@ type Props = {
 export default function SquaredCard({
     image,
     title,
-    artist,
+    artistName,
     onClick
 }: Props) {
 
@@ -17,7 +17,7 @@ export default function SquaredCard({
         <div className="squared-card" onClick={onClick}>
             <img src={image} alt="" />
             <h3>{title}</h3>
-            <span>{artist}</span>
+            <span>{artistName}</span>
             <div className="play-hover-big">
                 <img src="../play-solid-full.svg" alt="" />
             </div>

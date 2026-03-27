@@ -162,7 +162,7 @@ a {
 }
 
 .orizzontal-card {
-  width: calc((100% / 3) - 15px);
+  width: calc((100% / 4) - 15px);
   height: 48px;
   background-color: #5A4530;
   display: flex;

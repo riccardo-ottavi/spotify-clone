@@ -1,20 +1,28 @@
 type Props = {
-    image: string;
-    title: string;
-    artist: string;
-}
-
+  image: string;
+  title: string;
+  artist?: string;    
+  bio?: string;
+  album?: string;
+  year?: number;
+};
 
 export default function NowPlaying({
   image,
   title,
-  artist
-}: Props){
-    return(
-        <div className="now-playing">
-            <img src={image} alt="" />
-            <p>{title}</p>
-            <p>{artist}</p>
-        </div>
-    )
+  artist,
+  bio,
+  album,
+  year,
+}: Props) {
+  return (
+    <div className="now-playing">
+      <img src={image} alt={title} />
+      <p>{title}</p>
+      {artist && <p>{artist}</p>}
+      {album && <p>{album}</p>}
+      {year && <p>{year}</p>}
+      {bio && <p>{bio}</p>}
+    </div>
+  );
 }

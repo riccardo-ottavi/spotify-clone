@@ -9,18 +9,18 @@ export function useAudioPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
  const songs = [
-    { id: 1, title: "AC 2", image: "../stranger.jpeg", artist: "Sfaso", audio: "../audios/ac2_Master.wav" }, 
-    { id: 2, title: "Afro", image: "../youg.jpeg", artist: "Sfaso", audio: "../audios/afro_Master.wav" },
-    { id: 3, title: "My band", image: "../aquietplace.jpeg", artist: "Sfaso", audio: "../audios/band_Master.wav" },
-    { id: 4, title: "Blessato", image: "../metal_lifting.jpg", artist: "Sfaso", audio: "../audios/blessed_Master.wav" },
-    { id: 5, title: "Come in un film", image: "../mixdaily.jpeg", artist: "Sfaso", audio: "../audios/film_Master.wav" },
-    { id: 6, title: "Sempre e solo un combattente", image: "../split.jpeg", artist: "Sfaso", audio: "../audios/fighter_Master.wav" },
-    { id: 7, title: "Flautista", image: "../stranger.jpeg", artist: "Sfaso", audio: "../audios/flutist_Master.wav" }, 
-    { id: 8, title: "Assolo", image: "../youg.jpeg", artist: "Sfaso", audio: "../audios/guitarist_Master.wav" },
-    { id: 9, title: "Direzione: Malibù", image: "../aquietplace.jpeg", artist: "Sfaso", audio: "../audios/malibu_Master.wav" },
-    { id: 10, title: "Path toward exilation", image: "../metal_lifting.jpg", artist: "Sfaso", audio: "../audios/manor-solo-beat.wav" },
-    { id: 11, title: "Like a saxophone", image: "../mixdaily.jpeg", artist: "Sfaso", audio: "../audios/saxist_Master.wav" },
-    { id: 12, title: "Secret files", image: "../split.jpeg", artist: "Sfaso", audio: "../audios/spaceShip_Master.wav" },
+    { id: 1, title: "AC 2", image: "../stranger.jpeg",  audio: "../audios/ac2_Master.wav", artistId: 1, albumId: 1 }, 
+    { id: 2, title: "Afro", image: "../youg.jpeg", audio: "../audios/afro_Master.wav" , artistId: 1, albumId: 1},
+    { id: 3, title: "My band", image: "../aquietplace.jpeg", audio: "../audios/band_Master.wav" , artistId: 1, albumId: 1},
+    { id: 4, title: "Blessato", image: "../metal_lifting.jpg",  audio: "../audios/blessed_Master.wav" , artistId: 1, albumId: 1},
+    { id: 5, title: "Come in un film", image: "../mixdaily.jpeg", audio: "../audios/film_Master.wav" , artistId: 1, albumId: 2},
+    { id: 6, title: "Sempre e solo un combattente", image: "../split.jpeg",  audio: "../audios/fighter_Master.wav", artistId: 1, albumId: 2 },
+    { id: 7, title: "Flautista", image: "../stranger.jpeg", audio: "../audios/flutist_Master.wav" , artistId: 1, albumId: 2}, 
+    { id: 8, title: "Assolo", image: "../youg.jpeg", audio: "../audios/guitarist_Master.wav" , artistId: 1, albumId: 2},
+    { id: 9, title: "Direzione: Malibù", image: "../aquietplace.jpeg", audio: "../audios/malibu_Master.wav" , artistId: 1, albumId: 3},
+    { id: 10, title: "Path toward exilation", image: "../metal_lifting.jpg", audio: "../audios/manor-solo-beat.wav" , artistId: 1, albumId: 3},
+    { id: 11, title: "Like a saxophone", image: "../mixdaily.jpeg",  audio: "../audios/saxist_Master.wav" , artistId: 1, albumId: 3},
+    { id: 12, title: "Secret files", image: "../split.jpeg", audio: "../audios/spaceShip_Master.wav" , artistId: 1, albumId: 3},
   ];
 
   const albums = [
@@ -99,7 +99,7 @@ export function useAudioPlayer() {
 const getSongsFromArtist = (artistId: number): Song[] => {
   return songs.filter(song => {
     const artist = artists.find(a => a.id === artistId);
-    return artist && song.artist === artist.name;
+    return artist && song.artistId === artistId;
   });
 };
 

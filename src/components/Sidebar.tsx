@@ -13,12 +13,12 @@ export default function Sidebar() {
         <img src="/layer-group-solid-full.svg" alt="" className='icon' />
         <img src="/plus-solid-full.svg" alt="" className='icon' />
 
-        {artists.map((c) => (
+        {artists.map((a) => (
           <MiniCard
-            key={c.id}
-            image={c.image}
-            id={c.id}
-            name={c.name}
+            key={a.id}
+            image={a.image}
+            id={a.id}
+            name={a.name}
           />
         ))}
         {albums.map((c) => (

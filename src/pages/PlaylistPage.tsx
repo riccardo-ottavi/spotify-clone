@@ -1,30 +1,24 @@
 import { useParams } from "react-router-dom";
+import CollectionView from "./CollectionView";
 import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
-import type { Song } from "../types/types";
-import { CollectionView } from "./CollectionView";
 
-export default function PlaylistPage() {
-  const { id } = useParams();
-  const { playlists, songs } = useAudioPlayerContext();
+export default function ArtistPage() {
+  const { id } = useParams<{ id: string }>();
+  const { getSongsFromArtist, artists } = useAudioPlayerContext();
 
-  const playlist = playlists.find(p => p.id === Number(id));
+  if (!id) return <p>Artista non trovato</p>;
 
-  if (!playlist) {
-    return (
-      <p style={{ color: "white", marginLeft: "35px" }}>
-        Playlist non trovata
-      </p>
-    );
-  }
+  const artistId = Number(id);
+  const artist = artists.find(a => a.id === artistId);
 
-  const playlistSongs: Song[] = playlist.songIds
-    .map(id => songs.find(s => s.id === id))
-    .filter((s): s is Song => !!s);
+  if (!artist) return <p>Artista non trovato</p>;
 
   return (
     <CollectionView
-      title={playlist.name}
-      songs={playlistSongs}
+      type="artist"
+      artistId={artistId}
+      title={artist.name}
+      bio={artist.bio}
     />
   );
 }

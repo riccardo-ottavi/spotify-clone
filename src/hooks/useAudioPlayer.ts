@@ -112,6 +112,11 @@ const playNextSong = () => {
   setCurrentSong(songs[nextIndex]);
 };
 
+const getSongsFromPlaylist = (id: number) => {
+    const playlist = playlists.find(p => p.id === id);
+    return playlist ? playlist.songIds.map(sid => songs.find(s => s.id === sid)).filter(Boolean) as Song[] : [];
+  };
+
 const playPreviousSong = () => {
   if (!currentSong) return;
 
@@ -136,6 +141,7 @@ const playPreviousSong = () => {
     albums,
     getSongsFromAlbum,
     getSongsFromArtist,
+    getSongsFromPlaylist,
     playlists
   };
 }

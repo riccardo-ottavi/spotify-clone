@@ -33,9 +33,13 @@ export type Album = {
 };
 
 export type CollectionViewProps = {
+  type: "artist" | "album" | "playlist";
+  artistId?: number;
+  albumId?: number;
+  playlistId?: number;
+  bio?: string;
+  albumSongs?: Song[];
   title: string;
-  image?: string;
-  songs: Song[];
 }
 
 export type AudioContextType = {
@@ -52,6 +56,7 @@ export type AudioContextType = {
   artists: Artist[];
   getSongsFromArtist: (id: number) => Song[]; 
   getSongsFromAlbum: (id: number) => Song[]; 
+  getSongsFromPlaylist: (id: number) => Song[];
   playlists: Playlist[]; 
 };
 

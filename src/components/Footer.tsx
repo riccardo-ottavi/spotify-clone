@@ -25,9 +25,7 @@ export default function Footer({
 
 
     return (
-
         <>
-
         <footer>
             <div className="left-footer">
                 <img src={currentSong?.image} alt="" />

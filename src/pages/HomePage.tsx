@@ -27,7 +27,6 @@ export default function HomePage() {
 
     return (
         <>
-            <audio ref={audioRef} />
 
 
             <section className="middle-big-box">

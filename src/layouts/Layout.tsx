@@ -18,6 +18,7 @@ export default function Layout() {
 
   return (
     <>
+    
       <section className="header">
         <Header />
       </section>

@@ -11,6 +11,7 @@ export function AudioPlayerProvider({ children }: { children: ReactNode }) {
   return (
     <AudioPlayerContext.Provider value={audio}>
       {children}
+      <audio ref={audio.audioRef} />
     </AudioPlayerContext.Provider>
   );
 }

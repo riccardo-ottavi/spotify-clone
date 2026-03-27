@@ -25,6 +25,9 @@ export default function Footer({
 
 
     return (
+
+        <>
+
         <footer>
             <div className="left-footer">
                 <img src={currentSong?.image} alt="" />
@@ -88,5 +91,6 @@ export default function Footer({
                 <img src="../expand-solid-full.svg" alt="" />
             </div>
         </footer>
+        </>
     )
 }

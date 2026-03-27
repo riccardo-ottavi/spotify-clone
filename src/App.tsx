@@ -9,27 +9,18 @@ import ArtistPage from "./pages/ArtistPage";
 
 function App() {
   return (
-    <AudioPlayerProvider>
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Layout />}>
-
-        {/* HOME */}
-        <Route index element={<HomePage />} />
-
-        {/* ALBUM */}
-        <Route path="album/:id" element={<AlbumPage />} />
-
-        {/* PLAYLIST */}
-        <Route path="playlist/:id" element={<PlaylistPage />} />
-
-        {/* ARTIST */}
-        <Route path="artist/:id" element={<ArtistPage artistId={0} />} />
-
-      </Route>
-    </Routes>
-  </BrowserRouter>
-</AudioPlayerProvider>
+    <BrowserRouter>
+      <AudioPlayerProvider>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<HomePage />} />
+            <Route path="artist/:id" element={<ArtistPage />} />
+            <Route path="album/:id" element={<AlbumPage />} />
+            <Route path="playlist/:id" element={<PlaylistPage />} />
+          </Route>
+        </Routes>
+      </AudioPlayerProvider>
+    </BrowserRouter>
   );
 }
 

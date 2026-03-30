@@ -39,7 +39,7 @@ export default function Footer({
                 </div>
                 <img src="../circle-plus-solid-full.svg" alt="" className="icon" />
             </div>
-            <div className="mid-footer">
+            <div className="mid-footer main-player">
                 <div className="buttons">
                     <img src="../shuffle-solid-full.svg" alt="" />
                     <img 

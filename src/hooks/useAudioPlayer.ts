@@ -22,12 +22,28 @@ export function useAudioPlayer() {
     { id: 10, title: "Path toward exilation", image: "../metal_lifting.jpg", audio: "../audios/manor-solo-beat.wav" , artistId: 1, albumId: 3},
     { id: 11, title: "Like a saxophone", image: "../mixdaily.jpeg",  audio: "../audios/saxist_Master.wav" , artistId: 1, albumId: 3},
     { id: 12, title: "Secret files", image: "../split.jpeg", audio: "../audios/spaceShip_Master.wav" , artistId: 1, albumId: 3},
+    { id: 13, title: "AC 2", image: "../stranger.jpeg",  audio: "../audios/ac2_Master.wav", artistId: 1, albumId: 1 }, 
+    { id: 14, title: "Afro", image: "../youg.jpeg", audio: "../audios/afro_Master.wav" , artistId: 1, albumId: 1},
+    { id: 15, title: "My band", image: "../aquietplace.jpeg", audio: "../audios/band_Master.wav" , artistId: 1, albumId: 1},
+    { id: 16, title: "Blessato", image: "../metal_lifting.jpg",  audio: "../audios/blessed_Master.wav" , artistId: 1, albumId: 1},
+    { id: 17, title: "Come in un film", image: "../mixdaily.jpeg", audio: "../audios/film_Master.wav" , artistId: 1, albumId: 2},
+    { id: 18, title: "Sempre e solo un combattente", image: "../split.jpeg",  audio: "../audios/fighter_Master.wav", artistId: 1, albumId: 2 },
+    { id: 19, title: "Flautista", image: "../stranger.jpeg", audio: "../audios/flutist_Master.wav" , artistId: 1, albumId: 2}, 
+    { id: 20, title: "Assolo", image: "../youg.jpeg", audio: "../audios/guitarist_Master.wav" , artistId: 1, albumId: 2},
+    { id: 21, title: "Pogo", image: "../aquietplace.jpeg", audio: "../audios/pogo_Master.wav" , artistId: 1, albumId: 3},
+    { id: 22, title: "No Vibe Killing", image: "../metal_lifting.jpg", audio: "../audios/pluckist_Master.wav" , artistId: 1, albumId: 3},
+    { id: 23, title: "Molto Meglio", image: "../mixdaily.jpeg",  audio: "../audios/pinzatrice_Master.wav" , artistId: 1, albumId: 3},
+    { id: 24, title: "Pianista Sull'Adriatico", image: "../split.jpeg", audio: "../audios/pianist_Master.wav" , artistId: 1, albumId: 3},
+    { id: 25, title: "Opera", image: "../aquietplace.jpeg", audio: "../audios/opera_Master.wav" , artistId: 1, albumId: 3},
+    { id: 26, title: "Drive By", image: "../metal_lifting.jpg", audio: "../audios/duro_Master.wav" , artistId: 1, albumId: 3},
+    { id: 27, title: "Polleggiamo?", image: "../mixdaily.jpeg",  audio: "../audios/chill_Master.wav" , artistId: 1, albumId: 3},
+    { id: 28, title: "Percussionismo", image: "../split.jpeg", audio: "../audios/bongist_Master.wav" , artistId: 1, albumId: 3},
   ];
 
   const albums = [
-    {id: 1, title: "Trap fever", artistId: 1, year: 2026, image: "../youg.jpeg", songIds: [2,6,3,10]},
-    {id: 2, title: "Hip-Hop fever", artistId: 1, year: 2025, image: "../aquietplace.jpeg", songIds: [5,1,7,8]},
-    {id: 3, title: "House fever", artistId: 1, year: 2024, image: "../mixdaily.jpeg", songIds: [9,11,4,12]},
+    {id: 1, title: "Trap fever", artistId: 1, year: 2026, image: "../youg.jpeg", songIds: [2,6,3,10,13,17,19,22,25,28]},
+    {id: 2, title: "Hip-Hop fever", artistId: 1, year: 2025, image: "../aquietplace.jpeg", songIds: [5,1,7,8,15,18,21,24,27]},
+    {id: 3, title: "House fever", artistId: 1, year: 2024, image: "../mixdaily.jpeg", songIds: [9,11,4,12,14,16,20,23,26]},
   ]
 
   const artists = [

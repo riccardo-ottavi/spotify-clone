@@ -90,6 +90,7 @@ body {
 .mini-cards-container {
   display: flex;
   flex-direction: column;
+ justify-content: center;
   gap: 20px;
   border-radius: 15px;
   padding-bottom: 30px;
@@ -202,7 +203,12 @@ a {
   z-index: 800;
   padding-left: 35px;
 }
-
+.main-player {
+  position: absolute;       
+  top: 50%;                 
+  left: 50%;               
+  transform: translate(-50%, -50%); 
+}
 .main-nav a {
   text-decoration: none;
   color: white;
@@ -273,7 +279,6 @@ hr {
 .left-mid {
   width: 90px;
   background-color: #121212;
-  overflow-y: scroll;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -347,7 +352,7 @@ hr {
 .right-footer input {
   appearance: none;
   height: 3px;
-  width: 75px;
+  width: 95px;
   background: white;
   border-radius: 2px;
 }
@@ -364,7 +369,7 @@ hr {
 .right-footer {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 8px;
   margin-right: 10px;
 }
 
@@ -510,10 +515,6 @@ footer {
 
 .mid-footer img {
   height: 23px;
-}
-
-.mid-footer {
-  margin-left: 70px;
 }
 
 .search-bar {

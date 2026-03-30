@@ -19,7 +19,7 @@ export default function ArtistPage() {
       artistId={artistId}
       title={artist.name}
       bio={artist.bio}
-
+      image={artist.image}
     />
   );
 }

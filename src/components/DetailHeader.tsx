@@ -1,25 +1,32 @@
 import type { DetailHeaderProps } from "../types/types"
+import { useParams } from "react-router-dom";
 import DetailButtons from "./DetailButtons";
+import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 
 export default function DetailHeader({
     type,
     title,
-    bio,
     year,
     image
 }: DetailHeaderProps) {
     if (type === "artist") {
+        const { songs } = useAudioPlayerContext()
         return (
             <>
                 <div className="detail-header-artist">
                     <h1>{title}</h1>
                 </div>
-                <DetailButtons />
+                <DetailButtons 
+                    songs={songs}
+                />
             </>
         );
     }
 
     if (type === "album") {
+        const { id } = useParams<{ id: string }>();
+        const { getSongsFromAlbum } = useAudioPlayerContext();
+        const albumSongs = id ? getSongsFromAlbum(Number(id)) : [];
         return (
             <>
                 <div className="detail-header-album album">
@@ -32,19 +39,24 @@ export default function DetailHeader({
                     </div>
 
                 </div>
-                <DetailButtons />
+                <DetailButtons
+                    songs={ albumSongs }
+                />
             </>
         );
     }
 
     if (type === "playlist") {
+        const { songs } = useAudioPlayerContext()
         return (
             <>
                 <div className="detail-header">
                     <h2>{title}</h2>
                     <span>Playlist</span>
                 </div>
-                <DetailButtons />
+                <DetailButtons 
+                    songs={ songs }
+                />
             </>
         );
     }

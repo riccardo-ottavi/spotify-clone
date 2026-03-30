@@ -9,7 +9,7 @@ type Props = {
 
 export default function TableView({ songs }: Props) {
 
-    const { setCurrentSong, currentSong } = useAudioPlayerContext();
+    const { currentSong, playQueue } = useAudioPlayerContext();
 
     return (
         <>
@@ -21,7 +21,7 @@ export default function TableView({ songs }: Props) {
                         <div
                             key={s.id}
                             className={`detail-song-card ${isActive ? "active" : ""}`}
-                            onClick={() => setCurrentSong(s)}
+                            onClick={() => playQueue(songs, index)}
                         >
                             <div className="play-or-id">
                                 

@@ -1,5 +1,6 @@
 import type { FooterProps } from "../types/types";
 import { useState } from "react";
+import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 
 export default function Footer({
     togglePlay,
@@ -13,6 +14,8 @@ export default function Footer({
 }: FooterProps) {
 
     const [dragProgress, setDragProgress] = useState<number | null>(null);
+    const { playNextSong, playPreviousSong } = useAudioPlayerContext()
+    
 
     function formatTime(seconds: number | undefined) {
         if (!seconds) return "0:00";
@@ -39,14 +42,22 @@ export default function Footer({
             <div className="mid-footer">
                 <div className="buttons">
                     <img src="../shuffle-solid-full.svg" alt="" />
-                    <img src="../backward-solid-full.svg" alt="" />
+                    <img 
+                        src="../backward-solid-full.svg" 
+                        alt="" 
+                       onClick={playPreviousSong}
+                    />
                     <img
                         src={isPlaying ? "../circle-pause-solid-full.svg" : "../circle-play-solid-full.svg"}
                         alt=""
                         id="main-play"
                         onClick={togglePlay}
                     />
-                    <img src="../forward-solid-full.svg" alt="" />
+                    <img 
+                        src="../forward-solid-full.svg" 
+                        alt="" 
+                        onClick={playNextSong}
+                    />
                     <img src="../repeat-solid-full.svg" alt="" />
                 </div>
                 <div className="control-bar">

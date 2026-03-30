@@ -70,6 +70,9 @@ export type AudioContextType = {
   getSongsFromAlbum: (id: number) => Song[]; 
   getSongsFromPlaylist: (id: number) => Song[];
   playlists: Playlist[]; 
+  playQueue: (song: Song[], index: number) => void;
+  playNextSong: () => void;
+  playPreviousSong: () => void;
 };
 
 export type Playlist = {

@@ -7,6 +7,7 @@ export function useAudioPlayer() {
   const [volume, setVolume] = useState(0.5);
   const [progress, setProgress] = useState(0);
   const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [queue, setQueue] = useState<Song[]>([]);
 
  const songs = [
     { id: 1, title: "AC 2", image: "../stranger.jpeg",  audio: "../audios/ac2_Master.wav", artistId: 1, albumId: 1 }, 
@@ -24,9 +25,9 @@ export function useAudioPlayer() {
   ];
 
   const albums = [
-    {id: 1, title: "Trap fever", artistId: 1, year: 2026, image: "../youg.jpeg", songIds: [1,2,3,4]},
-    {id: 2, title: "Hip-Hop fever", artistId: 1, year: 2025, image: "../aquietplace.jpeg", songIds: [5,6,7,8]},
-    {id: 3, title: "House fever", artistId: 1, year: 2024, image: "../mixdaily.jpeg", songIds: [9,10,11,12]},
+    {id: 1, title: "Trap fever", artistId: 1, year: 2026, image: "../youg.jpeg", songIds: [2,6,3,10]},
+    {id: 2, title: "Hip-Hop fever", artistId: 1, year: 2025, image: "../aquietplace.jpeg", songIds: [5,1,7,8]},
+    {id: 3, title: "House fever", artistId: 1, year: 2024, image: "../mixdaily.jpeg", songIds: [9,11,4,12]},
   ]
 
   const artists = [
@@ -52,13 +53,13 @@ export function useAudioPlayer() {
   const audio = audioRef.current;
   if (!audio) return;
 
-  const handleSongEnd = () => {
+  const handleEnded = () => {
     playNextSong();
   };
 
-  audio.addEventListener("ended", handleSongEnd);
-  return () => audio.removeEventListener("ended", handleSongEnd);
-}, [currentSong]);
+  audio.addEventListener("ended", handleEnded);
+  return () => audio.removeEventListener("ended", handleEnded);
+}, [currentSong, queue]);
 
   useEffect(() => {
     if (currentSong && audioRef.current) {
@@ -104,14 +105,14 @@ const getSongsFromArtist = (artistId: number): Song[] => {
 };
 
 const playNextSong = () => {
-  if (!currentSong) return;
+  if (!currentSong || queue.length === 0) return;
 
-  const currentIndex = songs.findIndex(s => s.id === currentSong.id);
+  const currentIndex = queue.findIndex(s => s.id === currentSong.id);
   if (currentIndex === -1) return;
 
-  const nextIndex = (currentIndex + 1) % songs.length;
+  const nextIndex = (currentIndex + 1) % queue.length;
 
-  setCurrentSong(songs[nextIndex]);
+  setCurrentSong(queue[nextIndex]);
 };
 
 const getSongsFromPlaylist = (id: number) => {
@@ -129,6 +130,11 @@ const playPreviousSong = () => {
   setCurrentSong(songs[prevIndex]);
 };
 
+const playQueue = (songs: Song[], startIndex: number = 0) => {
+  setQueue(songs);
+  setCurrentSong(songs[startIndex]);
+};
+
   return {
     currentSong,
     setCurrentSong,
@@ -144,6 +150,9 @@ const playPreviousSong = () => {
     getSongsFromAlbum,
     getSongsFromArtist,
     getSongsFromPlaylist,
-    playlists
+    playlists,
+    playQueue,
+    playNextSong,
+    playPreviousSong
   };
 }

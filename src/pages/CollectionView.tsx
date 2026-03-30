@@ -18,7 +18,6 @@ export default function CollectionView({
     getSongsFromArtist,
     getSongsFromAlbum,
     getSongsFromPlaylist,
-    setCurrentSong
   } = useAudioPlayerContext();
 
   let songs: Song[] = [];

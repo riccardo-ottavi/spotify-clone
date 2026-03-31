@@ -137,6 +137,27 @@ header img {
   height: 40px;
 }
 
+.hide{
+  display: none;
+}
+
+.now-playing-header:hover .hide{
+  height: 20px;
+  display: block;
+}
+
+.now-playing-header{
+  position: sticky;
+  top: 0;
+  z-index: 800;
+  background-color:#121212;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-left: 10px;
+  display: flex;
+  height: 20px;
+}
+
 .account-icon {
   background-color: #509BF5;
   width: 30px;
@@ -290,17 +311,40 @@ hr {
   font-size: 13px;
 }
 
+.track-infos img{
+  width: 100%;
+}
+
+
 .track-text-infos span {
   color: rgb(194, 194, 194);
   font-weight: 100;
   font-size: 12px;
 }
 
+.add-fav{
+  height: 20px;
+}
+
+.about-artist{
+  width: 100%;
+  background-color: #1e1e1e;
+}
+
+.about-artist img{
+  height: 200px;
+  width: 100%;
+}
+
+.next-in-queue{
+  margin-bottom: 500px;
+}
+
 .right-mid {
   width: 420px;
-  padding: 25px;
   background-color: #121212;
   border-radius: 15px;
+  overflow-y: auto;
 }
 
 .explore {

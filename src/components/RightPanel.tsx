@@ -23,15 +23,16 @@ export default function RightPanel({ currentSong, artists, albums }: Props) {
 
 
     return (
-        <div className="right-mid">
+        <div className="right-mid custom-scrollbar">
             {currentSong ? (
                 <NowPlaying
                     image={currentSong.image}
                     title={currentSong.title}
-                    artist={artist?.name}
+                    artistName={artist?.name}
                     bio={artist?.bio}
                     album={album?.title}   
                     year={album?.year}
+                    artistPic={artist?.image?? ''}
                 />
             ) : (
                 <EmptyScreen />

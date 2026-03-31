@@ -34,8 +34,8 @@ export default function Footer({
             <div className="left-footer">
                 <img src={currentSong?.image} alt="" />
                 <div className="track-text-infos">
-                    <h4>{currentSong?.title}</h4>
-                    <span>{artistName}</span>
+                    <h4 className="underline">{currentSong?.title}</h4>
+                    <span className="underline">{artistName}</span>
                 </div>
                 <img src="../circle-plus-solid-full.svg" alt="" className="icon" />
             </div>

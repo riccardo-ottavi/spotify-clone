@@ -20,7 +20,7 @@ export default function NowPlaying({
   artistPic,
   albumId,
 }: Props) {
-  const { queue, currentSong } = useAudioPlayerContext();
+  const { queue, currentSong, artists } = useAudioPlayerContext();
   const navigate = useNavigate();
 
   const goToAlbum = () => {
@@ -71,7 +71,12 @@ export default function NowPlaying({
         <h3>Prossimo in coda</h3>
         <span>Apri coda</span>
         {nextSongs?.slice(0,1).map(song => (
-          <span key={song.id}>{song.title}</span>
+          <div className="next-song-card" key={song.id}>
+            <img src={song.image} alt="" />
+            <span className="underline">{song.title}</span>
+            <span className="underline">{artists.find((art) => art.id === song.artistId)?.name}</span>
+          </div>
+          
         ))}
       </div>
 

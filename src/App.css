@@ -759,6 +759,19 @@ footer img {
   padding-bottom: 20px; 
 }
 
+.underline:hover{
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.next-song-card img{
+  height: 50px;
+}
+
+.next-song-card{
+  display: flex;
+}
+
 .detail-buttons img{
   height: 50px;
 }

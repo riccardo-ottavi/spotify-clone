@@ -33,7 +33,7 @@ export default function TableView({ songs }: Props) {
 
                             <img src={s.image} alt={s.title} />
 
-                            <span className={isActive ? "active-text" : ""}>
+                            <span className={isActive ? "active-text underline" : "underline"}>
                                 {s.title}
                             </span>
                         </div>

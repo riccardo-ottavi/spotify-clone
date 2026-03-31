@@ -31,10 +31,8 @@ export default function NowPlaying({
 
 
   const currentIndex = queue?.findIndex(s => s.id === currentSong?.id) ?? -1;
-  const nextSongs = currentIndex >= 0
-  ? queue.slice(currentIndex + 1)
-  : [];
   const artistMap = Object.fromEntries(artists.map(a => [a.id, a]));
+  const upcomingSongs = currentIndex >= 0 ? queue.slice(currentIndex + 1, currentIndex + 2) : [];
 
   return (
     <div className="now-playing">
@@ -70,7 +68,7 @@ export default function NowPlaying({
       <div className="next-in-queue">
         <h3>Prossimo in coda</h3>
         <span>Apri coda</span>
-        {nextSongs?.slice(0,1).map(song => (
+        {upcomingSongs?.slice(0,1).map(song => (
           <div className="next-song-card" key={song.id}>
             <img src={song.image} alt="" />
             <span className="underline">{song.title}</span>

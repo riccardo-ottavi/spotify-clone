@@ -5,6 +5,7 @@ export type Song = {
   image: string;  
   artistId: number;    
   albumId: number;   
+  duration: string;
 };
 
   export type FooterProps = {

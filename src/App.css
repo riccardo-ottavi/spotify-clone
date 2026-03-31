@@ -387,7 +387,10 @@ hr {
 }
 
 .next-in-queue{
-  margin-bottom: 500px;
+  margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .right-mid {
@@ -743,11 +746,19 @@ footer img {
   height: 100%
 }
 
+.detail-card{
+  display: flex;
+}
+
 .detail-cards-container{
   display: flex;
   flex-direction: column;
   gap: 20px;
   padding: 50px;
+}
+
+.detail-card img{
+  width: 50px;
 }
 
 .detail-buttons{

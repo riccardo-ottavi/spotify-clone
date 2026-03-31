@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 
 type Props = {
   image: string;
@@ -17,9 +18,9 @@ export default function NowPlaying({
   bio,
   album,
   artistPic,
-  albumId
+  albumId,
 }: Props) {
-
+  const { queue, currentSong } = useAudioPlayerContext();
   const navigate = useNavigate();
 
   const goToAlbum = () => {
@@ -27,6 +28,13 @@ export default function NowPlaying({
       navigate(`/album/${albumId}`);
     }
   };
+
+
+  const currentIndex = queue?.findIndex(s => s.id === currentSong?.id) ?? -1;
+  const nextSongs = currentIndex >= 0
+  ? queue.slice(currentIndex + 1)
+  : [];
+  console.log(nextSongs)
 
   return (
     <div className="now-playing">
@@ -50,7 +58,7 @@ export default function NowPlaying({
         <div className="about-text">
           {artistName && <h4>{artistName}</h4>}
           <div className="about-social">
-            <p>325.235.234 ascoltatori mensili</p> 
+            <p>325.235.234 ascoltatori mensili</p>
             <span className="follow">Segui</span>
           </div>
           {bio && <p>{bio}</p>}
@@ -61,6 +69,10 @@ export default function NowPlaying({
       </div>
       <div className="next-in-queue">
         <h3>Prossimo in coda</h3>
+        <span>Apri coda</span>
+        {nextSongs?.slice(0,1).map(song => (
+          <span key={song.id}>{song.title}</span>
+        ))}
       </div>
 
     </div>

@@ -171,6 +171,7 @@ const playQueue = (songs: Song[], startIndex: number = 0) => {
     playlists,
     playQueue,
     playNextSong,
-    playPreviousSong
+    playPreviousSong,
+    queue
   };
 }

@@ -73,6 +73,7 @@ export type AudioContextType = {
   playQueue: (song: Song[], index: number) => void;
   playNextSong: () => void;
   playPreviousSong: () => void;
+  queue: Song[];
 };
 
 export type Playlist = {

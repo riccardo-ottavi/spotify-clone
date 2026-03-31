@@ -310,8 +310,25 @@ hr {
   font-size: 13px;
 }
 
+.track-infos h3{
+  font-size: 20px;
+}
+
+.track-infos:hover{
+  cursor: pointer;
+}
+
+.track-infos span, p{
+  color: #b3b3b3;
+}
+
 .track-infos img{
   width: 100%;
+}
+
+.track-infos {
+  height: 500px;
+  padding: 10px;
 }
 
 
@@ -328,10 +345,44 @@ hr {
 .about-artist{
   width: 100%;
   background-color: #1e1e1e;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding: 10px;
+}
+
+.about-social{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.follow{
+  border: 1px solid #a5a5a5;
+  border-radius: 33px;
+  padding: 5px;
+  height: 30px;
+  width: 60px;
+  text-align: center;
+}
+
+.about-text{
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.absolute{
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-weight: 999;
+  font-size: 14px;
 }
 
 .about-artist img{
-  height: 200px;
+  height: 270px;
   width: 100%;
 }
 
@@ -599,6 +650,12 @@ footer {
   font-weight: 999;
 }
 
+.clickable{
+  background-color: #1ED760;
+  border-radius: 33px;
+  padding: 13px;
+}
+
 
 .search-bar input {
   padding-left: 40px;
@@ -697,10 +754,13 @@ footer img {
   display: flex;
   align-items: center;
   gap: 20px;
+  padding-top: 15px;
+  padding-left: 30px;
+  padding-bottom: 20px; 
 }
 
 .detail-buttons img{
-  height: 70px;
+  height: 50px;
 }
 
 .info-button img{

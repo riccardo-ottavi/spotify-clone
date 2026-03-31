@@ -37,7 +37,7 @@ export default function CollectionView({
   }
 
   return (
-    <section style={{ marginBottom: "30px" }}>
+    <section style={{ marginBottom: "30px"}}>
       <DetailHeader
         type={type}
         title={title}

@@ -22,7 +22,7 @@ export function useAudioPlayer() {
     { id: 10, title: "Path toward exilation", image: "../metal_lifting.jpg", audio: "../audios/manor-solo-beat.wav" , artistId: 1, albumId: 3},
     { id: 11, title: "Like a saxophone", image: "../mixdaily.jpeg",  audio: "../audios/saxist_Master.wav" , artistId: 1, albumId: 3},
     { id: 12, title: "Secret files", image: "../split.jpeg", audio: "../audios/spaceShip_Master.wav" , artistId: 1, albumId: 3},
-    { id: 13, title: "AC 2", image: "../stranger.jpeg",  audio: "../audios/ac2_Master.wav", artistId: 1, albumId: 1 }, 
+    { id: 13, title: "AC 2", image: "../spoti.svg",  audio: "../audios/ac2_Master.wav", artistId: 1, albumId: 1 }, 
     { id: 14, title: "Afro", image: "../youg.jpeg", audio: "../audios/afro_Master.wav" , artistId: 1, albumId: 1},
     { id: 15, title: "My band", image: "../aquietplace.jpeg", audio: "../audios/band_Master.wav" , artistId: 1, albumId: 1},
     { id: 16, title: "Blessato", image: "../metal_lifting.jpg",  audio: "../audios/blessed_Master.wav" , artistId: 1, albumId: 1},
@@ -34,7 +34,7 @@ export function useAudioPlayer() {
     { id: 22, title: "No Vibe Killing", image: "../metal_lifting.jpg", audio: "../audios/pluckist_Master.wav" , artistId: 1, albumId: 3},
     { id: 23, title: "Molto Meglio", image: "../mixdaily.jpeg",  audio: "../audios/pinzatrice_Master.wav" , artistId: 1, albumId: 3},
     { id: 24, title: "Pianista Sull'Adriatico", image: "../split.jpeg", audio: "../audios/pianist_Master.wav" , artistId: 1, albumId: 3},
-    { id: 25, title: "Opera", image: "../aquietplace.jpeg", audio: "../audios/opera_Master.wav" , artistId: 1, albumId: 3},
+    { id: 25, title: "Opera", image: "../spoti.svg", audio: "../audios/opera_Master.wav" , artistId: 1, albumId: 3},
     { id: 26, title: "Drive By", image: "../metal_lifting.jpg", audio: "../audios/duro_Master.wav" , artistId: 1, albumId: 3},
     { id: 27, title: "Polleggiamo?", image: "../mixdaily.jpeg",  audio: "../audios/chill_Master.wav" , artistId: 1, albumId: 3},
     { id: 28, title: "Percussionismo", image: "../split.jpeg", audio: "../audios/bongist_Master.wav" , artistId: 1, albumId: 3},
@@ -137,13 +137,15 @@ const getSongsFromPlaylist = (id: number) => {
   };
 
 const playPreviousSong = () => {
-  if (!currentSong) return;
+  if (!currentSong || queue.length === 0) return;
 
-  const currentIndex = songs.findIndex(s => s.id === currentSong.id);
+  const currentIndex = queue.findIndex(s => s.id === currentSong.id);
   if (currentIndex === -1) return;
 
-  const prevIndex = currentIndex === 0 ? songs.length - 1 : currentIndex - 1;
-  setCurrentSong(songs[prevIndex]);
+  const prevIndex =
+    currentIndex === 0 ? queue.length - 1 : currentIndex - 1;
+
+  setCurrentSong(queue[prevIndex]);
 };
 
 const playQueue = (songs: Song[], startIndex: number = 0) => {

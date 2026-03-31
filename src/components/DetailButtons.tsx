@@ -38,7 +38,7 @@ export default function DetailButtons({ songs }: Props) {
                 className="clickable"
             />
 
-            <span>Segui</span>
+            <span className="follow">Segui</span>
 
             <div className="info-button">
                 <img src="../circle-solid-full.svg" alt="" />

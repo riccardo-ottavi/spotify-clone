@@ -30,8 +30,8 @@ export default function RightPanel({ currentSong, artists, albums }: Props) {
                     title={currentSong.title}
                     artistName={artist?.name}
                     bio={artist?.bio}
-                    album={album?.title}   
-                    year={album?.year}
+                    album={album?.title}
+                    albumId={album?.id}
                     artistPic={artist?.image?? ''}
                 />
             ) : (

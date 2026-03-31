@@ -14,15 +14,9 @@ export default function Footer({
 }: FooterProps) {
 
     const [dragProgress, setDragProgress] = useState<number | null>(null);
-    const { playNextSong, playPreviousSong } = useAudioPlayerContext()
+    const { playNextSong, playPreviousSong, formatTime } = useAudioPlayerContext()
     
 
-    function formatTime(seconds: number | undefined) {
-        if (!seconds) return "0:00";
-        const mins = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
-    }
 
     const duration = audioRef.current?.duration || 0;
     const currentTime = duration ? duration * (progress / 100) : 0;

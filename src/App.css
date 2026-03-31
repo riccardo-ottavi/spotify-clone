@@ -759,6 +759,11 @@ footer img {
   padding-bottom: 20px; 
 }
 
+.absolute-right{
+  position: absolute;
+  right: 10px;
+}
+
 .underline:hover{
   text-decoration: underline;
   cursor: pointer;

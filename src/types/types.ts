@@ -74,6 +74,8 @@ export type AudioContextType = {
   playNextSong: () => void;
   playPreviousSong: () => void;
   queue: Song[];
+  getAudioDuration: (src: string) => Promise<number>;
+  formatTime: (seconds: number | undefined) => string 
 };
 
 export type Playlist = {

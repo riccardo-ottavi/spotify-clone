@@ -34,7 +34,7 @@ export default function NowPlaying({
   const nextSongs = currentIndex >= 0
   ? queue.slice(currentIndex + 1)
   : [];
-  console.log(nextSongs)
+  const artistMap = Object.fromEntries(artists.map(a => [a.id, a]));
 
   return (
     <div className="now-playing">
@@ -74,7 +74,7 @@ export default function NowPlaying({
           <div className="next-song-card" key={song.id}>
             <img src={song.image} alt="" />
             <span className="underline">{song.title}</span>
-            <span className="underline">{artists.find((art) => art.id === song.artistId)?.name}</span>
+            <span className="underline">{artistMap[song.artistId]?.name}</span>
           </div>
           
         ))}

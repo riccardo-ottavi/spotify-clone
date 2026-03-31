@@ -1,18 +1,14 @@
-import Header from "../components/Header";
 import MyNavBar from "../components/MyNavBar";
 import OrizzontalCard from "../components/OrizzontalCard";
-import Sidebar from "../components/Sidebar";
 import SquaredCard from "../components/SquaredCard";
 import VerticalCard from "../components/VerticalCard";
-import RightPanel from "../components/RightPanel";
-import Footer from "../components/Footer";
 import { useRef } from "react";
 import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 import Links from "../components/Links";
 
 export default function HomePage() {
 
-    const { currentSong, setCurrentSong, isPlaying, togglePlay, volume, setVolume, progress, audioRef, songs, artists, albums } = useAudioPlayerContext();
+    const { setCurrentSong, songs, artists, albums } = useAudioPlayerContext();
     const containerRef = useRef<HTMLDivElement>(null);
 
     const scroll = (direction: "left" | "right") => {

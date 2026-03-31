@@ -76,7 +76,12 @@ export type AudioContextType = {
   playPreviousSong: () => void;
   queue: Song[];
   getAudioDuration: (src: string) => Promise<number>;
-  formatTime: (seconds: number | undefined) => string 
+  formatTime: (seconds: number | undefined) => string
+  shuffle: boolean;
+  setShuffle: (val: boolean) => void;
+  repeat: 'none' | 'one' | 'all';
+  setRepeat: (val: 'none' | 'one' | 'all') => void;
+  toggleRepeat: () => void
 };
 
 export type Playlist = {

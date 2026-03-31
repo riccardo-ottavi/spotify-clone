@@ -14,8 +14,8 @@ export default function Footer({
 }: FooterProps) {
 
     const [dragProgress, setDragProgress] = useState<number | null>(null);
-    const { playNextSong, playPreviousSong, formatTime } = useAudioPlayerContext()
-    
+    const { playNextSong, playPreviousSong, formatTime, repeat, toggleRepeat, setShuffle, shuffle } = useAudioPlayerContext()
+
 
 
     const duration = audioRef.current?.duration || 0;
@@ -24,77 +24,91 @@ export default function Footer({
 
     return (
         <>
-        <footer>
-            <div className="left-footer">
-                <img src={currentSong?.image} alt="" />
-                <div className="track-text-infos">
-                    <h4 className="underline">{currentSong?.title}</h4>
-                    <span className="underline">{artistName}</span>
+            <footer>
+                <div className="left-footer">
+                    <img src={currentSong?.image} alt="" />
+                    <div className="track-text-infos">
+                        <h4 className="underline">{currentSong?.title}</h4>
+                        <span className="underline">{artistName}</span>
+                    </div>
+                    <img src="../circle-plus-solid-full.svg" alt="" className="icon" />
                 </div>
-                <img src="../circle-plus-solid-full.svg" alt="" className="icon" />
-            </div>
-            <div className="mid-footer main-player">
-                <div className="buttons">
-                    <img src="../shuffle-solid-full.svg" alt="" />
-                    <img 
-                        src="../backward-solid-full.svg" 
-                        alt="" 
-                       onClick={playPreviousSong}
-                    />
-                    <img
-                        src={isPlaying ? "../circle-pause-solid-full.svg" : "../circle-play-solid-full.svg"}
-                        alt=""
-                        id="main-play"
-                        onClick={togglePlay}
-                    />
-                    <img 
-                        src="../forward-solid-full.svg" 
-                        alt="" 
-                        onClick={playNextSong}
-                    />
-                    <img src="../repeat-solid-full.svg" alt="" />
+                <div className="mid-footer main-player">
+                    <div className="buttons">
+                        <img
+                            src={shuffle ? "../shuffle-green.svg" : "../shuffle-solid-full.svg"}
+                            alt=""
+                            onClick={() => setShuffle(!shuffle)}
+                        />
+                        <img
+                            src="../backward-solid-full.svg"
+                            alt=""
+                            onClick={playPreviousSong}
+                        />
+                        <img
+                            src={isPlaying ? "../circle-pause-solid-full.svg" : "../circle-play-solid-full.svg"}
+                            alt=""
+                            id="main-play"
+                            onClick={togglePlay}
+                        />
+                        <img
+                            src="../forward-solid-full.svg"
+                            alt=""
+                            onClick={playNextSong}
+                        />
+                        <img
+                            src={
+                                repeat === "none"
+                                    ? "../repeat-solid-full.svg"
+                                    : repeat === "all"
+                                        ? "../repeat-green.svg"
+                                        : "../repeat-green2.svg"
+                            }
+                            alt="repeat"
+                            onClick={toggleRepeat}
+                        />
+                    </div>
+                    <div className="control-bar">
+                        <span>{formatTime(currentTime)}</span>
+                        <input
+                            type="range"
+                            min={0}
+                            max={100}
+                            value={dragProgress !== null ? dragProgress : progress}
+                            onChange={(e) => setDragProgress(Number(e.target.value))}
+                            onMouseUp={(e) => {
+                                if (!audioRef.current) return;
+                                const newTime = (Number(e.currentTarget.value) / 100) * audioRef.current.duration;
+                                audioRef.current.currentTime = newTime;
+                                setDragProgress(null);
+                            }}
+                            onTouchEnd={(e) => {
+                                if (!audioRef.current) return;
+                                const newTime = (Number(e.currentTarget.value) / 100) * audioRef.current.duration;
+                                audioRef.current.currentTime = newTime;
+                                setDragProgress(null);
+                            }}
+                        />
+                        <span>{formatTime(duration)}</span>
+                    </div>
                 </div>
-                <div className="control-bar">
-                    <span>{formatTime(currentTime)}</span>
+                <div className="right-footer">
+                    <img src="../microphone-solid-full.svg" alt="" />
+                    <img src="../stack-exchange-brands-solid-full.svg" alt="" />
+                    <img src="../computer-solid-full.svg" alt="" />
+                    <img src="../volume-solid-full.svg" alt="" />
                     <input
                         type="range"
-                        min={0}
-                        max={100}
-                        value={dragProgress !== null ? dragProgress : progress}
-                        onChange={(e) => setDragProgress(Number(e.target.value))}
-                        onMouseUp={(e) => {
-                            if (!audioRef.current) return;
-                            const newTime = (Number(e.currentTarget.value) / 100) * audioRef.current.duration;
-                            audioRef.current.currentTime = newTime;
-                            setDragProgress(null);  
-                        }}
-                        onTouchEnd={(e) => {
-                            if (!audioRef.current) return;
-                            const newTime = (Number(e.currentTarget.value) / 100) * audioRef.current.duration;
-                            audioRef.current.currentTime = newTime;
-                            setDragProgress(null);
-                        }}
+                        min="0"
+                        max="1"
+                        step="0.01"
+                        value={volume}
+                        onChange={(e) => setVolume(Number(e.target.value))}
                     />
-                    <span>{formatTime(duration)}</span>
+                    <img src="../chromecast-brands-solid-full.svg" alt="" />
+                    <img src="../expand-solid-full.svg" alt="" />
                 </div>
-            </div>
-            <div className="right-footer">
-                <img src="../microphone-solid-full.svg" alt="" />
-                <img src="../stack-exchange-brands-solid-full.svg" alt="" />
-                <img src="../computer-solid-full.svg" alt="" />
-                <img src="../volume-solid-full.svg" alt="" />
-                <input
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.01"
-                    value={volume}
-                    onChange={(e) => setVolume(Number(e.target.value))}
-                />
-                <img src="../chromecast-brands-solid-full.svg" alt="" />
-                <img src="../expand-solid-full.svg" alt="" />
-            </div>
-        </footer>
+            </footer>
         </>
     )
 }

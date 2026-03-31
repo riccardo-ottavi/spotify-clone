@@ -249,10 +249,10 @@ a {
   width: 350px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 5px;
   position: relative;
   max-height: 220px;
-  padding: 25px;
+  padding: 20px;
 }
 
 h2 {
@@ -277,7 +277,6 @@ hr {
 
 .squared-cards-container {
   display: flex;
-  gap: 30px;
   min-height: 300px;
   overflow-x: auto;
   scroll-behavior: smooth;
@@ -453,7 +452,7 @@ hr {
   height: 30px;
   position: absolute;
   bottom: 65px;
-  right: 0;
+  right: 30px;
   background-color: #1ED760;
   border-radius: 33px;
   width: 50px;
@@ -482,10 +481,15 @@ hr {
 }
 
 .orizzontal-card:hover,
-.squared-card:hover,
 .mini-card:hover {
   background-color: #633D41;
 }
+
+.squared-card:hover{
+  background-color: #1e1e1e;
+}
+
+
 
 .orizzontal-card:hover .play-hover-small {
   display: block;

@@ -40,18 +40,28 @@ export default function NowPlaying({
   return (
     <div className="now-playing">
       <div className="now-playing-header">
-        <img src="../minimize-solid-full.svg" alt="" className="hide" />
-        {album && <h3>{album}</h3>}
-        <img src="../circle-solid-full.svg" alt="" className="hide" />
-        <img src="../circle-solid-full.svg" alt="" className="hide" />
-        <img src="../circle-solid-full.svg" alt="" className="hide" />
-        <img src="../expand-solid-full.svg" alt="" className="hide" />
+        <div style={{display: "flex"}}>
+          <img src="../minimize-solid-full.svg" alt="" className="hide" />
+          {album && <h3>{album}</h3>}
+        </div>
+        <div className="side-icons-container">
+          <div className="dots">
+          <img src="../circle-solid-full.svg" alt="" className="hide " />
+          <img src="../circle-solid-full.svg" alt="" className="hide" />
+          <img src="../circle-solid-full.svg" alt="" className="hide" />
+          </div>
+          <img src="../expand-solid-full.svg" alt="" className="hide" />
+        </div>
       </div>
       <div className="track-infos" onClick={goToAlbum}>
-        <img src={image} alt={title} />
-        <h3>{title}</h3>
-        {artistName && <span>{artistName}</span>}
-        <img src="../circle-plus-solid-full.svg" alt="" className="add-fav" />
+        <div className="track-infos-cover">
+          <img src={image} alt={title} />
+        </div>
+        <div className="track-infos-text">
+          <h3>{title}</h3>
+          {artistName && <span>{artistName}</span>}
+          <img src="../circle-plus-solid-full.svg" alt="" className="add-fav-queue" />
+        </div>
       </div>
       <div className="about-artist">
         <h4 className="absolute">Informazioni sull'artista</h4>
@@ -65,24 +75,27 @@ export default function NowPlaying({
           {bio && <p>{bio}</p>}
         </div>
       </div>
-      <div className="track-credits">
-        <h3>Riconoscimenti</h3>
-      </div>
       <div className="next-in-queue">
-        <h3>Prossimo in coda</h3>
+        <div className="next-in-queue-window">
+          <h3>Prossimo in coda</h3>
+          <span className="open-queue" onClick={() => setShowQueue(true)}>
+            Apri coda
+          </span>
+        </div>
 
         {!showQueue && (
           <>
-            {upcomingSongs.slice(0, 1).map(song => (
-              <div key={song.id} className="detail-card">
-                <img src={song.image} alt="" />
-                <span className="underline">{song.title}</span>
-              </div>
-            ))}
-
-            <span className="open-queue" onClick={() => setShowQueue(true)}>
-              Apri coda
-            </span>
+            {upcomingSongs.slice(0, 1).map(song => {
+              const artist = artistMap[song.artistId];
+              return (
+                <div key={song.id} className="detail-card queue-card">
+                  <img src={song.image} alt="" />
+                  <div className="queue-text">
+                    <h4 className="underline">{song.title}</h4>
+                    <span className="artist underline">{artist?.name}</span>
+                  </div>
+                </div>)
+            })}
           </>
         )}
 
@@ -91,10 +104,10 @@ export default function NowPlaying({
             {queue.slice(currentIndex + 1).map(song => {
               const artist = artistMap[song.artistId];
               return (
-                <div key={song.id} className="detail-card">
+                <div key={song.id} className="detail-card queue-card">
                   <img src={song.image} alt="" />
-                  <div className="queue-text">
-                    <span className="underline">{song.title}</span>
+                  <div className="queue-text ">
+                    <h4 className="underline">{song.title}</h4>
                     <span className="artist underline">{artist?.name}</span>
                   </div>
                 </div>

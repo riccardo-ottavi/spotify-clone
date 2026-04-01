@@ -52,9 +52,14 @@ export default function DetailHeader({
         const playlistSongs = id ? getSongsFromPlaylist(Number(id)) : [];
         return (
             <>
-                <div className="detail-header">
-                    <h2>{title}</h2>
-                    <span>Playlist</span>
+                <div className="detail-header-album album">
+                    <img src={image} alt="" />
+                    <div className="text-infos">
+                        <span>Playlist</span>
+                        <h2>{title}</h2>
+                        <h3>Sfaso</h3>
+                    </div>
+
                 </div>
                 <DetailButtons 
                     songs={ playlistSongs }

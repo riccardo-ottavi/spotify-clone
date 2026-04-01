@@ -26,7 +26,7 @@ export default function Header() {
                             searchResults.map((song) => (
                                 <div
                                     key={song.id}
-                                    className="search-result-item"
+                                    className="search-result-card"
                                     onClick={() => playQueue([song], 0)}
                                 >
                                     <img src={song.image} alt={song.title} />

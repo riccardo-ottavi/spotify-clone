@@ -927,7 +927,7 @@ footer img {
   overflow-y: auto;
   background-color: #121212;
   border-radius: 10px;
-  z-index: 50;
+  z-index: 900;
   box-shadow: 0 4px 12px rgba(0,0,0,0.5);
   display: flex;
   flex-direction: column;
@@ -941,13 +941,36 @@ footer img {
   cursor: pointer;
   border-radius: 8px;
   width: 100%;
+  position: relative;
+}
+
+.search-result-card h5{
+  font-size: 13px;
+}
+
+.result-card-text{
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.suggest-add{
+  height: 20px;
+  position: absolute;
+  right: 15px;
+  top: 20px;
+}
+
+.search-result-card span{
+  color: #b3b3b3;
+  width: 100%;
 }
 
 .search-result-card:hover {
   background-color: #1ED76030; 
 }
 
-.search-result-card img {
+.search-result-card-cover img {
   width: 40px;
   height: 40px;
   border-radius: 4px;

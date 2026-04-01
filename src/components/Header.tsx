@@ -3,7 +3,9 @@ import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 
 export default function Header() {
 
-    const { searchQuery, setSearchQuery, searchResults, playQueue } = useAudioPlayerContext();
+    const { searchQuery, setSearchQuery, searchResults, playQueue, artists } = useAudioPlayerContext();
+
+    const artistMap = Object.fromEntries(artists.map(a => [a.id, a]));
 
     return (
         <header>
@@ -21,22 +23,27 @@ export default function Header() {
                         placeholder="Cosa vuoi ascoltare?"
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
-                    <div className="search-results">
+                    <div className="search-results custom-scrollbar">
                         {searchQuery && searchResults.length > 0 ? (
-                            searchResults.map((song) => (
+                            searchResults.map((song) => {
+                            const artist = artistMap[song.artistId];
+                                return(
                                 <div
                                     key={song.id}
                                     className="search-result-card"
                                     onClick={() => playQueue([song], 0)}
                                 >
-                                    <img src={song.image} alt={song.title} />
-                                    <div>
-                                        <p>{song.title}</p>
-                                        <span>{song.artistId}</span>
+                                    <div className="result-card-cover">
+                                       <img src={song.image} alt={song.title} /> 
                                     </div>
-                                    <img src="../circle-plus-solid-full.svg" alt="" />
+                                    
+                                    <div className="result-card-text">
+                                        <h5 className="underline">{song.title}</h5>
+                                        <span className="underline">{artist?.name}</span>
+                                    </div>
+                                    <img src="../circle-plus-solid-full.svg" alt="" className="suggest-add"/>
                                 </div>
-                            ))
+                            )})
                         ) : searchQuery ? (
                             <p>Nessun risultato trovato</p>
                         ) : null}

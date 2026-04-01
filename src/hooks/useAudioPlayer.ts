@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from 'react';
 import type { Song } from '../types/types';
-import { songs, artists, playlists, albums } from '../data';
+import { artists, playlists, albums } from '../data';
 
 export function useAudioPlayer() {
   const [currentSong, setCurrentSong] = useState<Song | null>(null);
@@ -11,6 +11,14 @@ export function useAudioPlayer() {
   const [queue, setQueue] = useState<Song[]>([]);
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState<'none' | 'one' | 'all'>('none');
+  const [songs, setSongs] = useState<Song[]>([]);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/songs")
+      .then(res => res.json())
+      .then(data => setSongs(data))
+      .catch(err => console.error(err));
+  }, []);
 
   useEffect(() => {
     const audio = audioRef.current;
@@ -26,7 +34,7 @@ export function useAudioPlayer() {
 
   useEffect(() => {
     if (currentSong && audioRef.current) {
-      audioRef.current.src = currentSong.audio;
+      audioRef.current.src = `http://localhost:3000${currentSong.audio}`;
       audioRef.current.play();
       setIsPlaying(true);
     }
@@ -142,12 +150,12 @@ export function useAudioPlayer() {
   };
 
   const toggleRepeat = () => {
-  setRepeat(prev => {
-    if (prev === "none") return "all";
-    if (prev === "all") return "one";
-    return "none";
-  });
-};
+    setRepeat(prev => {
+      if (prev === "none") return "all";
+      if (prev === "all") return "one";
+      return "none";
+    });
+  };
 
   return {
     currentSong,

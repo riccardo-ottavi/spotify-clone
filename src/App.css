@@ -73,11 +73,29 @@ body {
   right: 0;
 }
 
+.empty-right{
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  align-items: center;
+}
+
+
 .vertical-card {
-  width: calc((100% / 3) - 45px);
+  width: calc((100% / 2) - 15px);
+  gap: 15px;
   height: 580px;
   background-repeat: no-repeat;
   background-size: cover;
+}
+
+.vertical-card{
+  padding: 25px;
+}
+
+.vertical-card h3{
+  font-size: 30px;
 }
 
 
@@ -86,7 +104,7 @@ body {
   width: 90%;
   margin: 0 auto;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 30px;
 }
 
 .mini-cards-container {
@@ -95,7 +113,7 @@ body {
   justify-content: center;
   gap: 20px;
   border-radius: 15px;
-  padding-bottom: 30px;
+  padding-top: 80px;
   overflow-y: auto;
 }
 
@@ -112,9 +130,24 @@ header {
   align-items: center;
 }
 
+.big-mid2{
+  width: 100%;
+  flex: 1;
+  overflow-y: auto;
+  color: white;
+  border-radius: 10px;
+  padding-bottom: 30px;
+
+  background: linear-gradient(to bottom,
+      #5F3D1B 0%,
+      #3a2a1a 20%,
+      #1e1e1e 40%,
+      #121212 60%);
+}
+
+
 .custom-scrollbar::-webkit-scrollbar {
-  height: 8px;
-  width: 8px;
+  width: 12px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
@@ -122,12 +155,15 @@ header {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: #535353;
-  border-radius: 10px;
+  background: transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #b3b3b3;
+}
+
+.custom-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: #535353;
 }
 
 header div {
@@ -255,16 +291,8 @@ a {
   font-weight: 500;
 }
 
-
 .squared-card {
-  height: 350px;
-  width: 350px;
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-  position: relative;
-  max-height: 220px;
-  padding: 20px;
+  padding: 10px;
 }
 
 h2 {
@@ -289,7 +317,6 @@ hr {
 
 .squared-cards-container {
   display: flex;
-  min-height: 300px;
   overflow-x: auto;
   scroll-behavior: smooth;
   margin-bottom: 10px;
@@ -534,6 +561,7 @@ hr {
 }
 
 .big-mid {
+  height: 100vh;
   width: 100%;
   flex: 1;
   overflow-y: auto;

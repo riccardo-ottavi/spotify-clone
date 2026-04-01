@@ -27,7 +27,7 @@ export default function HomePage() {
 
             <section className="middle-big-box">
 
-                <div className="big-mid custom-scrollbar">
+                <div className="big-mid2 custom-scrollbar">
                     <MyNavBar />
 
                     <div className="gradient">

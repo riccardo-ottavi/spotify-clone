@@ -12,7 +12,7 @@ export default function VerticalCard({
             className="vertical-card"
             style={{ backgroundImage: `url(${image})` }}
         >
-            <span>{title}</span>
+            <h3>{title}</h3>
         </div>
     )
 }

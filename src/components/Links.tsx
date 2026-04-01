@@ -33,9 +33,9 @@ export default function Links(){
               <a href="">Spotify Free</a>
             </nav>
             <nav style={{ display: "flex", flexDirection: "row" }}>
-              <img src="../instagram-brands-solid-full.svg" alt="" />
-              <img src="../twitter-brands-solid-full.svg" alt="" />
-              <img src="../facebook-brands-solid-full.svg" alt="" />
+              <img src="../instagram-white.svg" alt="" />
+              <img src="../twitter-white.svg" alt="" />
+              <img src="../facebook-white.svg" alt="" />
             </nav>
           </div>
     )

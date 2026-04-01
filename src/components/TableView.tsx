@@ -1,6 +1,5 @@
 import type { Song } from "../types/types"
 import { useAudioPlayerContext } from "../contexts/AudioPlayerContext"
-import { useState, useEffect } from "react";
 import React from "react"
 
 type Props = {

@@ -92,4 +92,5 @@ export type Playlist = {
   name: string;
   image: string;
   songIds: number[];
+  notes: string
 };

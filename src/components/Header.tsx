@@ -13,9 +13,9 @@ export default function Header() {
                 </div>
             </Link>
             <div className="header-mid">
-                <img src="../house-solid-full.svg" alt="" />
+                <Link to={'/'}><img src="../house-solid-full.svg" alt="" /></Link>
                 <div className="search-bar">
-                    <img src="../magnifying-glass-solid-full.svg" alt="" />
+                    <img src="../magnifying-glass-solid-full.svg" alt="" className="search-bar-icon"/>
                     <input
                         type="text"
                         placeholder="Cosa vuoi ascoltare?"
@@ -32,8 +32,9 @@ export default function Header() {
                                     <img src={song.image} alt={song.title} />
                                     <div>
                                         <p>{song.title}</p>
-                                        <span></span>
+                                        <span>{song.artistId}</span>
                                     </div>
+                                    <img src="../circle-plus-solid-full.svg" alt="" />
                                 </div>
                             ))
                         ) : searchQuery ? (

@@ -47,7 +47,9 @@ export default function DetailHeader({
     }
 
     if (type === "playlist") {
-        const { songs } = useAudioPlayerContext()
+        const { id } = useParams<{ id: string }>();
+        const { getSongsFromPlaylist } = useAudioPlayerContext();
+        const playlistSongs = id ? getSongsFromPlaylist(Number(id)) : [];
         return (
             <>
                 <div className="detail-header">
@@ -55,7 +57,7 @@ export default function DetailHeader({
                     <span>Playlist</span>
                 </div>
                 <DetailButtons 
-                    songs={ songs }
+                    songs={ playlistSongs }
                 />
             </>
         );

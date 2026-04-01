@@ -1,6 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
-import type { Song } from '../types/types';
-import { artists, playlists, albums } from '../data';
+import type { Album, Artist, Playlist, Song } from '../types/types';
 
 export function useAudioPlayer() {
   const [currentSong, setCurrentSong] = useState<Song | null>(null);
@@ -12,11 +11,35 @@ export function useAudioPlayer() {
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState<'none' | 'one' | 'all'>('none');
   const [songs, setSongs] = useState<Song[]>([]);
+  const [artists, setArtists] = useState<Artist[]>([]);
+  const [albums, setAlbums] = useState<Album[]>([]);
+  const [playlists, setPlaylists] = useState<Playlist[]>([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/songs")
       .then(res => res.json())
       .then(data => setSongs(data))
+      .catch(err => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/artists")
+      .then(res => res.json())
+      .then(data => setArtists(data))
+      .catch(err => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/albums")
+      .then(res => res.json())
+      .then(data => setAlbums(data))
+      .catch(err => console.error(err));
+  }, []);
+
+  useEffect(() => {
+    fetch("http://localhost:3000/playlists")
+      .then(res => res.json())
+      .then(data => setPlaylists(data))
       .catch(err => console.error(err));
   }, []);
 
@@ -88,7 +111,6 @@ export function useAudioPlayer() {
     const currentIndex = queue.findIndex(s => s.id === currentSong.id);
     if (currentIndex === -1) return;
 
-    // repeat 'one'
     if (repeat === 'one') {
       audioRef.current?.play();
       return;
@@ -96,16 +118,15 @@ export function useAudioPlayer() {
 
     let nextIndex;
     if (shuffle) {
-      // scegli un brano a caso tranne quello corrente
+
       const indices = queue.map((_, i) => i).filter(i => i !== currentIndex);
       nextIndex = indices[Math.floor(Math.random() * indices.length)];
     } else {
       nextIndex = (currentIndex + 1) % queue.length;
     }
 
-    // repeat 'all' o normale avanzamento
     if (nextIndex === 0 && repeat === 'none' && !shuffle && currentIndex === queue.length - 1) {
-      // fine della coda senza repeat → ferma il player
+      
       setIsPlaying(false);
       return;
     }

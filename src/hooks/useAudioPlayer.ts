@@ -14,6 +14,8 @@ export function useAudioPlayer() {
   const [artists, setArtists] = useState<Artist[]>([]);
   const [albums, setAlbums] = useState<Album[]>([]);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<Song[]>([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/songs")
@@ -77,6 +79,22 @@ export function useAudioPlayer() {
     return () => audio.removeEventListener('timeupdate', updateProgress);
   }, []);
 
+  useEffect(() => {
+  if (!searchQuery) {
+    setSearchResults([]);
+    return;
+  }
+
+  const query = searchQuery.toLowerCase();
+  const results = songs.filter(song => 
+    song.title.toLowerCase().includes(query) ||
+    artists.find(a => a.id === song.artistId)?.name.toLowerCase().includes(query) ||
+    albums.find(al => al.id === song.albumId)?.title.toLowerCase().includes(query)
+  );
+
+  setSearchResults(results);
+}, [searchQuery, songs, artists, albums]);
+
   const togglePlay = () => {
     if (!audioRef.current) return;
     isPlaying ? audioRef.current.pause() : audioRef.current.play();
@@ -126,7 +144,7 @@ export function useAudioPlayer() {
     }
 
     if (nextIndex === 0 && repeat === 'none' && !shuffle && currentIndex === queue.length - 1) {
-      
+
       setIsPlaying(false);
       return;
     }
@@ -204,6 +222,9 @@ export function useAudioPlayer() {
     setShuffle,
     repeat,
     setRepeat,
-    toggleRepeat
+    toggleRepeat,
+    searchQuery,
+    setSearchQuery,
+    searchResults
   };
 }

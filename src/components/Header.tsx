@@ -1,18 +1,45 @@
 import { Link } from "react-router-dom"
+import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 
 export default function Header() {
+
+    const { searchQuery, setSearchQuery, searchResults, playQueue } = useAudioPlayerContext();
+
     return (
         <header>
             <Link to={'/'}>
-            <div>
-                <img src="../spoty-logo.jfif" alt="" />
-            </div>
+                <div>
+                    <img src="../spoty-logo.jfif" alt="" />
+                </div>
             </Link>
             <div className="header-mid">
                 <img src="../house-solid-full.svg" alt="" />
                 <div className="search-bar">
                     <img src="../magnifying-glass-solid-full.svg" alt="" />
-                    <input type="text" placeholder="Cosa vuoi ascoltare?" />
+                    <input
+                        type="text"
+                        placeholder="Cosa vuoi ascoltare?"
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                    />
+                    <div className="search-results">
+                        {searchQuery && searchResults.length > 0 ? (
+                            searchResults.map((song) => (
+                                <div
+                                    key={song.id}
+                                    className="search-result-item"
+                                    onClick={() => playQueue([song], 0)}
+                                >
+                                    <img src={song.image} alt={song.title} />
+                                    <div>
+                                        <p>{song.title}</p>
+                                        <span></span>
+                                    </div>
+                                </div>
+                            ))
+                        ) : searchQuery ? (
+                            <p>Nessun risultato trovato</p>
+                        ) : null}
+                    </div>
                     <img src="../box-solid-full.svg" alt="" className="crate-icon border-left" />
                 </div>
             </div>

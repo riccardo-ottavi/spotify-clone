@@ -81,7 +81,10 @@ export type AudioContextType = {
   setShuffle: (val: boolean) => void;
   repeat: 'none' | 'one' | 'all';
   setRepeat: (val: 'none' | 'one' | 'all') => void;
-  toggleRepeat: () => void
+  toggleRepeat: () => void;
+  searchQuery: string;
+  setSearchQuery: (query: string) => void;
+  searchResults: Song[];
 };
 
 export type Playlist = {

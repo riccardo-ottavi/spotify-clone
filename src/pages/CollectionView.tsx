@@ -2,6 +2,7 @@ import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 import type { Song, CollectionViewProps } from "../types/types";
 import TableView from "../components/TableView";
 import DetailHeader from "../components/DetailHeader";
+import Links from "../components/Links";
 
 export default function CollectionView({
   type,
@@ -48,6 +49,7 @@ export default function CollectionView({
       <TableView
         songs={songs}
       />
+      <Links />
     </section>
   );
 }

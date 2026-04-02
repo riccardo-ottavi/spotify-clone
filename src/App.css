@@ -982,3 +982,42 @@ footer img {
   height: 40px;
   border-radius: 4px;
 }
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+.modal-content {
+  background: #121212;
+  padding: 20px;
+  border-radius: 12px;
+  width: 400px;
+  color: white;
+}
+.field {
+  margin-bottom: 16px;
+}
+.field input, .field textarea {
+  width: 100%;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+}
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.playlist-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+}

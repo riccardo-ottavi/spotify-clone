@@ -85,8 +85,8 @@ export type AudioContextType = {
   searchQuery: string;
   setSearchQuery: (query: string) => void;
   searchResults: Song[];
-  addPlaylist: (name: string) => void;
   addSongToPlaylist: (playlistId: number, songId: number) => void
+  createPlaylist: () => Playlist; 
 };
 
 export type Playlist = {

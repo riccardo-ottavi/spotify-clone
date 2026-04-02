@@ -1,25 +1,27 @@
 import MiniCard from "./MiniCard"
 import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 export default function Sidebar() {
 
-  const { artists, albums, playlists, addPlaylist } = useAudioPlayerContext();
-
+  const { artists, albums, playlists, createPlaylist } = useAudioPlayerContext();
+  const navigate = useNavigate();
 
   return (
     <div className="left-mid custom-scrollbar">
       <img src="/layer-group-solid-full.svg" alt="" className='icon' />
+
       <img
         src="/plus-solid-full.svg"
         alt=""
         className='icon'
         onClick={() => {
-          const name = prompt("Nome playlist?");
-          if (name) addPlaylist(name);
+          const newPlaylist = createPlaylist();
+          navigate(`/playlist/${newPlaylist.id}`);
         }}
       />
+
       <div className="mini-cards-container custom-scrollbar">
         {artists.map((a) => (
           <Link to={`/artist/${a.id}`} style={{ textDecoration: "none" }}>

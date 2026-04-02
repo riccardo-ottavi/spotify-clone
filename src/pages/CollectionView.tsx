@@ -3,6 +3,7 @@ import type { Song, CollectionViewProps } from "../types/types";
 import TableView from "../components/TableView";
 import DetailHeader from "../components/DetailHeader";
 import Links from "../components/Links";
+import EditPlaylistPage from "./EditPlaylistPage";
 
 export default function CollectionView({
   type,
@@ -31,6 +32,10 @@ export default function CollectionView({
     songs = getSongsFromPlaylist(playlistId);
   } else if (type === "album" && albumSongs) {
     songs = albumSongs;
+  }
+
+  if (songs.length === 0 && type === "playlist") {
+    return <EditPlaylistPage />;
   }
 
   if (songs.length === 0) {

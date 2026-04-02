@@ -3,7 +3,7 @@ import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 
 export default function Header() {
 
-    const { searchQuery, setSearchQuery, searchResults, playQueue, artists, addSongToPlaylist } = useAudioPlayerContext();
+    const { searchQuery, setSearchQuery, searchResults, playQueue, artists, addSongToPlaylist, playlists } = useAudioPlayerContext();
 
     const artistMap = Object.fromEntries(artists.map(a => [a.id, a]));
 

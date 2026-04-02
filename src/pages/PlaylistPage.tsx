@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import CollectionView from "./CollectionView";
 import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 
-export default function ArtistPage() {
+export default function PlaylistPage() {
   const { id } = useParams<{ id: string }>();
   const { playlists } = useAudioPlayerContext();
 

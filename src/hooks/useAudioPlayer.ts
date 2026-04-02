@@ -196,16 +196,19 @@ export function useAudioPlayer() {
     });
   };
 
-  const addPlaylist = (name: string) => {
-  const newPlaylist: Playlist = {
-    id: Date.now(), 
-    name,
-    image: "/default-playlist.png",  
+
+const createPlaylist = () => {
+  const newPlaylist = {
+    id: Date.now(),
+    name: "Nuova playlist",
+    image: "/new-playlist.png",
     songIds: [],
-    notes: "Prova"
+    notes: ""
   };
 
   setPlaylists(prev => [...prev, newPlaylist]);
+
+  return newPlaylist;
 };
 
 const addSongToPlaylist = (playlistId: number, songId: number) => {
@@ -248,7 +251,7 @@ const addSongToPlaylist = (playlistId: number, songId: number) => {
     searchQuery,
     setSearchQuery,
     searchResults,
-    addPlaylist,
-    addSongToPlaylist
+    addSongToPlaylist,
+    createPlaylist
   };
 }

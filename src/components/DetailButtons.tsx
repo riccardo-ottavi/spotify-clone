@@ -9,7 +9,6 @@ export default function DetailButtons({ songs }: Props) {
     const { playQueue } = useAudioPlayerContext();
 
     const handlePlay = () => {
-        // Parto dalla prima canzone
         if (songs.length > 0) playQueue(songs, 0);
     };
 

@@ -11,24 +11,22 @@ export default function Header() {
     
     
     useEffect(() => {
-        window.addEventListener("click", handleClickOutside);
-        return () => window.removeEventListener("click", handleClickOutside);
+        const handleClickOutside = (e: MouseEvent) => {
+            if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+                setSelectedSongId(null);
+            }
+        };
+        document.addEventListener("mousedown", handleClickOutside);
+        return () => document.removeEventListener("mousedown", handleClickOutside);
     }, []);
 
     const handleAddClick = (songId: number) => {
         setSelectedSongId(songId);
     };
 
-    
     const handlePlaylistSelect = (playlistId: number) => {
         if (selectedSongId !== null) {
             addSongToPlaylist(playlistId, selectedSongId);
-            setSelectedSongId(null);
-        }
-    };
-
-    const handleClickOutside = (e: MouseEvent) => {
-        if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
             setSelectedSongId(null);
         }
     };
@@ -84,9 +82,8 @@ export default function Header() {
         ) : null}
     </div>
 
-    {/* Dropdown a destra dei suggerimenti */}
     {selectedSongId !== null && (
-        <div className="playlist-dropdown-right">
+        <div className="playlist-dropdown-right" ref={dropdownRef}>
             {playlists.map(p => (
                 <div
                     key={p.id}

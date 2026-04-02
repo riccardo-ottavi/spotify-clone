@@ -113,11 +113,11 @@ body {
   justify-content: center;
   gap: 20px;
   border-radius: 15px;
-  padding-top: 80px;
+  padding-top: 180px;
   overflow-y: auto;
-  margin-bottom: 10px ;
   align-items: center;
   padding-left: 15px;
+  height: 400px;
 }
 
 h1 {
@@ -347,6 +347,7 @@ hr {
   border-radius: 15px;
   padding-top: 10px;
   gap: 20px;
+  
 }
 
 .side-icons-container{
@@ -572,7 +573,7 @@ hr {
   overflow-y: auto;
   color: white;
   border-radius: 10px;
-  padding-bottom: 30px;
+  padding-bottom: 130px;
 
   background: linear-gradient(to bottom,
       #5F3D1B 0%,

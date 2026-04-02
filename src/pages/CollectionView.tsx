@@ -50,6 +50,9 @@ export default function CollectionView({
         songs={songs}
       />
       <Links />
+      <hr />
+      <hr />
+
     </section>
   );
 }

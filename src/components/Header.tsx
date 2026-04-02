@@ -3,7 +3,7 @@ import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 
 export default function Header() {
 
-    const { searchQuery, setSearchQuery, searchResults, playQueue, artists } = useAudioPlayerContext();
+    const { searchQuery, setSearchQuery, searchResults, playQueue, artists, addSongToPlaylist } = useAudioPlayerContext();
 
     const artistMap = Object.fromEntries(artists.map(a => [a.id, a]));
 
@@ -41,7 +41,12 @@ export default function Header() {
                                         <h5 className="underline">{song.title}</h5>
                                         <span className="underline">{artist?.name}</span>
                                     </div>
-                                    <img src="../circle-plus-solid-full.svg" alt="" className="suggest-add"/>
+                                    <img 
+                                        src="../circle-plus-solid-full.svg" 
+                                        alt="" 
+                                        className="suggest-add"
+                                        onClick={() => addSongToPlaylist(1, song.id)}
+                                    />
                                 </div>
                             )})
                         ) : searchQuery ? (

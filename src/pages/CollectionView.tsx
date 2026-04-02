@@ -43,21 +43,16 @@ export default function CollectionView({
   }
 
   return (
-    <section style={{ marginBottom: "30px"}}>
-      <DetailHeader
-        type={type}
-        title={title}
-        bio={bio}
-        year={year}
-        image={image}
-      />
-      <TableView
-        songs={songs}
-      />
-      <Links />
-      <hr />
-      <hr />
+    <section style={{ marginBottom: "30px" }}>
 
+      {type === "playlist" ? (
+        <EditPlaylistPage />
+      ) : (
+        <TableView songs={songs} />
+      )}
+
+      {type !== "playlist" && <Links />}
+      <hr />
     </section>
   );
 }

@@ -1056,3 +1056,22 @@ footer img {
     object-fit: cover;
     border-radius: 4px;
 }
+
+.playlist-page-result-card{
+   display: flex;
+   width: 100%;
+   justify-content: space-between;
+}
+
+
+.playlist-page-result-card img{
+  height: 60px;
+}
+
+.search-results-playlist{
+  width: 100%;
+}
+
+.playlist-page-result-card-cover{
+  display: flex
+}

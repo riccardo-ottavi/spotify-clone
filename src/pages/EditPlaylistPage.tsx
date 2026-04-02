@@ -18,6 +18,9 @@ export default function EditPlaylistPage() {
     const playlistSongs = playlist?.songIds
         .map(id => songs.find(s => s.id === id))
         .filter(Boolean) as Song[];
+    const availableSongs = songs.filter(s =>
+        s.title.toLowerCase().includes(searchQuery.toLowerCase())
+    );
 
     return (
         <div>
@@ -31,7 +34,7 @@ export default function EditPlaylistPage() {
                 <img src={playlist?.image}
                     alt=""
                     onClick={() => setIsModalOpen(true)}
-                    style={{ cursor: "pointer" }} 
+                    style={{ cursor: "pointer" }}
                 />
                 <div className="text-infos">
                     <span>Playlist</span>
@@ -57,6 +60,30 @@ export default function EditPlaylistPage() {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
             />
+            <div className="search-results-playlist">
+                {searchQuery && availableSongs.length > 0 ? (
+                    availableSongs.map(song => (
+                        <div
+                            key={song.id}
+                            className="playlist-page-result-card"
+                            onClick={() => addSongToPlaylist(playlistId, song.id)}
+                        >
+                            <div className="playlist-page-result-card-cover">
+                                <img src={song.image} alt={song.title} />
+                                <div className="playlist-page-result-card-text">
+                                    <h5>{song.title}</h5>
+                                    <span>Sfaso</span>
+                                </div>
+                            </div>
+
+                            <span>Nome album</span>
+                            <button>Aggiungi</button>
+                        </div>
+                    ))
+                ) : searchQuery ? (
+                    <p>Nessun brano trovato</p>
+                ) : null}
+            </div>
         </div>
     );
 }

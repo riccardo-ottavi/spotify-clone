@@ -57,7 +57,6 @@ export default function DetailHeader({
                     <div className="text-infos">
                         <span>Playlist</span>
                         <h2>{title}</h2>
-                        <h3>Sfaso</h3>
                     </div>
 
                 </div>

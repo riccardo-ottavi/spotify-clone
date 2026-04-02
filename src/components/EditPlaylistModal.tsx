@@ -7,20 +7,20 @@ type Props = {
 };
 
 export default function EditPlaylistModal({ playlistId, onClose }: Props) {
-  const { playlists } = useAudioPlayerContext();
+  const { playlists, updatePlaylist } = useAudioPlayerContext();
   const playlist = playlists.find(p => p.id === playlistId);
 
   const [title, setTitle] = useState(playlist?.name || "");
   const [description, setDescription] = useState(playlist?.notes || "");
   const [image, setImage] = useState(playlist?.image || "");
 
-  if (!playlist) return null; 
+  if (!playlist) return null;
 
   return (
     <div className="modal-overlay">
       <div className="modal-content">
         <h2>Modifica dettagli</h2>
-        
+
         <div className="image-section">
           <img src={image} alt="Playlist" className="playlist-preview" />
         </div>
@@ -48,7 +48,18 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
 
         <div className="modal-actions">
           <button onClick={onClose}>Annulla</button>
-          <button>Salva</button>
+          <button
+            onClick={() => {
+              updatePlaylist(playlist.id, {
+                name: title,
+                notes: description,
+                image: image
+              });
+              onClose(); 
+            }}
+          >
+            Salva
+          </button>
         </div>
       </div>
     </div>

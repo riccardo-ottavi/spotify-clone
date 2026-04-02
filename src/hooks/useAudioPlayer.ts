@@ -221,6 +221,12 @@ const addSongToPlaylist = (playlistId: number, songId: number) => {
   );
 };
 
+const updatePlaylist = (id: number, data: Partial<Playlist>) => {
+  setPlaylists(prev =>
+    prev.map(p => (p.id === id ? { ...p, ...data } : p))
+  );
+};
+
   return {
     currentSong,
     setCurrentSong,
@@ -252,6 +258,7 @@ const addSongToPlaylist = (playlistId: number, songId: number) => {
     setSearchQuery,
     searchResults,
     addSongToPlaylist,
-    createPlaylist
+    createPlaylist,
+    updatePlaylist
   };
 }

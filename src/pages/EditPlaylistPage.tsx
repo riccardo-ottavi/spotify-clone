@@ -39,7 +39,6 @@ export default function EditPlaylistPage() {
                         style={{ cursor: "pointer" }}
                         onClick={() => setIsModalOpen(true)}
                     >{playlist?.name}</h2>
-                    <h3>Sfaso</h3>
                 </div>
 
             </div>

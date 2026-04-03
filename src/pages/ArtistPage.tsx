@@ -1,10 +1,11 @@
 import { useParams } from "react-router-dom";
 import CollectionView from "./CollectionView";
 import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
+import DetailHeader from "../components/DetailHeader";
 
 export default function ArtistPage() {
   const { id } = useParams<{ id: string }>();
-  const { getSongsFromArtist, artists,  } = useAudioPlayerContext();
+  const { artists } = useAudioPlayerContext();
 
   if (!id) return <p>Artista non trovato</p>;
 
@@ -14,12 +15,19 @@ export default function ArtistPage() {
   if (!artist) return <p>Artista non trovato</p>;
 
   return (
-    <CollectionView
-      type="artist"
-      artistId={artistId}
-      title={artist.name}
-      bio={artist.bio}
-      image={artist.image}
-    />
+    <>
+      <DetailHeader
+        type={"artist"}
+        image={artist.image}
+        title={artist.name}
+      />
+      <CollectionView
+        type="artist"
+        artistId={artistId}
+        title={artist.name}
+        bio={artist.bio}
+        image={artist.image}
+      />
+    </>
   );
 }

@@ -6,7 +6,6 @@ export function useAudioPlayer() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.5);
   const [progress, setProgress] = useState(0);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const [queue, setQueue] = useState<Song[]>([]);
   const [shuffle, setShuffle] = useState(false);
   const [repeat, setRepeat] = useState<'none' | 'one' | 'all'>('none');
@@ -14,48 +13,38 @@ export function useAudioPlayer() {
   const [artists, setArtists] = useState<Artist[]>([]);
   const [albums, setAlbums] = useState<Album[]>([]);
   const [playlists, setPlaylists] = useState<Playlist[]>([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState<Song[]>([]);
 
-  useEffect(() => {
-    fetch("http://localhost:3000/songs")
-      .then(res => res.json())
-      .then(data => setSongs(data))
-      .catch(err => console.error(err));
-  }, []);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
-  useEffect(() => {
-    fetch("http://localhost:3000/artists")
+  const fetchData = <T,>(endpoint: string, setState: (data: T) => void) => {
+    fetch(`http://localhost:3000/${endpoint}`)
       .then(res => res.json())
-      .then(data => setArtists(data))
+      .then(data => setState(data))
       .catch(err => console.error(err));
-  }, []);
+  };
 
-  useEffect(() => {
-    fetch("http://localhost:3000/albums")
-      .then(res => res.json())
-      .then(data => setAlbums(data))
-      .catch(err => console.error(err));
-  }, []);
-
-  useEffect(() => {
-    fetch("http://localhost:3000/playlists")
-      .then(res => res.json())
-      .then(data => setPlaylists(data))
-      .catch(err => console.error(err));
-  }, []);
+  useEffect(() => { fetchData<Song[]>('songs', setSongs); }, []);
+  useEffect(() => { fetchData<Artist[]>('artists', setArtists); }, []);
+  useEffect(() => { fetchData<Album[]>('albums', setAlbums); }, []);
+  useEffect(() => { fetchData<Playlist[]>('playlists', setPlaylists); }, []);
 
   useEffect(() => {
     const audio = audioRef.current;
     if (!audio) return;
 
-    const handleEnded = () => {
-      playNextSong();
-    };
+    const handleEnded = () => playNextSong();
+    const handleTimeUpdate = () => setProgress((audio.currentTime / audio.duration) * 100);
 
-    audio.addEventListener("ended", handleEnded);
-    return () => audio.removeEventListener("ended", handleEnded);
-  }, [currentSong, queue]);
+    audio.addEventListener('ended', handleEnded);
+    audio.addEventListener('timeupdate', handleTimeUpdate);
+
+    return () => {
+      audio.removeEventListener('ended', handleEnded);
+      audio.removeEventListener('timeupdate', handleTimeUpdate);
+    };
+  }, [currentSong, queue, shuffle, repeat]);
 
   useEffect(() => {
     if (currentSong && audioRef.current) {
@@ -70,30 +59,20 @@ export function useAudioPlayer() {
   }, [volume]);
 
   useEffect(() => {
-    const audio = audioRef.current;
-    if (!audio) return;
+    if (!searchQuery) {
+      setSearchResults([]);
+      return;
+    }
 
-    const updateProgress = () => setProgress((audio.currentTime / audio.duration) * 100);
+    const query = searchQuery.toLowerCase();
+    const results = songs.filter(song =>
+      song.title.toLowerCase().includes(query) ||
+      artists.find(a => a.id === song.artistId)?.name.toLowerCase().includes(query) ||
+      albums.find(al => al.id === song.albumId)?.title.toLowerCase().includes(query)
+    );
 
-    audio.addEventListener('timeupdate', updateProgress);
-    return () => audio.removeEventListener('timeupdate', updateProgress);
-  }, []);
-
-  useEffect(() => {
-  if (!searchQuery) {
-    setSearchResults([]);
-    return;
-  }
-
-  const query = searchQuery.toLowerCase();
-  const results = songs.filter(song => 
-    song.title.toLowerCase().includes(query) ||
-    artists.find(a => a.id === song.artistId)?.name.toLowerCase().includes(query) ||
-    albums.find(al => al.id === song.albumId)?.title.toLowerCase().includes(query)
-  );
-
-  setSearchResults(results);
-}, [searchQuery, songs, artists, albums]);
+    setSearchResults(results);
+  }, [searchQuery, songs, artists, albums]);
 
   const togglePlay = () => {
     if (!audioRef.current) return;
@@ -101,27 +80,10 @@ export function useAudioPlayer() {
     setIsPlaying(!isPlaying);
   };
 
-  const getSongsFromAlbum = (albumId: number) => {
-    const album = albums.find(a => a.id === albumId);
-    if (!album) return [];
-    return album.songIds
-      .map(id => songs.find(s => s.id === id))
-      .filter(Boolean) as Song[];
+  const playQueue = (songs: Song[], startIndex: number = 0) => {
+    setQueue(songs);
+    setCurrentSong(songs[startIndex]);
   };
-
-  const getSongsFromArtist = (artistId: number): Song[] => {
-    return songs.filter(song => {
-      const artist = artists.find(a => a.id === artistId);
-      return artist && song.artistId === artistId;
-    });
-  };
-
-  function formatTime(seconds: number | undefined) {
-    if (!seconds) return "0:00";
-    const mins = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${mins}:${secs < 10 ? "0" : ""}${secs}`;
-  }
 
   const playNextSong = () => {
     if (!currentSong || queue.length === 0) return;
@@ -134,9 +96,8 @@ export function useAudioPlayer() {
       return;
     }
 
-    let nextIndex;
+    let nextIndex: number;
     if (shuffle) {
-
       const indices = queue.map((_, i) => i).filter(i => i !== currentIndex);
       nextIndex = indices[Math.floor(Math.random() * indices.length)];
     } else {
@@ -144,16 +105,11 @@ export function useAudioPlayer() {
     }
 
     if (nextIndex === 0 && repeat === 'none' && !shuffle && currentIndex === queue.length - 1) {
-
       setIsPlaying(false);
       return;
     }
 
     setCurrentSong(queue[nextIndex]);
-  };
-  const getSongsFromPlaylist = (id: number) => {
-    const playlist = playlists.find(p => p.id === id);
-    return playlist ? playlist.songIds.map(sid => songs.find(s => s.id === sid)).filter(Boolean) as Song[] : [];
   };
 
   const playPreviousSong = () => {
@@ -162,7 +118,7 @@ export function useAudioPlayer() {
     const currentIndex = queue.findIndex(s => s.id === currentSong.id);
     if (currentIndex === -1) return;
 
-    let prevIndex;
+    let prevIndex: number;
     if (shuffle) {
       const indices = queue.map((_, i) => i).filter(i => i !== currentIndex);
       prevIndex = indices[Math.floor(Math.random() * indices.length)];
@@ -173,59 +129,51 @@ export function useAudioPlayer() {
     setCurrentSong(queue[prevIndex]);
   };
 
-  const playQueue = (songs: Song[], startIndex: number = 0) => {
-    setQueue(songs);
-    setCurrentSong(songs[startIndex]);
+  const toggleRepeat = () => setRepeat(prev => (prev === 'none' ? 'all' : prev === 'all' ? 'one' : 'none'));
+
+  const formatTime = (seconds: number | undefined) => {
+    if (!seconds) return '0:00';
+    const mins = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${mins}:${secs < 10 ? '0' : ''}${secs}`;
   };
 
-  const getAudioDuration = (src: string): Promise<number> => {
-    return new Promise((resolve) => {
+  const getSongsFromAlbum = (albumId: number) => {
+    const album = albums.find(a => a.id === albumId);
+    return album ? album.songIds.map(id => songs.find(s => s.id === id)).filter(Boolean) as Song[] : [];
+  };
+
+  const getSongsFromArtist = (artistId: number) => songs.filter(s => s.artistId === artistId);
+
+  const getSongsFromPlaylist = (playlistId: number) => {
+    const playlist = playlists.find(p => p.id === playlistId);
+    return playlist ? playlist.songIds.map(sid => songs.find(s => s.id === sid)).filter(Boolean) as Song[] : [];
+  };
+
+  const getAudioDuration = (src: string): Promise<number> =>
+    new Promise(resolve => {
       const audio = new Audio(src);
-
-      audio.addEventListener("loadedmetadata", () => {
-        resolve(audio.duration);
-      });
+      audio.addEventListener('loadedmetadata', () => resolve(audio.duration));
     });
+
+
+  const createPlaylist = () => {
+    const newPlaylist: Playlist = {
+      id: Date.now(),
+      name: 'Nuova playlist',
+      image: '/new-playlist.png',
+      songIds: [],
+      notes: ''
+    };
+    setPlaylists(prev => [...prev, newPlaylist]);
+    return newPlaylist;
   };
 
-  const toggleRepeat = () => {
-    setRepeat(prev => {
-      if (prev === "none") return "all";
-      if (prev === "all") return "one";
-      return "none";
-    });
-  };
+  const addSongToPlaylist = (playlistId: number, songId: number) =>
+    setPlaylists(prev => prev.map(p => p.id === playlistId ? { ...p, songIds: [...p.songIds, songId] } : p));
 
-
-const createPlaylist = () => {
-  const newPlaylist = {
-    id: Date.now(),
-    name: "Nuova playlist",
-    image: "/new-playlist.png",
-    songIds: [],
-    notes: ""
-  };
-
-  setPlaylists(prev => [...prev, newPlaylist]);
-
-  return newPlaylist;
-};
-
-const addSongToPlaylist = (playlistId: number, songId: number) => {
-  setPlaylists(prev =>
-    prev.map(p =>
-      p.id === playlistId
-        ? { ...p, songIds: [...p.songIds, songId] }
-        : p
-    )
-  );
-};
-
-const updatePlaylist = (id: number, data: Partial<Playlist>) => {
-  setPlaylists(prev =>
-    prev.map(p => (p.id === id ? { ...p, ...data } : p))
-  );
-};
+  const updatePlaylist = (id: number, data: Partial<Playlist>) =>
+    setPlaylists(prev => prev.map(p => (p.id === id ? { ...p, ...data } : p)));
 
   return {
     currentSong,
@@ -259,6 +207,6 @@ const updatePlaylist = (id: number, data: Partial<Playlist>) => {
     searchResults,
     addSongToPlaylist,
     createPlaylist,
-    updatePlaylist
+    updatePlaylist,
   };
 }

@@ -28,7 +28,11 @@ export function useAudioPlayer() {
   useEffect(() => { fetchData<Song[]>('songs', setSongs); }, []);
   useEffect(() => { fetchData<Artist[]>('artists', setArtists); }, []);
   useEffect(() => { fetchData<Album[]>('albums', setAlbums); }, []);
-  useEffect(() => { fetchData<Playlist[]>('playlists', setPlaylists); }, []);
+  useEffect(() => {
+  fetchData<Playlist[]>('playlists', data => {
+    setPlaylists(data.filter(p => p.id !== undefined));
+  });
+}, []);
 
   useEffect(() => {
     const audio = audioRef.current;

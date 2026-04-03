@@ -8,7 +8,7 @@ import EditPlaylistModal from "../components/EditPlaylistModal"
 
 export default function EditPlaylistPage() {
 
-    const { playlists, addSongToPlaylist, songs } = useAudioPlayerContext();
+    const { playlists, addSongToPlaylist, songs, albums } = useAudioPlayerContext();
     const [searchQuery, setSearchQuery] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { id } = useParams<{ id: string }>();
@@ -48,42 +48,53 @@ export default function EditPlaylistPage() {
             <DetailButtons
                 songs={playlistSongs}
             />
+            <hr />
+            <div className="container-page">
 
-            {playlistSongs.length === 0 ? (
-                <p>Questa playlist è vuota</p>
-            ) : (
-                <TableView songs={playlistSongs} />
-            )}
+                {playlistSongs.length === 0 ? (
 
-            <input
-                placeholder="Cerca brani da aggiungere"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-            />
-            <div className="search-results-playlist">
-                {searchQuery && availableSongs.length > 0 ? (
-                    availableSongs.map(song => (
-                        <div
-                            key={song.id}
-                            className="playlist-page-result-card"
-                            onClick={() => addSongToPlaylist(playlistId, song.id)}
-                        >
-                            <div className="playlist-page-result-card-cover">
-                                <img src={song.image} alt={song.title} />
-                                <div className="playlist-page-result-card-text">
-                                    <h5>{song.title}</h5>
-                                    <span>Sfaso</span>
+                    <h3>Cerchiamo qualcosa per la tua playlist</h3>
+                ) : (
+                    <TableView songs={playlistSongs} />
+                )}
+                <input
+                    placeholder="Cerca brani da aggiungere"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    className="playlist-inner-input"
+                />
+                <div className="search-results-playlist">
+                    {searchQuery && availableSongs.length > 0 ? (
+
+                        availableSongs.map(song => {
+                            const album = albums.find(a => a.id === song.albumId);
+
+                            return (
+                                <div
+                                    key={song.id}
+                                    className="playlist-page-result-card"
+                                    onClick={() => addSongToPlaylist(playlistId, song.id)}
+                                >
+                                    <div className="playlist-page-result-card-cover">
+                                        <img src={song.image} alt={song.title} />
+                                        <div className="playlist-page-result-card-text">
+                                            <h5 className="underline">{song.title}</h5>
+                                            <span className="underline gray-text">Sfaso</span>
+                                        </div>
+                                    </div>
+
+                                    <span>{album?.title}</span>
+
+                                    <div className="add-to-playlist">Aggiungi</div>
                                 </div>
-                            </div>
-
-                            <span>Nome album</span>
-                            <button>Aggiungi</button>
-                        </div>
-                    ))
-                ) : searchQuery ? (
-                    <p>Nessun brano trovato</p>
-                ) : null}
+                            );
+                        })
+                    ) : searchQuery ? (
+                        <p>Nessun brano trovato</p>
+                    ) : null}
+                </div>
             </div>
+
         </div>
     );
 }

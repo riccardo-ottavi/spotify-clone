@@ -843,6 +843,13 @@ footer img {
   display: flex;
 }
 
+.container-page{
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
 .detail-cards-container{
   display: flex;
   flex-direction: column;
@@ -1050,6 +1057,24 @@ footer img {
     background-color: #282828;
 }
 
+.playlist-inner-input{
+  background-color: #282828;
+  height: 40px;
+  width: 400px;
+  color: #b3b3b3;
+}
+
+.add-to-playlist{
+  border: 1px solid #b3b3b3;
+  height: 30px;
+  border-radius: 33px;
+  width: 90px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .playlist-thumb {
     width: 36px;
     height: 36px;
@@ -1061,11 +1086,12 @@ footer img {
    display: flex;
    width: 100%;
    justify-content: space-between;
+   padding: 10px;
 }
 
 
 .playlist-page-result-card img{
-  height: 60px;
+  height: 50px;
 }
 
 .search-results-playlist{
@@ -1074,4 +1100,19 @@ footer img {
 
 .playlist-page-result-card-cover{
   display: flex
+}
+
+.playlist-page-result-card-text{
+  display: flex;
+  flex-direction: column;
+  width: 225px;
+  margin-left: 10px;
+}
+
+.playlist-page-result-card-text *{
+  font-size: 13px;
+}
+
+.gray-text{
+  color: #b3b3b3;
 }

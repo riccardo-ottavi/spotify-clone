@@ -4,7 +4,7 @@ import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 
 export default function PlaylistPage() {
   const { id } = useParams<{ id: string }>();
-  const { playlists } = useAudioPlayerContext();
+  const { playlists, deletePlaylist } = useAudioPlayerContext();
 
   if (!id) return <p>playlist non trovata</p>;
 
@@ -14,11 +14,14 @@ export default function PlaylistPage() {
   if (!playlist) return <p>playlist non trovata</p>;
 
   return (
+  <>
+  <p onClick={() => deletePlaylist(playlist.id)}>Elimina</p>
   <CollectionView
     type="playlist"
     playlistId={playlist.id}  
     title={playlist.name}
     image={playlist.image}
   />
+  </>
 );
 }

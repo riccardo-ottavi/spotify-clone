@@ -175,6 +175,19 @@ export function useAudioPlayer() {
   const updatePlaylist = (id: number, data: Partial<Playlist>) =>
     setPlaylists(prev => prev.map(p => (p.id === id ? { ...p, ...data } : p)));
 
+  const deletePlaylist = (playlistId: number) => {
+  setPlaylists(prev => prev.filter(p => p.id !== playlistId));
+
+  if (queue.some(song => {
+    const playlist = playlists.find(p => p.songIds.includes(song.id));
+    return playlist?.id === playlistId;
+  })) {
+    setQueue([]);         
+    setCurrentSong(null);  
+    setIsPlaying(false);
+  }
+};
+
   return {
     currentSong,
     setCurrentSong,
@@ -208,5 +221,6 @@ export function useAudioPlayer() {
     addSongToPlaylist,
     createPlaylist,
     updatePlaylist,
+    deletePlaylist
   };
 }

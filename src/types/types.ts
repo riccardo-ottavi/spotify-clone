@@ -88,6 +88,7 @@ export type AudioContextType = {
   addSongToPlaylist: (playlistId: number, songId: number) => void
   createPlaylist: () => Playlist; 
   updatePlaylist: (id: number, data: Partial<Playlist>) => Playlist;
+  deletePlaylist: (playlistId: number) => void;
 };
 
 export type Playlist = {

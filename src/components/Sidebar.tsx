@@ -8,6 +8,7 @@ export default function Sidebar() {
   const { artists, albums, playlists, createPlaylist } = useAudioPlayerContext();
   const navigate = useNavigate();
 
+
   return (
     <div className="left-mid custom-scrollbar">
       <img src="/layer-group-solid-full.svg" alt="" className='icon' />
@@ -16,9 +17,11 @@ export default function Sidebar() {
         src="/plus-solid-full.svg"
         alt=""
         className='icon'
-        onClick={() => {
-          const newPlaylist = createPlaylist();
-          navigate(`/playlist/${newPlaylist.id}`);
+        onClick={async () => {
+          const newPlaylist = await createPlaylist();
+          if (newPlaylist) {
+            navigate(`/playlist/${newPlaylist.id}`);
+          }
         }}
       />
 

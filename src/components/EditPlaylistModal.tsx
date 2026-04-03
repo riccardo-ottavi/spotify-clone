@@ -13,6 +13,21 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
   const [title, setTitle] = useState(playlist?.name || "");
   const [description, setDescription] = useState(playlist?.notes || "");
   const [image, setImage] = useState(playlist?.image || "");
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+  const [file, setFile] = useState<File | null>(null);
+
+  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+  const selectedFile = e.target.files?.[0];
+  if (!selectedFile) return;
+
+  setFile(selectedFile); 
+
+  const imageUrl = URL.createObjectURL(selectedFile);
+  setImagePreview(imageUrl);
+
+
+  setImage(imageUrl); 
+}
 
   if (!playlist) return null;
 
@@ -22,7 +37,12 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
         <h2>Modifica dettagli</h2>
 
         <div className="image-section">
-          <img src={image} alt="Playlist" className="playlist-preview" />
+          <img src={imagePreview || image} alt="Playlist" className="playlist-preview" />
+          <input 
+            type="file" 
+            accept="image/*"
+            onChange={handleImageChange}
+          />
         </div>
 
         <div className="field">
@@ -62,6 +82,7 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
           </button>
         </div>
       </div>
+      
     </div>
   );
 }

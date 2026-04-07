@@ -4,7 +4,7 @@ import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
 
 export default function PlaylistPage() {
   const { id } = useParams<{ id: string }>();
-  const { playlists, deletePlaylist } = useAudioPlayerContext();
+  const { playlists, deletePlaylist, songs } = useAudioPlayerContext();
 
   if (!id) return <p>playlist non trovata</p>;
 
@@ -12,6 +12,9 @@ export default function PlaylistPage() {
   const playlist = playlists.find(a => a.id === playListId);
 
   if (!playlist) return <p>playlist non trovata</p>;
+  const playlistSongs = songs.filter(s =>
+  playlist.songIds?.includes(s.id) // il ?. evita l'errore se songIds è undefined
+);
 
   return (
   <>
@@ -21,6 +24,7 @@ export default function PlaylistPage() {
     playlistId={playlist.id}  
     title={playlist.name}
     image={playlist.image}
+    songs={playlistSongs}
   />
   </>
 );

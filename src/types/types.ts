@@ -45,6 +45,7 @@ export type CollectionViewProps = {
   title: string;
   year?: number
   image: string
+  songs: Song[]
 }
 
 export type DetailHeaderProps = {

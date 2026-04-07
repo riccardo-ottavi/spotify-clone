@@ -17,7 +17,7 @@ const TableView = React.memo(({ songs }: Props) => {
 
                 return (
                     <div
-                        key={s.id}
+                        key={`${s.id}-${index}`}
                         className={`detail-song-card ${isActive ? "active" : ""}`}
                         onClick={() => playQueue(songs, index)}
                     >

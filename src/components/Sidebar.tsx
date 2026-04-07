@@ -27,19 +27,18 @@ export default function Sidebar() {
 
       <div className="mini-cards-container custom-scrollbar">
         {artists.map((a) => (
-          <Link to={`/artist/${a.id}`} style={{ textDecoration: "none" }}>
+          <Link key={a.id} to={`/artist/${a.id}`} style={{ textDecoration: "none" }}>
             <MiniCard
-              key={a.id}
               image={a.image}
               id={a.id}
               name={a.name}
               type="artist"
-            /></Link>
+            />
+          </Link>
         ))}
         {albums.map((a) => (
-          <Link to={`/album/${a.id}`} style={{ textDecoration: "none" }}>
+          <Link key={a.id} to={`/album/${a.id}`} style={{ textDecoration: "none" }}>
             <MiniCard
-              key={a.id}
               image={a.image}
               id={a.id}
               name={a.title}
@@ -47,10 +46,9 @@ export default function Sidebar() {
             />
           </Link>
         ))}
-        {playlists.map(p => (
-          <Link to={`/playlist/${p.id}`} style={{ textDecoration: "none" }}>
+        {playlists.map((p) => (
+          <Link key={p.id} to={`/playlist/${p.id}`} style={{ textDecoration: "none" }}>
             <MiniCard
-              key={p.id}
               image={p.image}
               id={p.id}
               name={p.name}

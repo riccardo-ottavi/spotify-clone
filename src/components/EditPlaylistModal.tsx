@@ -16,18 +16,34 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
   const [imagePreview, setImagePreview] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
 
-  function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
-  const selectedFile = e.target.files?.[0];
-  if (!selectedFile) return;
+  async function handleImageChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const selectedFile = e.target.files?.[0];
+    if (!selectedFile) return;
 
-  setFile(selectedFile); 
+    setFile(selectedFile);
 
-  const imageUrl = URL.createObjectURL(selectedFile);
-  setImagePreview(imageUrl);
+    // preview locale
+    const preview = URL.createObjectURL(selectedFile);
+    setImagePreview(preview);
 
+    // upload al server
+    const formData = new FormData();
+    formData.append("image", selectedFile); // deve corrispondere a upload.single("file")
 
-  setImage(imageUrl); 
-}
+    try {
+      const res = await fetch("http://localhost:3000/upload/image", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      // QUI devi usare il path restituito dal backend
+      setImage(data.url);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   if (!playlist) return null;
 
@@ -37,9 +53,13 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
         <h2>Modifica dettagli</h2>
 
         <div className="image-section">
-          <img src={imagePreview || image} alt="Playlist" className="playlist-preview" />
-          <input 
-            type="file" 
+          <img
+            src={imagePreview || image || '/images/default-playlist.png'}
+            alt="Playlist"
+            className="playlist-preview"
+          />
+          <input
+            type="file"
             accept="image/*"
             onChange={handleImageChange}
           />
@@ -75,14 +95,14 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
                 notes: description,
                 image: image
               });
-              onClose(); 
+              onClose();
             }}
           >
             Salva
           </button>
         </div>
       </div>
-      
+
     </div>
   );
 }

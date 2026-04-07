@@ -1,14 +1,18 @@
+import type { Song } from "../types/types";
+
 type Props= {
   image: string;
   id: number;
   name: string;
-  type: "artist" | "album" | "playlist"
+  type: "artist" | "album" | "playlist";
+  songs?: Song[]
 };
 
 export default function MiniCard({
   image,
   id,
-  type
+  type,
+  songs
 }: Props){
     return(
         <div className="mini-card">

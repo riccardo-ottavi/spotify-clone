@@ -55,7 +55,7 @@ export function useAudioPlayer() {
 
   useEffect(() => {
     if (currentSong && audioRef.current) {
-      // usa direttamente la URL del backend
+       
       audioRef.current.src = `http://localhost:3000${currentSong.audio}`;
       audioRef.current.play().catch(err => console.error(err));
       setIsPlaying(true);
@@ -207,16 +207,16 @@ export function useAudioPlayer() {
     });
 
     if (!res.ok) {
-      const text = await res.text(); // prova a leggere il messaggio d'errore
+      const text = await res.text(); 
       throw new Error(`Errore nell'aggiunta della canzone: ${text || res.status}`);
     }
 
-    // Se il server ritorna JSON valido, usalo; altrimenti fallback su songId
+ 
     let addedSong: Song | null = null;
     try {
       addedSong = await res.json();
     } catch {
-      // se non c'è JSON, usiamo solo songId
+ 
       addedSong = { id: songId } as Song;
     }
 
@@ -230,7 +230,7 @@ export function useAudioPlayer() {
 
   } catch (err) {
     console.error('addSongToPlaylist error:', err);
-    // opzionale: mostrare messaggio all'utente
+ 
   }
 };
 
@@ -246,10 +246,10 @@ export function useAudioPlayer() {
 
       if (!res.ok) throw new Error('Errore nell\'aggiornamento playlist');
 
-      // Prendiamo il playlist aggiornato dal server
+ 
       const updated: Playlist = await res.json();
 
-      // Aggiorniamo lo stato globale con l'oggetto aggiornato completo
+ 
       setPlaylists(prev =>
         prev.map(p => (p.id === id ? { ...p, ...updated } : p))
       );
@@ -287,6 +287,30 @@ export function useAudioPlayer() {
     }
   };
 
+  const removeSongFromPlaylist = async (playlistId: number, songId: number) => {
+  try {
+    const res = await fetch(`http://localhost:3000/playlists/${playlistId}/songs/${songId}`, {
+      method: 'DELETE',
+    });
+
+    if (!res.ok) throw new Error('Errore nella rimozione della canzone');
+
+ 
+    setPlaylists(prev =>
+      prev.map(p =>
+        p.id === playlistId
+          ? { ...p, songIds: p.songIds?.filter(id => id !== songId) }
+          : p
+      )
+    );
+     setQueue(prev => prev.filter(song => song.id !== songId));
+    if (currentSong?.id === songId) setCurrentSong(null);
+
+  } catch (err) {
+    console.error(err);
+  }
+};
+
   return {
     currentSong,
     setCurrentSong,
@@ -320,6 +344,7 @@ export function useAudioPlayer() {
     addSongToPlaylist,
     createPlaylist,
     updatePlaylist,
-    deletePlaylist
+    deletePlaylist,
+    removeSongFromPlaylist
   };
 }

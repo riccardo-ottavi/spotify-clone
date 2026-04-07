@@ -17,7 +17,7 @@ export default function CollectionView({
     getSongsFromAlbum,
   } = useAudioPlayerContext();
 
-  // 🔥 PLAYLIST → delega completamente
+ 
   if (type === "playlist") {
     return (
       <section style={{ marginBottom: "30px" }}>
@@ -40,7 +40,7 @@ export default function CollectionView({
   return (
     <section style={{ marginBottom: "30px" }}>
       {visibleSongs.length > 0 ? (
-        <TableView songs={visibleSongs} />
+        <TableView songs={visibleSongs} playlistId={playlistId}/>
       ) : (
         <p style={{ color: "white" }}>Nessuna canzone da mostrare</p>
       )}

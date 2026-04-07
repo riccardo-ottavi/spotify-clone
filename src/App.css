@@ -318,6 +318,14 @@ hr {
   width: 150px;
 }
 
+.icon-box{
+ position: absolute;
+ right: 50px;
+ padding: 10px;
+}
+
+
+
 .squared-cards-container {
   display: flex;
   overflow-x: auto;

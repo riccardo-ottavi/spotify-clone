@@ -5,10 +5,11 @@ import React from "react"
 type Props = {
     songs: Song[],
     onClick?: () => void;
+    playlistId: number | undefined
 }
 
-const TableView = React.memo(({ songs }: Props) => {
-    const { currentSong, playQueue, } = useAudioPlayerContext();
+const TableView = React.memo(({ songs,playlistId }: Props) => {
+    const { currentSong, playQueue, removeSongFromPlaylist } = useAudioPlayerContext();
 
     return (
         <div className="detail-cards-container">
@@ -31,6 +32,12 @@ const TableView = React.memo(({ songs }: Props) => {
                         <span className={isActive ? "active-text underline" : "underline"}>
                             {s.title}
                         </span>
+                        <img src="../trash-solid-full.svg" alt="" className="icon-box" onClick={(e) => {
+                            e.stopPropagation();  
+                            if (playlistId !== undefined) {
+                                removeSongFromPlaylist(playlistId, s.id);
+                            }
+                        }} />
                         <span className="absolute-right">
                             {s.duration}
                         </span>

@@ -13,7 +13,7 @@ export default function PlaylistPage() {
 
   if (!playlist) return <p>playlist non trovata</p>;
   const playlistSongs = songs.filter(s =>
-  playlist.songIds?.includes(s.id) // il ?. evita l'errore se songIds è undefined
+  playlist.songIds?.includes(s.id)  
 );
 
   return (

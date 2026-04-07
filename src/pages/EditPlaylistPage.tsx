@@ -24,7 +24,7 @@ export default function EditPlaylistPage() {
 
   const playlist = playlists.find(p => p.id === playlistId);
 
-  // 🔥 FETCH CORRETTO
+ 
   useEffect(() => {
     if (!playlistId) return;
 
@@ -40,7 +40,7 @@ export default function EditPlaylistPage() {
     fetchSongs();
   }, [playlistId, getSongsFromPlaylist]);
 
-  // 🔥 USO playlistSongs invece di playlist.songIds
+ 
   const availableSongs = songs.filter(s =>
     s.title.toLowerCase().includes(searchQuery.toLowerCase()) &&
     !playlistSongs.some(ps => ps.id === s.id)
@@ -78,7 +78,7 @@ export default function EditPlaylistPage() {
         {playlistSongs.length === 0 ? (
           <h3>Cerchiamo qualcosa per la tua playlist</h3>
         ) : (
-          <TableView songs={playlistSongs} />
+          <TableView songs={playlistSongs} playlistId={playlist?.id}/>
         )}
 
         <input
@@ -102,7 +102,7 @@ export default function EditPlaylistPage() {
                       try {
                         await addSongToPlaylist(playlistId, song.id);
 
-                        // 🔥 aggiorno subito lo stato locale
+                      
                         setPlaylistSongs(prev => [...prev, song]);
 
                         setSearchQuery("");

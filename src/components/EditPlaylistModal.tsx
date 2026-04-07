@@ -22,13 +22,12 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
 
     setFile(selectedFile);
 
-    // preview locale
+ 
     const preview = URL.createObjectURL(selectedFile);
     setImagePreview(preview);
-
-    // upload al server
+ 
     const formData = new FormData();
-    formData.append("image", selectedFile); // deve corrispondere a upload.single("file")
+    formData.append("image", selectedFile);  
 
     try {
       const res = await fetch("http://localhost:3000/upload/image", {
@@ -38,7 +37,7 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
 
       const data = await res.json();
 
-      // QUI devi usare il path restituito dal backend
+ 
       setImage(data.url);
     } catch (err) {
       console.error(err);

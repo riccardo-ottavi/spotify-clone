@@ -90,6 +90,7 @@ export type AudioContextType = {
   createPlaylist: () => Promise<Playlist | null>; 
   updatePlaylist: (id: number, data: Partial<Playlist>) => Promise<Playlist | null>;
   deletePlaylist: (playlistId: number) => void;
+  removeSongFromPlaylist: (playlistId: number, songId: number) => Promise<void>;
 };
 
 export type Playlist = {

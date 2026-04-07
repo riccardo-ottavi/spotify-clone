@@ -45,7 +45,7 @@ export type CollectionViewProps = {
   title: string;
   year?: number
   image: string
-  songs: Song[]
+  songs?: Song[]
 }
 
 export type DetailHeaderProps = {
@@ -70,7 +70,7 @@ export type AudioContextType = {
   artists: Artist[];
   getSongsFromArtist: (id: number) => Song[]; 
   getSongsFromAlbum: (id: number) => Song[]; 
-  getSongsFromPlaylist: (id: number) => Song[];
+  getSongsFromPlaylist: (id: number) => Promise<Song[]>;
   playlists: Playlist[]; 
   playQueue: (song: Song[], index: number) => void;
   playNextSong: () => void;
@@ -87,8 +87,8 @@ export type AudioContextType = {
   setSearchQuery: (query: string) => void;
   searchResults: Song[];
   addSongToPlaylist: (playlistId: number, songId: number) => void
-  createPlaylist: () => Playlist; 
-  updatePlaylist: (id: number, data: Partial<Playlist>) => Playlist;
+  createPlaylist: () => Promise<Playlist | null>; 
+  updatePlaylist: (id: number, data: Partial<Playlist>) => Promise<Playlist | null>;
   deletePlaylist: (playlistId: number) => void;
 };
 

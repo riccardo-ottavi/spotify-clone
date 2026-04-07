@@ -35,10 +35,12 @@ export default function CollectionView({
     songs = albumSongs;
   }
 
+  const visibleSongs = songs ?? [];
+
   return (
     <section style={{ marginBottom: "30px" }}>
-      {songs.length > 0 ? (
-        <TableView songs={songs} />
+      {visibleSongs.length > 0 ? (
+        <TableView songs={visibleSongs} />
       ) : (
         <p style={{ color: "white" }}>Nessuna canzone da mostrare</p>
       )}

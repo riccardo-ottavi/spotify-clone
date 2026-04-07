@@ -39,7 +39,10 @@ export function useAudioPlayer() {
     if (!audio) return;
 
     const handleEnded = () => playNextSong();
-    const handleTimeUpdate = () => setProgress((audio.currentTime / audio.duration) * 100);
+   const handleTimeUpdate = () => {
+  if (!audio.duration) return;
+  setProgress((audio.currentTime / audio.duration) * 100);
+};
 
     audio.addEventListener('ended', handleEnded);
     audio.addEventListener('timeupdate', handleTimeUpdate);
@@ -149,25 +152,31 @@ export function useAudioPlayer() {
 
   const getSongsFromArtist = (artistId: number) => songs.filter(s => s.artistId === artistId);
 
-  const getSongsFromPlaylist = (playlistId: number) => {
-    const playlist = playlists.find(p => p.id === playlistId);
-    return playlist ? playlist.songIds.map(sid => songs.find(s => s.id === sid)).filter(Boolean) as Song[] : [];
-  };
+  const getSongsFromPlaylist = async (playlistId: number): Promise<Song[]> => {
+  try {
+    const res = await fetch(`http://localhost:3000/playlists/${playlistId}/songs`);
+    if (!res.ok) throw new Error("Errore nel recupero canzoni");
+
+    return await res.json();
+  } catch (err) {
+    console.error(err);
+    return [];
+  }
+};
 
   const getAudioDuration = (src: string): Promise<number> =>
-    new Promise(resolve => {
-      const audio = new Audio(src);
-      audio.addEventListener('loadedmetadata', () => resolve(audio.duration));
-    });
-
+  new Promise((resolve, reject) => {
+    const audio = new Audio(src);
+    audio.addEventListener('loadedmetadata', () => resolve(audio.duration));
+    audio.addEventListener('error', () => reject('Impossibile caricare audio'));
+  });
 
   const createPlaylist = async () => {
   const newPlaylist = {
     name: 'Nuova playlist',
-    image: '/new-playlist.png',
+    image: '../new-playlist.png',
     songIds: [],
-    notes: '',
-    id: Date.now()
+    notes: ''
   };
 
   try {
@@ -188,46 +197,54 @@ export function useAudioPlayer() {
   }
 };
 
-  const addSongToPlaylist = async (playlistId: number, songId: number) => {
-  const playlist = playlists.find(p => p.id === playlistId);
-  if (!playlist) return;
-
-  const updatedPlaylist = { ...playlist, songIds: [...playlist.songIds, songId] };
-
+const addSongToPlaylist = async (playlistId: number, songId: number) => {
+  if (!playlistId) return; // sicurezza
   try {
-    const res = await fetch(`http://localhost:3000/playlists/${playlistId}`, {
-      method: 'PATCH',
+    const res = await fetch(`http://localhost:3000/playlists/${playlistId}/songs`, {
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ songIds: updatedPlaylist.songIds })
+      body: JSON.stringify({ song_id: songId })
     });
 
-    if (!res.ok) throw new Error('Errore nell\'aggiunta della canzone');
+    if (!res.ok) throw new Error("Errore nell'aggiunta della canzone");
 
-    const saved = await res.json();
-    setPlaylists(prev => prev.map(p => p.id === playlistId ? saved : p));
+    const addedSong = await res.json(); // se il backend restituisce la canzone aggiunta
+
+    setPlaylists(prev =>
+      prev.map(p =>
+        p.id === playlistId
+          ? { ...p, songIds: [...(p.songIds || []), addedSong.id] }
+          : p
+      )
+    );
+
   } catch (err) {
     console.error(err);
   }
 };
 
   const updatePlaylist = async (id: number, data: Partial<Playlist>) => {
-    try {
-      const res = await fetch(`http://localhost:3000/playlists/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data)
-      });
+  if (Object.keys(data).length === 0) return null;
 
-      if (!res.ok) throw new Error('Errore nell\'aggiornamento playlist');
+  try {
+    const res = await fetch(`http://localhost:3000/playlists/${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
 
-      const updated = await res.json();
-      setPlaylists(prev => prev.map(p => (p.id === id ? updated : p)));
-      return updated;
-    } catch (err) {
-      console.error(err);
-      return null;
-    }
-  };
+    if (!res.ok) throw new Error('Errore nell\'aggiornamento playlist');
+
+    const updated: Playlist = await res.json();
+    setPlaylists(prev =>
+      prev.map(p => p.id === id ? { ...p, ...data } : p)
+    );
+    return updated;
+  } catch (err) {
+    console.error(err);
+    return null;
+  }
+};
 
   const deletePlaylist = async (playlistId: number) => {
   try {
@@ -240,8 +257,8 @@ export function useAudioPlayer() {
     setPlaylists(prev => {
       const newPlaylists = prev.filter(p => p.id !== playlistId);
 
-      // opzionale: resetta coda se conteneva canzoni della playlist eliminata
-      if (queue.some(song => prev.find(p => p.songIds.includes(song.id))?.id === playlistId)) {
+       
+      if (queue.some(song => prev.find(p => (p.songIds || []).includes(song.id))?.id === playlistId)) {
         setQueue([]);
         setCurrentSong(null);
         setIsPlaying(false);

@@ -14,11 +14,11 @@ export default function EditPlaylistPage() {
     const { id } = useParams<{ id: string }>();
 
     const playlistId = Number(id);
-    const playlist = playlists.find(p => p.id === playlistId);
-    const playlistSongs = playlist?.songIds
-        .map(id => songs.find(s => s.id === id))
-        .filter(Boolean) as Song[];
-    const availableSongs = songs.filter(s =>
+    const playlist = playlists?.find(p => p.id === playlistId);
+    const playlistSongs: Song[] = playlist?.songIds
+    ?.map(id => songs.find(s => s.id === id))
+    .filter(Boolean) as Song[] || [];
+    const availableSongs = songs?.filter(s =>
         s.title.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -51,7 +51,7 @@ export default function EditPlaylistPage() {
             <hr />
             <div className="container-page">
 
-                {playlistSongs.length === 0 ? (
+                {playlistSongs?.length === 0 ? (
 
                     <h3>Cerchiamo qualcosa per la tua playlist</h3>
                 ) : (
@@ -66,8 +66,8 @@ export default function EditPlaylistPage() {
                 <div className="search-results-playlist">
                     {searchQuery && availableSongs.length > 0 ? (
 
-                        availableSongs.map(song => {
-                            const album = albums.find(a => a.id === song.albumId);
+                        availableSongs?.map(song => {
+                            const album = albums?.find(a => a.id === song.albumId);
 
                             return (
                                 <div

@@ -32,7 +32,7 @@ export default function HomePage() {
 
                     <div className="gradient">
                         <div className='orizzontal-cards-container'>
-                            {songs.slice(0, 8).map((c) => (
+                            {songs?.slice(0, 8).map((c) => (
                                 <OrizzontalCard
                                     key={c.id}
                                     image={c.image}
@@ -52,7 +52,7 @@ export default function HomePage() {
                             <button className="scroll-left" onClick={() => scroll("left")}>{"<"}</button>
 
                             <div className="squared-cards-container" ref={containerRef}>
-                                {songs.map((c) => (
+                                {songs?.map((c) => (
                                     <SquaredCard
                                         key={c.id}
                                         image={c.image}
@@ -68,7 +68,7 @@ export default function HomePage() {
                     </section>
 
                     <div className="vertical-cards-container">
-                        {albums.map((a) => (
+                        {albums?.map((a) => (
                             <VerticalCard key={a.id} image={a.image} title={a.title} />
                         ))}
                     </div>

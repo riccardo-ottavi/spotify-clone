@@ -10,7 +10,7 @@ export default function VerticalCard({
     return(
         <div 
             className="vertical-card"
-            style={{ backgroundImage: `url(${image})` }}
+            style={{ backgroundImage: `url(${import.meta.env.VITE_API_URL}${image})` }}
         >
             <h3>{title}</h3>
         </div>

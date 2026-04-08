@@ -68,6 +68,7 @@ export default function EditPlaylistPage() {
           <h2 onClick={() => setIsModalOpen(true)} style={{ cursor: "pointer" }}>
             {playlist?.name}
           </h2>
+          <p className="pointer" onClick={() => setIsModalOpen(true)} >{playlist?.notes}</p>
         </div>
       </div>
 

@@ -321,7 +321,7 @@ hr {
 .icon-box{
  position: absolute;
  right: 50px;
- padding: 10px;
+ padding: 12px;
 }
 
 
@@ -428,6 +428,7 @@ hr {
   position: relative;
   padding: 10px;
   min-height: 550px;
+  cursor: pointer;
 }
 
 .about-social{
@@ -500,8 +501,22 @@ hr {
   display: flex;
   align-items: center;
   justify-content: center;
+}
 
+.delete-playlist-button{
+  padding-top: 10px;
+  padding-left: 10px;
+  background-color: #d11600;
+  color: white;
+}
 
+.download-button:hover *{
+  color: white;
+}
+
+.explore:hover{
+  background-color: rgb(228, 228, 228);
+  transform: scale(1.05);
 }
 
 .explore h3 {
@@ -526,6 +541,7 @@ hr {
   height: 4px;
   background: #535353;
   border-radius: 2px;
+  cursor: pointer;
 }
 
 .header-right {
@@ -849,6 +865,10 @@ footer img {
 
 .detail-card{
   display: flex;
+}
+
+.detail-card:hover{
+  background-color: #777777;
 }
 
 .container-page{

@@ -18,7 +18,7 @@ export default function PlaylistPage() {
 
   return (
   <>
-  <p onClick={() => deletePlaylist(playlist.id)}>Elimina</p>
+  <p className="delete-playlist-button" onClick={() => deletePlaylist(playlist.id)}>Elimina</p>
   <CollectionView
     type="playlist"
     playlistId={playlist.id}  

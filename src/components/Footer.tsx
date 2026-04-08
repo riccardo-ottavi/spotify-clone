@@ -1,6 +1,7 @@
 import type { FooterProps } from "../types/types";
 import { useState } from "react";
 import { useAudioPlayerContext } from "../contexts/AudioPlayerContext";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer({
     togglePlay,
@@ -10,12 +11,27 @@ export default function Footer({
     setVolume,
     currentSong,
     progress,
-    artistName
+    artistName,
+    albumId,
+    artistId
 }: FooterProps) {
 
     const [dragProgress, setDragProgress] = useState<number | null>(null);
     const { playNextSong, playPreviousSong, formatTime, repeat, toggleRepeat, setShuffle, shuffle } = useAudioPlayerContext()
 
+    const navigate = useNavigate();
+
+    const goToAlbum = () => {
+    if (albumId) {
+      navigate(`/album/${albumId}`);
+    }
+  };
+
+  const goToArtist = () => {
+    if (artistId) {
+      navigate(`/artist/${artistId}`);
+    }
+  };
 
 
     const currentTime = audioRef.current?.currentTime || 0;
@@ -26,10 +42,10 @@ export default function Footer({
         <>
             <footer>
                 <div className="left-footer">
-                    <img src={currentSong?.image} alt="" />
+                    <img src={currentSong?.image} alt="" onClick={goToArtist}/>
                     <div className="track-text-infos">
-                        <h4 className="underline">{currentSong?.title}</h4>
-                        <span className="underline">{artistName}</span>
+                        <h4 className="underline" onClick={goToAlbum}>{currentSong?.title}</h4>
+                        <span className="underline" onClick={goToArtist}>{artistName}</span>
                     </div>
                     <img src="../circle-plus-solid-full.svg" alt="" className="icon" />
                 </div>

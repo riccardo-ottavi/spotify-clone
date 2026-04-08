@@ -33,6 +33,7 @@ export default function RightPanel({ currentSong, artists, albums }: Props) {
                     album={album?.title}
                     albumId={album?.id}
                     artistPic={artist?.image?? ''}
+                    artistId={artist?.id}
                 />
             ) : (
                 <EmptyScreen />

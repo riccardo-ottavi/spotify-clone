@@ -17,6 +17,8 @@ export type Song = {
   setVolume: (value: number) => void;
   currentSong: Song | null;
   artistName: string;
+  albumId: number | undefined
+  artistId: number | undefined
 };
 
 export type Artist = {

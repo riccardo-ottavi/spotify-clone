@@ -10,6 +10,7 @@ type Props = {
   album?: string;
   artistPic: string;
   albumId?: number;
+  artistId: number | undefined;
 };
 
 export default function NowPlaying({
@@ -20,6 +21,7 @@ export default function NowPlaying({
   album,
   artistPic,
   albumId,
+  artistId
 }: Props) {
   const { queue, currentSong, artists } = useAudioPlayerContext();
   const navigate = useNavigate();
@@ -27,6 +29,12 @@ export default function NowPlaying({
   const goToAlbum = () => {
     if (albumId) {
       navigate(`/album/${albumId}`);
+    }
+  };
+
+  const goToArtist = () => {
+    if (artistId) {
+      navigate(`/artist/${artistId}`);
     }
   };
 
@@ -40,15 +48,15 @@ export default function NowPlaying({
   return (
     <div className="now-playing">
       <div className="now-playing-header">
-        <div style={{display: "flex"}}>
+        <div style={{ display: "flex" }}>
           <img src="../minimize-solid-full.svg" alt="" className="hide" />
           {album && <h3>{album}</h3>}
         </div>
         <div className="side-icons-container">
           <div className="dots">
-          <img src="../circle-solid-full.svg" alt="" className="hide " />
-          <img src="../circle-solid-full.svg" alt="" className="hide" />
-          <img src="../circle-solid-full.svg" alt="" className="hide" />
+            <img src="../circle-solid-full.svg" alt="" className="hide " />
+            <img src="../circle-solid-full.svg" alt="" className="hide" />
+            <img src="../circle-solid-full.svg" alt="" className="hide" />
           </div>
           <img src="../expand-solid-full.svg" alt="" className="hide" />
         </div>
@@ -63,7 +71,9 @@ export default function NowPlaying({
           <img src="../circle-plus-solid-full.svg" alt="" className="add-fav-queue" />
         </div>
       </div>
-      <div className="about-artist">
+
+     
+      <div className="about-artist" onClick={goToArtist}>
         <h4 className="absolute">Informazioni sull'artista</h4>
         <img src={artistPic} alt="" />
         <div className="about-text">
@@ -75,6 +85,10 @@ export default function NowPlaying({
           {bio && <p>{bio}</p>}
         </div>
       </div>
+ 
+
+
+
       <div className="next-in-queue">
         <div className="next-in-queue-window">
           <h3>Prossimo in coda</h3>
@@ -105,10 +119,10 @@ export default function NowPlaying({
               const artist = artistMap[song.artistId];
               return (
                 <div key={song.id} className="detail-card queue-card">
-                  <img src={song.image} alt="" />
+                  <img src={song.image} alt="" onClick={() => setCurrentSong(song)}/>
                   <div className="queue-text ">
                     <h4 className="underline">{song.title}</h4>
-                    <span className="artist underline">{artist?.name}</span>
+                    <span className="artist underline" onClick={goToArtist}>{artist?.name}</span>
                   </div>
                 </div>
               );

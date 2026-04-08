@@ -49,8 +49,9 @@ export default function Layout() {
           volume={volume}
           setVolume={setVolume}
           currentSong={currentSong}
-          artistName={artists.find(a => a.id === currentSong?.artistId)?.name || "Unknown"}
-                
+          artistName={artists.find(a => a.id === currentSong?.artistId)?.name || "Unknown"}    
+          artistId={currentSong?.artistId}
+          albumId={currentSong?.albumId} 
         />
       </section>
     </>

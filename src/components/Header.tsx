@@ -105,7 +105,7 @@ export default function Header() {
                     <h3>Esplora premium</h3>
                 </div>
                 <div className="download-button">
-                    <img src="../arrow-down-solid-full.svg" alt="" className="circle-gray" />
+                    <img src="../arrow-down-solid-white.svg" alt="" className="circle-gray" />
                     <p>Installa app</p>
                 </div>
                 <img src="../bell-solid-full.svg" alt="" />

@@ -55,7 +55,9 @@ export type DetailHeaderProps = {
   title?: string;
   bio?: string;
   year?: number;
-  image: string
+  albumImage?: string;
+  playlistImage?: string;
+  artistImage?: string;
 };
 
 export type AudioContextType = {

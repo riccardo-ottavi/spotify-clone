@@ -18,7 +18,7 @@ export default function AlbumPage() {
     <>
       <DetailHeader
         type={"album"}
-        image={album.image}
+        albumImage={album.image}
         title={album.title}
       />
       <CollectionView

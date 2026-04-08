@@ -18,7 +18,7 @@ export default function ArtistPage() {
     <>
       <DetailHeader
         type={"artist"}
-        image={artist.image}
+        artistImage={artist.image}
         title={artist.name}
       />
       <CollectionView

@@ -83,14 +83,14 @@ export default function Header() {
     </div>
 
     {selectedSongId !== null && (
-        <div className="playlist-dropdown-right" ref={dropdownRef}>
+        <div className="playlist-dropdown-right custom-scrollbar" ref={dropdownRef}>
             {playlists.map(p => (
                 <div
                     key={p.id}
                     className="playlist-dropdown-item"
                     onClick={() => handlePlaylistSelect(p.id)}
                 >
-                    <img src={p.image} alt={p.name} className="playlist-thumb" />
+                    <img src={`${import.meta.env.VITE_API_URL}${p.image}`} alt={p.name} className="playlist-thumb" />
                     <span>{p.name}</span>
                 </div>
             ))}

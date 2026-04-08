@@ -1040,6 +1040,8 @@ footer img {
   font-size: 80px;
 }
 
+
+
 .search-results {
   position: absolute;
   top: 45px;  
@@ -1176,7 +1178,7 @@ footer img {
 .playlist-dropdown-right {
     position: absolute;
     top: 0;              
-    left: 420px;         
+    left: 410px;         
     width: 220px;
     max-height: 300px;
     background-color: #121212;
@@ -1195,6 +1197,7 @@ footer img {
     gap: 8px;
     padding: 6px 12px;
     cursor: pointer;
+    width: 180px;
 }
 
 .playlist-dropdown-item:hover {

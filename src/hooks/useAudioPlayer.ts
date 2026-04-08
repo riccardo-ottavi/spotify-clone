@@ -54,13 +54,17 @@ export function useAudioPlayer() {
   }, [currentSong, queue, shuffle, repeat]);
 
   useEffect(() => {
-    if (currentSong && audioRef.current) {
-       
-      audioRef.current.src = `${import.meta.env.VITE_API_URL}${currentSong.audio}`;
-      audioRef.current.play().catch(err => console.error(err));
-      setIsPlaying(true);
-    }
-  }, [currentSong]);
+  if (currentSong && audioRef.current) {
+    const src = currentSong.audio.startsWith('http')
+      ? currentSong.audio
+      : `${import.meta.env.VITE_API_URL}${currentSong.audio}`;
+
+    audioRef.current.src = src;
+    audioRef.current.play().catch(err => console.error(err));
+    setIsPlaying(true);
+  }
+}, [currentSong]);
+
   useEffect(() => {
     if (audioRef.current) audioRef.current.volume = volume;
   }, [volume]);

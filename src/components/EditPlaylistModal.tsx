@@ -73,7 +73,6 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
               maxLength={100}
               onChange={e => setTitle(e.target.value)}
             />
-            <span>{title.length}/100</span>
             <div className="field">
               <label>Descrizione</label>
               <textarea

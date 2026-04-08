@@ -144,8 +144,6 @@ body {
   text-decoration: none;
 }
 
-
-
 ul {
   display: flex;
   align-items: center;
@@ -1034,7 +1032,8 @@ footer img {
 }
 
 .detail-header-album img{
-  height: 200px;
+  height: 220px;
+  width: 220px;
 }
 
 .detail-header-album h2{
@@ -1124,7 +1123,7 @@ footer img {
 
 
 .fields{
-  padding-top: 50px;
+  padding-top: 15px;
   background: #121212;
 }
 
@@ -1133,9 +1132,9 @@ footer img {
 }
 
 .modal-actions button {
-  height: 55px;
+  height: 35px;
   background-color: white;
-  width: 110px;
+  width: 100px;
   border-radius: 33px;
   font-weight: 700;
 }
@@ -1153,7 +1152,7 @@ footer img {
 }
 
 #playlist-description-input{
-  height: 180px;
+  height: 80px;
   width: 358px;
   background: #1e1e1e;
   border: 1px solid #333;

@@ -75,7 +75,7 @@ export default function NowPlaying({
      
       <div className="about-artist" onClick={goToArtist}>
         <h4 className="absolute">Informazioni sull'artista</h4>
-        <img src={artistPic} alt="" />
+        <img src={`${import.meta.env.VITE_API_URL}${artistPic}`} alt="" />
         <div className="about-text">
           {artistName && <h4>{artistName}</h4>}
           <div className="about-social">

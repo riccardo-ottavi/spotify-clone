@@ -102,14 +102,14 @@ export default function Header() {
             </div>
             <div className="header-right">
                 <div className="explore">
-                    <h3>Esplora premium</h3>
+                    <h3 className="pointer">Esplora premium</h3>
                 </div>
-                <div className="download-button">
+                <div className="download-button pointer">
                     <img src="../arrow-down-solid-white.svg" alt="" className="circle-gray" />
                     <p>Installa app</p>
                 </div>
-                <img src="../bell-solid-full.svg" alt="" />
-                <img src="../people-group-solid-full.svg" alt="" />
+                <img  className="pointer" src="../bell-solid-full.svg" alt="" />
+                <img className="pointer" src="../people-group-solid-full.svg" alt="" />
                 <div className="account-icon">
                     R
                 </div>

@@ -22,22 +22,22 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
 
     setFile(selectedFile);
 
- 
+
     const preview = URL.createObjectURL(selectedFile);
     setImagePreview(preview);
- 
+
     const formData = new FormData();
-    formData.append("image", selectedFile);  
+    formData.append("image", selectedFile);
 
     try {
-      const res = await fetch("http://localhost:3000/upload/image", {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/upload/image`, {
         method: "POST",
         body: formData,
       });
 
       const data = await res.json();
 
- 
+
       setImage(data.url);
     } catch (err) {
       console.error(err);
@@ -49,9 +49,9 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>Modifica dettagli</h2>
 
         <div className="image-section">
+          <h2>Modifica dettagli</h2>
           <img
             src={imagePreview || image || '/images/default-playlist.png'}
             alt="Playlist"
@@ -64,29 +64,27 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
           />
         </div>
 
-        <div className="field">
-          <label>Nome</label>
-          <input
-            type="text"
-            value={title}
-            maxLength={100}
-            onChange={e => setTitle(e.target.value)}
-          />
-          <span>{title.length}/100</span>
-        </div>
-
-        <div className="field">
-          <label>Descrizione</label>
-          <textarea
-            value={description}
-            maxLength={300}
-            onChange={e => setDescription(e.target.value)}
-          />
-          <span>{description.length}/300</span>
-        </div>
-
-        <div className="modal-actions">
-          <button onClick={onClose}>Annulla</button>
+        <div className="fields">
+          <div className="field">
+            <label>Nome</label>
+            <input
+              type="text"
+              value={title}
+              maxLength={100}
+              onChange={e => setTitle(e.target.value)}
+            />
+            <span>{title.length}/100</span>
+            <div className="field">
+              <label>Descrizione</label>
+              <textarea
+                id="playlist-description-input"
+                value={description}
+                maxLength={300}
+                onChange={e => setDescription(e.target.value)}
+              />
+            </div>
+            <div className="modal-actions">
+          <button onClick={onClose}>Chiudi</button>
           <button
             onClick={() => {
               updatePlaylist(playlist.id, {
@@ -99,6 +97,8 @@ export default function EditPlaylistModal({ playlistId, onClose }: Props) {
           >
             Salva
           </button>
+        </div>
+          </div>
         </div>
       </div>
 

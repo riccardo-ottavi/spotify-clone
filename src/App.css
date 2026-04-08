@@ -1033,7 +1033,32 @@ footer img {
   border-radius: 12px;
   width: 400px;
   color: white;
+
 }
+
+.image-section img{
+  height: 200px;
+  width: 200px;
+}
+
+
+.fields{
+  padding-top: 50px;
+  background: #121212;
+}
+
+.pointer{
+  cursor: pointer;
+}
+
+.modal-actions button {
+  height: 55px;
+  background-color: white;
+  width: 110px;
+  border-radius: 33px;
+  font-weight: 700;
+}
+
 .field {
   margin-bottom: 16px;
 }
@@ -1045,6 +1070,17 @@ footer img {
   padding: 8px;
   border-radius: 6px;
 }
+
+#playlist-description-input{
+  height: 180px;
+  width: 358px;
+  background: #1e1e1e;
+  border: 1px solid #333;
+  color: white;
+  padding: 8px;
+  border-radius: 6px;
+}
+
 .modal-actions {
   display: flex;
   justify-content: flex-end;

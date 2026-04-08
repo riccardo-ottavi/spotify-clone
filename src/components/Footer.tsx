@@ -55,22 +55,26 @@ export default function Footer({
                             src={shuffle ? "../shuffle-green.svg" : "../shuffle-solid-full.svg"}
                             alt=""
                             onClick={() => setShuffle(!shuffle)}
+                            className="pointer"
                         />
                         <img
                             src="../backward-solid-full.svg"
                             alt=""
                             onClick={playPreviousSong}
+                            className="pointer"
                         />
                         <img
                             src={isPlaying ? "../circle-pause-solid-full.svg" : "../circle-play-solid-full.svg"}
                             alt=""
                             id="main-play"
                             onClick={togglePlay}
+                            className="pointer"
                         />
                         <img
                             src="../forward-solid-full.svg"
                             alt=""
                             onClick={playNextSong}
+                            className="pointer"
                         />
                         <img
                             src={
@@ -82,6 +86,7 @@ export default function Footer({
                             }
                             alt="repeat"
                             onClick={toggleRepeat}
+                            className="pointer"
                         />
                     </div>
                     <div className="control-bar">
@@ -104,15 +109,16 @@ export default function Footer({
                                 audioRef.current.currentTime = newTime;
                                 setDragProgress(null);
                             }}
+                            className="pointer"
                         />
                         <span>{formatTime(duration)}</span>
                     </div>
                 </div>
                 <div className="right-footer">
-                    <img src="../microphone-solid-full.svg" alt="" />
-                    <img src="../stack-exchange-brands-solid-full.svg" alt="" />
-                    <img src="../computer-solid-full.svg" alt="" />
-                    <img src="../volume-solid-full.svg" alt="" />
+                    <img src="../microphone-solid-full.svg" alt="" className="pointer"/>
+                    <img src="../stack-exchange-brands-solid-full.svg" alt="" className="pointer"/>
+                    <img src="../computer-solid-full.svg" alt="" className="pointer"/>
+                    <img src="../volume-solid-full.svg" alt="" className="pointer"/>
                     <input
                         type="range"
                         min="0"
@@ -120,9 +126,10 @@ export default function Footer({
                         step="0.01"
                         value={volume}
                         onChange={(e) => setVolume(Number(e.target.value))}
+                        className="pointer"
                     />
-                    <img src="../chromecast-brands-solid-full.svg" alt="" />
-                    <img src="../expand-solid-full.svg" alt="" />
+                    <img src="../chromecast-brands-solid-full.svg" alt="" className="pointer"/>
+                    <img src="../expand-solid-full.svg" alt="" className="pointer"/>
                 </div>
             </footer>
         </>

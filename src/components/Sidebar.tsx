@@ -11,12 +11,12 @@ export default function Sidebar() {
 
   return (
     <div className="left-mid custom-scrollbar">
-      <img src="/layer-group-solid-full.svg" alt="" className='icon' />
+      <img src="/layer-group-solid-white.svg" alt="" className='icon pointer' />
 
       <img
-        src="/plus-solid-full.svg"
+        src="/plus-solid-white.svg"
         alt=""
-        className='icon'
+        className='icon pointer'
         onClick={async () => {
           const newPlaylist = await createPlaylist();
           if (newPlaylist) {

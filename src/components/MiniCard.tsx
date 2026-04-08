@@ -16,7 +16,7 @@ export default function MiniCard({
 }: Props){
     return(
         <div className="mini-card">
-                <img src={image} alt="" style={type === "artist" ? {"borderRadius" : "33px"} :  {"borderRadius" : "0px"}}/>
+                <img src={`${import.meta.env.VITE_API_URL}${image}`} alt="" style={type === "artist" ? {"borderRadius" : "33px"} :  {"borderRadius" : "0px"}}/>
         </div>
     )
 }

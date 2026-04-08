@@ -19,7 +19,7 @@ export function useAudioPlayer() {
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const fetchData = <T,>(endpoint: string, setState: (data: T) => void) => {
-    fetch(`http://localhost:3000/${endpoint}`)
+    fetch(`${import.meta.env.VITE_API_URL}/${endpoint}`)
       .then(res => res.json())
       .then(data => setState(data))
       .catch(err => console.error(err));
@@ -56,7 +56,7 @@ export function useAudioPlayer() {
   useEffect(() => {
     if (currentSong && audioRef.current) {
        
-      audioRef.current.src = `http://localhost:3000${currentSong.audio}`;
+      audioRef.current.src = `${import.meta.env.VITE_API_URL}${currentSong.audio}`;
       audioRef.current.play().catch(err => console.error(err));
       setIsPlaying(true);
     }
@@ -127,7 +127,7 @@ export function useAudioPlayer() {
 
     let prevIndex: number;
     if (shuffle) {
-      const indices = queue.map((_, i) => i).filter(i => i !== currentIndex);
+      const indices = queue?.map((_, i) => i).filter(i => i !== currentIndex);
       prevIndex = indices[Math.floor(Math.random() * indices.length)];
     } else {
       prevIndex = currentIndex === 0 ? queue.length - 1 : currentIndex - 1;
@@ -147,14 +147,14 @@ export function useAudioPlayer() {
 
   const getSongsFromAlbum = (albumId: number) => {
     const album = albums.find(a => a.id === albumId);
-    return album ? album.songIds.map(id => songs.find(s => s.id === id)).filter(Boolean) as Song[] : [];
+    return album ? album?.songIds?.map(id => songs?.find(s => s?.id === id)).filter(Boolean) as Song[] : [];
   };
 
   const getSongsFromArtist = (artistId: number) => songs.filter(s => s.artistId === artistId);
 
   const getSongsFromPlaylist = async (playlistId: number): Promise<Song[]> => {
     try {
-      const res = await fetch(`http://localhost:3000/playlists/${playlistId}/songs`);
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/playlists/${playlistId}/songs`);
       if (!res.ok) throw new Error("Errore nel recupero canzoni");
 
       return await res.json();
@@ -180,7 +180,7 @@ export function useAudioPlayer() {
     };
 
     try {
-      const res = await fetch('http://localhost:3000/playlists', {
+      const res = await fetch('${import.meta.env.VITE_API_URL}/playlists', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newPlaylist)
@@ -200,7 +200,7 @@ export function useAudioPlayer() {
 
   const addSongToPlaylist = async (playlistId: number, songId: number) => {
   try {
-    const res = await fetch(`http://localhost:3000/playlists/${playlistId}/songs`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/playlists/${playlistId}/songs`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ song_id: songId })
@@ -238,7 +238,7 @@ export function useAudioPlayer() {
     if (Object.keys(data).length === 0) return null;
 
     try {
-      const res = await fetch(`http://localhost:3000/playlists/${id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/playlists/${id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
@@ -263,7 +263,7 @@ export function useAudioPlayer() {
 
   const deletePlaylist = async (playlistId: number) => {
     try {
-      const res = await fetch(`http://localhost:3000/playlists/${playlistId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/playlists/${playlistId}`, {
         method: 'DELETE'
       });
 
@@ -289,7 +289,7 @@ export function useAudioPlayer() {
 
   const removeSongFromPlaylist = async (playlistId: number, songId: number) => {
   try {
-    const res = await fetch(`http://localhost:3000/playlists/${playlistId}/songs/${songId}`, {
+    const res = await fetch(`${import.meta.env.VITE_API_URL}/playlists/${playlistId}/songs/${songId}`, {
       method: 'DELETE',
     });
 

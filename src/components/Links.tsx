@@ -1,10 +1,12 @@
+import { Link } from "react-router-dom"
+
 export default function Links(){
     return(
         <div className="links">
 
             <nav>
               <h4>Azienda</h4>
-              <a href="">Chi siamo</a>
+              <Link to={"/about"}>Chi siamo</Link>
               <a href="">Opportunità di lavoro</a>
               <a href="">For the Record</a>
             </nav>

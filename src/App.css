@@ -16,6 +16,7 @@ body {
   width: 50px;
 }
 
+
 .download-button-large {
   background-color: #1ED760;
   width: 235px;
@@ -126,15 +127,62 @@ body {
   width: 100vw;
 }
 
+#about-header{
+  width: 80%;
+}
+
+#about-spoty-logo{
+  height: 68px;
+}
+
+#about-nav *{
+  color: white;
+
+}
+
+#about-nav ul li a{
+  text-decoration: none;
+}
+
+
+
 ul {
   display: flex;
   align-items: center;
+  list-style: none;
+  gap: 20px;
 }
+
+#about-contacts-nav{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
 
 .about-content{
   background-color: white;
   color: black;
   height: 100%;
+  display: flex;
+  gap: 80px;
+  padding: 70px;
+  padding-left: 160px;
+}
+
+.about-content *{
+  color: black;
+  font-size: 16px;
+}
+
+.about-content h3{
+  font-size: 40px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+.about-contacts{
+  width: calc((100% /2));
 }
 
 .about-page-header{
@@ -774,6 +822,15 @@ footer {
   position: absolute;
   right: 15px;
 }
+
+.content-introduction{
+  width: calc((100% /2) - 40px);
+}
+
+.content-introduction *{
+  margin-bottom: 15px;
+}
+
 
 .border-left {
   border-left: 1px solid #777777;

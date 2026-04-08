@@ -57,7 +57,7 @@ export default function EditPlaylistPage() {
 
       <div className="detail-header-album album">
         <img
-          src={playlist?.image ? `${import.meta.env.VITE_API_URL}${playlist?.image}` : "image/new-playlist.png"}
+          src={`${import.meta.env.VITE_API_URL}${playlist?.image}`}
           alt=""
           onClick={() => setIsModalOpen(true)}
           style={{ cursor: "pointer" }}

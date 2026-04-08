@@ -174,13 +174,13 @@ export function useAudioPlayer() {
   const createPlaylist = async () => {
     const newPlaylist = {
       name: 'Nuova playlist',
-      image: '../new-playlist.png',
+      image: '/images/new-playlist.png',
       songIds: [],
       notes: ''
     };
 
     try {
-      const res = await fetch('${import.meta.env.VITE_API_URL}/playlists', {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/playlists`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(newPlaylist)

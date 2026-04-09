@@ -12,7 +12,10 @@ export default function OrizzontalCard({
 }: Props) {
     return (
         <div className='orizzontal-card' onClick={onClick}>
-            <img src={image} alt="" />
+            <img
+                src={image.startsWith('http') ? image : `${import.meta.env.VITE_API_URL}${image}`}
+                alt={title}
+            />
             <span>{title}</span>
             <div className="play-hover-small">
                 <img src="../play-solid-full.svg" alt="" />

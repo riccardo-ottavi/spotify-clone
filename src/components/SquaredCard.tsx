@@ -15,7 +15,10 @@ export default function SquaredCard({
 
     return (
         <div className="squared-card" onClick={onClick}>
-            <img src={image} alt="" />
+            <img
+                src={image.startsWith('http') ? image : `${import.meta.env.VITE_API_URL}${image}`}
+                alt={title}
+            />
             <h3>{title}</h3>
             <span>{artistName}</span>
             <div className="play-hover-big">

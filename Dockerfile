@@ -2,15 +2,17 @@ FROM node:18
 
 WORKDIR /app
 
+# Copia package.json e package-lock.json
 COPY package*.json ./
-RUN npm install
 
+# Installa dipendenze e serve globalmente
+RUN npm install --legacy-peer-deps && npm install -g serve
+
+# Copia tutto il codice
 COPY . .
 
+# Build React
 RUN npm run build
-
-# Serve la build con serve
-RUN npm install -g serve
 
 EXPOSE 3000
 CMD ["serve", "-s", "build", "-l", "3000"]

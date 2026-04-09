@@ -42,7 +42,7 @@ export default function Footer({
         <>
             <footer>
                 <div className="left-footer">
-                    <img src={currentSong?.image} alt="" onClick={goToArtist}/>
+                    <img src={currentSong?.image.startsWith('http') ? currentSong.image : `${import.meta.env.VITE_API_URL}${currentSong?.image}`} alt="" onClick={goToArtist}/>
                     <div className="track-text-infos">
                         <h4 className="underline" onClick={goToAlbum}>{currentSong?.title}</h4>
                         <span className="underline" onClick={goToArtist}>{artistName}</span>

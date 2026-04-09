@@ -46,6 +46,11 @@ export default function EditPlaylistPage() {
     !playlistSongs.some(ps => ps.id === s.id)
   );
 
+  const getImageSrc = (image?: string) => {
+  if (!image) return "/images/default-song.png"; // fallback
+  return image.startsWith("http") ? image : `${import.meta.env.VITE_API_URL}${image}`;
+};
+
   return (
     <div>
       {isModalOpen && playlist && (
@@ -57,7 +62,7 @@ export default function EditPlaylistPage() {
 
       <div className="detail-header-album album">
         <img
-          src={`${import.meta.env.VITE_API_URL}${playlist?.image}`}
+          src={getImageSrc(playlist?.image)}
           alt=""
           onClick={() => setIsModalOpen(true)}
           style={{ cursor: "pointer" }}
@@ -114,7 +119,7 @@ export default function EditPlaylistPage() {
                   >
                     <div className="playlist-page-result-card-cover">
                       <img
-                        src={song.image || "/images/default-song.png"}
+                        src={getImageSrc(song.image)}
                         alt={song.title}
                       />
 

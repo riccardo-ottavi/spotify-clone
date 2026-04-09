@@ -1,22 +1,32 @@
 import type { Song } from "../types/types";
 
-type Props= {
+type Props = {
   image: string;
   id: number;
   name: string;
   type: "artist" | "album" | "playlist";
-  songs?: Song[]
+  songs?: Song[];
 };
 
 export default function MiniCard({
   image,
-  id,
-  type,
-  songs
-}: Props){
-    return(
-        <div className="mini-card">
-                <img src={`${import.meta.env.VITE_API_URL}${image}`} alt="" style={type === "artist" ? {"borderRadius" : "33px"} :  {"borderRadius" : "0px"}}/>
-        </div>
-    )
+  type
+}: Props) {
+
+  const imageSrc = image?.startsWith("http")
+    ? image
+    : `${import.meta.env.VITE_API_URL}${image}`;
+
+  return (
+    <div className="mini-card">
+      <img
+        src={imageSrc}
+        alt=""
+        style={type === "artist"
+          ? { borderRadius: "33px" }
+          : { borderRadius: "0px" }
+        }
+      />
+    </div>
+  );
 }

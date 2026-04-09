@@ -59,7 +59,7 @@ export default function Header() {
                         onClick={() => playQueue([song], 0)}
                     >
                         <div className="result-card-cover">
-                            <img src={song.image} alt={song.title} />
+                            <img src={song.image.startsWith('http') ? song.image : `${import.meta.env.VITE_API_URL}${song.image}`} alt={song.title} />
                         </div>
                         <div className="result-card-text">
                             <h5 className="underline">{song.title}</h5>
@@ -90,7 +90,7 @@ export default function Header() {
                     className="playlist-dropdown-item"
                     onClick={() => handlePlaylistSelect(p.id)}
                 >
-                    <img src={`${import.meta.env.VITE_API_URL}${p.image}`} alt={p.name} className="playlist-thumb" />
+                    <img src={p.image.startsWith('http') ? p.image : `${import.meta.env.VITE_API_URL}${p.image}`} alt={p.name} className="playlist-thumb" />
                     <span>{p.name}</span>
                 </div>
             ))}

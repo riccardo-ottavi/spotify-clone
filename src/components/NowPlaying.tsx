@@ -63,7 +63,10 @@ export default function NowPlaying({
       </div>
       <div className="track-infos" onClick={goToAlbum}>
         <div className="track-infos-cover">
-          <img src={image} alt={title} />
+          <img
+                            src={image.startsWith('http') ? image : `${import.meta.env.VITE_API_URL}${image}`}
+                            alt={title}
+                        />
         </div>
         <div className="track-infos-text">
           <h3>{title}</h3>
@@ -103,7 +106,10 @@ export default function NowPlaying({
               const artist = artistMap[song.artistId];
               return (
                 <div key={song.id} className="detail-card queue-card">
-                  <img src={song.image} alt="" />
+                  <img
+                            src={song.image.startsWith('http') ? song.image : `${import.meta.env.VITE_API_URL}${song.image}`}
+                            alt={song.title}
+                        />
                   <div className="queue-text">
                     <h4 className="underline">{song.title}</h4>
                     <span className="artist underline">{artist?.name}</span>
@@ -119,7 +125,11 @@ export default function NowPlaying({
               const artist = artistMap[song.artistId];
               return (
                 <div key={song.id} className="detail-card queue-card">
-                  <img src={song.image} alt="" onClick={() => setCurrentSong(song)}/>
+                  <img
+                            src={song.image.startsWith('http') ? song.image : `${import.meta.env.VITE_API_URL}${song.image}`}
+                            alt={song.title}
+                            onClick={() => setCurrentSong(song)}
+                        />
                   <div className="queue-text ">
                     <h4 className="underline">{song.title}</h4>
                     <span className="artist underline" onClick={goToArtist}>{artist?.name}</span>

@@ -8,7 +8,7 @@ type Props = {
     playlistId: number | undefined
 }
 
-const TableView = React.memo(({ songs,playlistId }: Props) => {
+const TableView = React.memo(({ songs, playlistId }: Props) => {
     const { currentSong, playQueue, removeSongFromPlaylist } = useAudioPlayerContext();
 
     return (
@@ -27,13 +27,16 @@ const TableView = React.memo(({ songs,playlistId }: Props) => {
                             <span className="detail-id">{index + 1}</span>
                         </div>
 
-                        <img src={s.image} alt={s.title} />
+                        <img
+                            src={s.image.startsWith('http') ? s.image : `${import.meta.env.VITE_API_URL}${s.image}`}
+                            alt={s.title}
+                        />
 
                         <span className={isActive ? "active-text underline" : "underline"}>
                             {s.title}
                         </span>
                         <img src="../trash-solid-full.svg" alt="" className="icon-box" onClick={(e) => {
-                            e.stopPropagation();  
+                            e.stopPropagation();
                             if (playlistId !== undefined) {
                                 removeSongFromPlaylist(playlistId, s.id);
                             }
